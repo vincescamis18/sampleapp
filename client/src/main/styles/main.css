@@ -1,0 +1,98 @@
+.origin-section01 {
+  background-color: #9dc4d2;
+  height: 100vh;
+}
+
+@media (max-width: 1280px) {
+  .origin-section01 {
+    background-color: #f87788;
+  }
+}
+
+@media (max-width: 1024px) {
+  .origin-section01 {
+    background-color: #dae67a;
+  }
+}
+
+@media (max-width: 768px) {
+  .origin-section01 {
+    background-color: #ce894e;
+  }
+}
+
+@media (max-width: 640px) {
+  .origin-section01 {
+    background-color: #b589ff;
+  }
+}
+
+.origin-section02 {
+  background-color: #5899b1;
+  height: 100vh;
+}
+
+@media (max-width: 1280px) {
+  .origin-section02 {
+    background-color: #f31634;
+  }
+}
+
+@media (max-width: 1024px) {
+  .origin-section02 {
+    background-color: #c0d228;
+  }
+}
+
+@media (max-width: 768px) {
+  .origin-section02 {
+    background-color: #8e5728;
+  }
+}
+
+@media (max-width: 640px) {
+  .origin-section02 {
+    background-color: #7623ff;
+  }
+}
+
+.origin-section03 {
+  background-color: #345f6f;
+  height: 100vh;
+}
+
+@media (max-width: 1280px) {
+  .origin-section03 {
+    background-color: #9b081c;
+  }
+}
+
+@media (max-width: 1024px) {
+  .origin-section03 {
+    background-color: #727c18;
+  }
+}
+
+@media (max-width: 768px) {
+  .origin-section03 {
+    background-color: #3f2611;
+  }
+}
+
+@media (max-width: 640px) {
+  .origin-section03 {
+    background-color: #4700bc;
+  }
+}
+
+.origin {
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+/*# sourceMappingURL=main.css.map */

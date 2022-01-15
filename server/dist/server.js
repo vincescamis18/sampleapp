@@ -1,0 +1,104 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const socket_io_1 = require("socket.io");
+const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const chatUsers_1 = require("./users/chatUsers");
+dotenv_1.default.config();
+// Setup server
+const app = (0, express_1.default)(); //Setup Express
+const server = require("http").createServer(app);
+const io = new socket_io_1.Server(server);
+// Configure server
+app.use(express_1.default.json()); //Body parser
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use((0, cors_1.default)()); //Cross Origin Issue
+// Connecte to database with STRING_URI
+const db = `${process.env.MONGO_URI}`;
+mongoose_1.default
+    .connect(db, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+})
+    .then(() => console.log("[S:01] Database Connected"))
+    .catch((err) => console.log(err));
+if (process.env.NODE_ENV === "production") {
+    app.use(express_1.default.static("client/build"));
+}
+app.use("/api/items", require("./routes/api/items")); // Route for Creating, Reading, Updating, and Deleting an Item
+app.use("/api/records", require("./routes/api/record")); // Route for Creating, Reading, Updating, and Deleting an Item
+app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
+app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
+// handle socket connection
+io.on("connection", (socket) => {
+    // handle the newly joined client by sending previous messages and greating & notifying everyone that new client has joined
+    socket.on("join-chat", ({ username, roomName, messages }) => {
+        console.log(">>>>>"); // Config: white seperator
+        console.log("|Chat-Join|", "RoomName:", roomName, "username", username);
+        (0, chatUsers_1.addUser_chat)({ userID: socket.id, username, roomName }); // adding user to the array of active user
+        socket.join(roomName); // Client joining a specific room
+        // console.log(messages);
+        // Emitting chat history to newly joined client
+        socket.emit("serverInitialMessages", messages);
+        const date = new Date();
+        // Emitting greating message to newly joined client
+        socket.emit("serverMessage", {
+            username: "BanBot",
+            message: `You joined the chat ${roomName}!`,
+            date,
+        });
+        // Emitting notify message to everyone on the room that there's a new client that joined
+        socket.broadcast.to(roomName).emit("serverMessage", {
+            username: "BanBot",
+            message: `${username} joined the chat!`,
+            date,
+        });
+        // Emitting current active users in the room
+        io.to(roomName).emit("activeUsers", {
+            users: (0, chatUsers_1.getUsersInRoom_chat)(roomName),
+        });
+        console.log("|Chat-Joined|", "videoRooms:", (0, chatUsers_1.getUsersInRoom_chat)(roomName)); // Config: updated videoRoom array after user joined video call
+        console.log(""); // Config: white seperator
+    });
+    // Handle sent message from client then emitting the message to everyone in the room
+    socket.on("clientSendMessage", ({ username, message, date }) => {
+        const user = (0, chatUsers_1.getUser_chat)(socket.id);
+        if (user)
+            io.to(user.roomName).emit("serverMessage", {
+                username,
+                message,
+                date,
+            });
+    });
+    // Handle the disconnected client || Handle client leaving the room
+    socket.on("disconnect", () => {
+        console.log(">>>>>"); // Config: white seperator
+        console.log("|Chat leaved|", socket.id); // Config: user leaving video call
+        // checking if the user exist
+        const user = (0, chatUsers_1.getUser_chat)(socket.id);
+        if (user) {
+            // Emitting notify message to everyone on the room that the client left the room
+            const date = new Date(); // Current date
+            socket.broadcast.to(user.roomName).emit("serverMessage", {
+                username: "BanBot",
+                message: `${user.username} left the chat!`,
+                date,
+            });
+            (0, chatUsers_1.removeUser_chat)(user.userID); // removing the user from the chatRoom array
+            // Emitting current active users in the room
+            io.to(user.roomName).emit("activeUsers", {
+                users: (0, chatUsers_1.getUsersInRoom_chat)(user.roomName),
+            });
+            console.log(""); // Config: white seperator
+        }
+    });
+});
+// Deploying server to available port
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`[S:00] server started at port ${PORT}`));

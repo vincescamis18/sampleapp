@@ -1,0 +1,28 @@
+.origin-section03 {
+	background-color: darken($light-blue, 60%);
+	height: 100vh;
+}
+
+@media (max-width: 1280px) {
+	.origin-section03 {
+		background-color: darken($light-red, 60%);
+	}
+}
+
+@media (max-width: 1024px) {
+	.origin-section03 {
+		background-color: darken($light-green, 60%);
+	}
+}
+
+@media (max-width: 768px) {
+	.origin-section03 {
+		background-color: darken($light-brown, 60%);
+	}
+}
+
+@media (max-width: 640px) {
+	.origin-section03 {
+		background-color: darken($light-violet, 60%);
+	}
+}

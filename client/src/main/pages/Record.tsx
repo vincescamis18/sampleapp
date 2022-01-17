@@ -4,6 +4,8 @@ import { RootState } from "../redux/reducers/allReducer";
 import { fetchItem, createItem, updateItem, deleteItem } from "../redux/actions/recordAction";
 import { IRecord } from "../redux/actionSchemas/recordSchema";
 
+import UploadImage from "../components/inputs/uploadImage";
+
 const Zample: React.FC = () => {
 	const dispatch = useDispatch();
 	const recordState = useSelector((state: RootState) => state.record);
@@ -55,6 +57,7 @@ const Zample: React.FC = () => {
 
 	return (
 		<div style={{ backgroundColor: "black", height: "300vh", color: "white" }}>
+			<UploadImage />
 			<div>
 				<h1>FETCH ITEM</h1>
 				{recordState.map((record: IRecord) => (

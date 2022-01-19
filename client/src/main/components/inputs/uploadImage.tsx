@@ -26,15 +26,16 @@ const UploadImage: React.FC = () => {
 
 	const handleStoreImage = (file: File) => {
 		const storageRef = projectStorage.ref(file.name);
-		storageRef.put(file).on(
-			"state_change",
-			(snap: any) => console.log((snap.bytesTransferred / snap.totalBytes) * 100),
-			(err: any) => console.log(err),
-			async () => {
-				const storageUrl: string = await storageRef.getDownloadURL();
-				console.log(storageUrl);
-			}
-		);
+		storageRef
+			.put(file)
+			.then(res => {
+				if (res.state == "success")
+					storageRef
+						.getDownloadURL()
+						.then((storageURL: string) => console.log(storageURL))
+						.catch(err => console.log(err));
+			})
+			.catch(err => console.log(err));
 	};
 
 	return (

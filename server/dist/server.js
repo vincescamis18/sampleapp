@@ -32,7 +32,8 @@ if (process.env.NODE_ENV === "production") {
     app.use(express_1.default.static("client/build"));
 }
 app.use("/api/items", require("./routes/api/items")); // Route for Creating, Reading, Updating, and Deleting an Item
-app.use("/api/records", require("./routes/api/record")); // Route for Creating, Reading, Updating, and Deleting an Item
+app.use("/api/records", require("./routes/api/record")); // Route for Creating, Reading, Updating, and Deleting a Record
+app.use("/api/userz", require("./routes/api/userz")); // Route for Creating, Reading, Updating, and Deleting a Userz
 app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
 app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
 // handle socket connection

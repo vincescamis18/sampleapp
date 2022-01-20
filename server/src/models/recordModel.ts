@@ -8,7 +8,9 @@ export interface IRecord {
 	description: string;
 	tag: string;
 	address: string;
-	coordinate: string;
+	coordinate_x: number;
+	coordinate_y: number;
+	creator: string;
 }
 
 const recordSchema = new mongoose.Schema({
@@ -19,7 +21,9 @@ const recordSchema = new mongoose.Schema({
 	description: { type: String },
 	tag: { type: String },
 	address: { type: String },
-	coordinate: { type: String },
+	coordinate_x: { type: Number },
+	coordinate_y: { type: Number },
+	creator: { type: mongoose.Schema.Types.ObjectId, ref: "userz" },
 });
 
 export const Record = mongoose.model("records", recordSchema);

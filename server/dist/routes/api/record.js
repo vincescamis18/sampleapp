@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const recordModel_1 = require("../../models/recordModel");
 const router = express_1.default.Router();
-// @route   GET /api/items/
+// @route   GET /api/records/
 // @desc    Retrieve all item
 // @access  Public
 router.get("/", (req, res) => {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
         .sort({ date: 1 })
         .then((item) => res.json(item));
 });
-// @route   GET /api/items/:id
+// @route   GET /api/records/:id
 // @desc    Retrieve all item
 // @access  Public
 router.get("/:_id", (req, res) => {
@@ -22,16 +22,15 @@ router.get("/:_id", (req, res) => {
         .then((item) => res.json(item))
         .catch((err) => res.json(err));
 });
-// @route   POST /api/items/
+// @route   POST /api/records/
 // @desc    Create new Item
 // @access  Public
 router.post("/", (req, res) => {
-    const { image, title, date, owner, description, tag, address, coordinate } = req.body;
     console.log(req.body);
-    const newItem = new recordModel_1.Record({ image, title, date, owner, description, tag, address, coordinate });
+    const newItem = new recordModel_1.Record(req.body);
     newItem.save().then((item) => res.json(item));
 });
-// @route   PUT /api/items/
+// @route   PUT /api/records/
 // @desc    Update Item by _id (Append, upset: false)
 // @access  Public
 router.put("/", (req, res) => {
@@ -40,7 +39,7 @@ router.put("/", (req, res) => {
         .then((updItem) => res.json(updItem))
         .catch((err) => res.json({ err }));
 });
-// @route   DELETE /api/items/
+// @route   DELETE /api/records/
 // @desc    Update Item by _id (Append, upset: false)
 // @access  Public
 router.delete("/:_id", (req, res) => {

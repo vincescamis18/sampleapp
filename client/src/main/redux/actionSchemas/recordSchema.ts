@@ -8,7 +8,9 @@ export interface INewRecord {
 	description: string;
 	tag: string;
 	address: string;
-	coordinate: string;
+	coordinate_x: number;
+	coordinate_y: number;
+	creator: string;
 }
 
 export type IRecord = {
@@ -20,7 +22,9 @@ export type IRecord = {
 	description: string;
 	tag: string;
 	address: string;
-	coordinate: string;
+	coordinate_x: number;
+	coordinate_y: number;
+	creator: string;
 };
 
 export type IRecords = IRecord[];

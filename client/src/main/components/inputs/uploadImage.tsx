@@ -29,7 +29,7 @@ const UploadImage: React.FC = () => {
 		storageRef
 			.put(file)
 			.then(res => {
-				if (res.state == "success")
+				if (res.state === "success")
 					storageRef
 						.getDownloadURL()
 						.then((storageURL: string) => console.log(storageURL))

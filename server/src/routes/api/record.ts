@@ -3,7 +3,7 @@ import { Record, IRecord } from "../../models/recordModel";
 
 const router = express.Router();
 
-// @route   GET /api/items/
+// @route   GET /api/records/
 // @desc    Retrieve all item
 // @access  Public
 router.get("/", (req: Request, res: Response) => {
@@ -12,7 +12,7 @@ router.get("/", (req: Request, res: Response) => {
 		.then((item: IRecord[]) => res.json(item));
 });
 
-// @route   GET /api/items/:id
+// @route   GET /api/records/:id
 // @desc    Retrieve all item
 // @access  Public
 router.get("/:_id", (req: Request, res: Response) => {
@@ -21,7 +21,7 @@ router.get("/:_id", (req: Request, res: Response) => {
 		.catch((err: any) => res.json(err));
 });
 
-// @route   POST /api/items/
+// @route   POST /api/records/
 // @desc    Create new Item
 // @access  Public
 router.post("/", (req, res) => {
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
 	newItem.save().then((item: any) => res.json(item));
 });
 
-// @route   PUT /api/items/
+// @route   PUT /api/records/
 // @desc    Update Item by _id (Append, upset: false)
 // @access  Public
 router.put("/", (req: Request, res: Response) => {
@@ -40,7 +40,7 @@ router.put("/", (req: Request, res: Response) => {
 		.catch((err: any) => res.json({ err }));
 });
 
-// @route   DELETE /api/items/
+// @route   DELETE /api/records/
 // @desc    Update Item by _id (Append, upset: false)
 // @access  Public
 router.delete("/:_id", (req: Request, res: Response) => {

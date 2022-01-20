@@ -17,11 +17,24 @@ const Zample: React.FC = () => {
 		description: "",
 		tag: "",
 		address: "",
-		coordinate: "",
+		coordinate_x: 0,
+		coordinate_y: 0,
+		creator: "",
 	});
 	const [updatedRecord, setUpdatedRecord] = useState({
 		_id: "",
-		updItem: { image: "", title: "", date: "", owner: "", description: "", tag: "", address: "", coordinate: "" },
+		updItem: {
+			image: "",
+			title: "",
+			date: "",
+			owner: "",
+			description: "",
+			tag: "",
+			address: "",
+			coordinate_x: 0,
+			coordinate_y: 0,
+			creator: "",
+		},
 	});
 	const [deletedRecord, setDeletedRecord] = useState({ _id: "" });
 
@@ -36,6 +49,9 @@ const Zample: React.FC = () => {
 	const handleNewRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewRecord({ ...newRecord, [e.target.name]: e.target.value });
 	};
+	const handleNewRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setNewRecord({ ...newRecord, [e.target.name]: parseFloat(e.target.value) });
+	};
 
 	const handleUpdateRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUpdatedRecord({
@@ -43,6 +59,15 @@ const Zample: React.FC = () => {
 			updItem: {
 				...updatedRecord.updItem,
 				[e.target.name]: e.target.value,
+			},
+		});
+	};
+	const handleUpdateRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setUpdatedRecord({
+			...updatedRecord,
+			updItem: {
+				...updatedRecord.updItem,
+				[e.target.name]: parseFloat(e.target.value),
 			},
 		});
 	};
@@ -70,7 +95,9 @@ const Zample: React.FC = () => {
 						<h2>{`description: ${record.description}`}</h2>
 						<h2>{`tag: ${record.tag}`}</h2>
 						<h2>{`address: ${record.address}`}</h2>
-						<h2>{`coordinate: ${record.coordinate}`}</h2>
+						<h2>{`coordinate_x: ${record.coordinate_x}`}</h2>
+						<h2>{`coordinate_y: ${record.coordinate_y}`}</h2>
+						<h2>{`creator: ${record.creator}`}</h2>
 					</div>
 				))}
 			</div>
@@ -91,8 +118,12 @@ const Zample: React.FC = () => {
 				<input type="text" name="tag" placeholder="tag" onChange={handleNewRecordInputChange} />
 				<h2>address</h2>
 				<input type="text" name="address" placeholder="address" onChange={handleNewRecordInputChange} />
-				<h2>coordinate</h2>
-				<input type="text" name="coordinate" placeholder="coordinate" onChange={handleNewRecordInputChange} />
+				<h2>coordinate_x</h2>
+				<input type="number" name="coordinate_x" placeholder="coordinate_x" onChange={handleNewRecordInputNumberChange} />
+				<h2>coordinate_y</h2>
+				<input type="number" name="coordinate_y" placeholder="coordinate_y" onChange={handleNewRecordInputNumberChange} />
+				<h2>creator</h2>
+				<input type="text" name="creator" placeholder="creator" onChange={handleNewRecordInputChange} />
 				<br /> <br />
 				<input type="button" value="CREATE" onClick={() => dispatch(createItem(newRecord))} />
 			</div>
@@ -116,8 +147,12 @@ const Zample: React.FC = () => {
 				<input type="text" name="tag" placeholder="tag" onChange={handleUpdateRecordInputChange} />
 				<h2>address</h2>
 				<input type="text" name="address" placeholder="address" onChange={handleUpdateRecordInputChange} />
-				<h2>coordinate</h2>
-				<input type="text" name="coordinate" placeholder="coordinate" onChange={handleUpdateRecordInputChange} />
+				<h2>coordinate_x</h2>
+				<input type="number" name="coordinate" placeholder="coordinate_x" onChange={handleUpdateRecordInputNumberChange} />
+				<h2>coordinate_y</h2>
+				<input type="number" name="coordinate" placeholder="coordinate_y" onChange={handleUpdateRecordInputNumberChange} />
+				<h2>creator</h2>
+				<input type="text" name="creator" placeholder="creator" onChange={handleUpdateRecordInputChange} />
 				<br /> <br />
 				<input type="button" value="UPDATE" onClick={() => dispatch(updateItem(updatedRecord))} />
 			</div>

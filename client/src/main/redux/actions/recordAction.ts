@@ -73,7 +73,9 @@ export const updateItem = (updatedItem: { _id: string; updItem: INewRecord }) =>
 				records[index].description = updatedItem.updItem.description;
 				records[index].tag = updatedItem.updItem.tag;
 				records[index].address = updatedItem.updItem.address;
-				records[index].coordinate = updatedItem.updItem.coordinate;
+				records[index].coordinate_x = updatedItem.updItem.coordinate_x;
+				records[index].coordinate_y = updatedItem.updItem.coordinate_y;
+				records[index].creator = updatedItem.updItem.creator;
 				const newItemArray = [...records];
 				dispatch(itemUpdate(newItemArray));
 			})
@@ -85,7 +87,6 @@ export const deleteItem = (removeItem: { _id: string }) => {
 	return (dispatch: Dispatch<RecordActionSchema>, getState: () => RootState) => {
 		const records = getState().record;
 
-		console.log("oki", removeItem._id);
 		axios
 			.delete(`/api/records/${removeItem._id}`)
 			.then(res => {

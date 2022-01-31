@@ -14,4 +14,4 @@ const userzSchema = new mongoose.Schema({
     contact_number: { type: String, required: true },
     firebase_id: { type: String, required: true },
 });
-exports.Userz = mongoose.model("userz", userzSchema);
+exports.Userz = mongoose.model("users", userzSchema);

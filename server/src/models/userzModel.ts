@@ -19,4 +19,4 @@ const userzSchema: IUserz = new mongoose.Schema({
 	firebase_id: { type: String, required: true },
 });
 
-export const Userz = mongoose.model("userz", userzSchema);
+export const Userz = mongoose.model("users", userzSchema);

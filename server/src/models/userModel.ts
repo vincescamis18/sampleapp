@@ -1,17 +1,17 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-export interface IUser {
-	username: string;
-	email: string;
-	password: string;
-}
+// export interface IUser {
+// 	username: string;
+// 	email: string;
+// 	password: string;
+// }
 
-const userSchema: IUser = new mongoose.Schema({
-	username: { type: String, required: true },
-	email: { type: String, required: true },
-	password: { type: String, required: true },
-});
+// const userSchema: IUser = new mongoose.Schema({
+// 	username: { type: String, required: true },
+// 	email: { type: String, required: true },
+// 	password: { type: String, required: true },
+// });
 
-const User = mongoose.model("users", userSchema);
+// const User = mongoose.model("users", userSchema);
 
-module.exports = User;
+// module.exports = User;

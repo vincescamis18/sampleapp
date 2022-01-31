@@ -8,6 +8,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const socket_io_1 = require("socket.io");
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cookie_session_1 = __importDefault(require("cookie-session"));
+const passport_1 = __importDefault(require("passport"));
 const chatUsers_1 = require("./users/chatUsers");
 dotenv_1.default.config();
 // Setup server
@@ -17,7 +19,11 @@ const io = new socket_io_1.Server(server);
 // Configure server
 app.use(express_1.default.json()); //Body parser
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use((0, cors_1.default)()); //Cross Origin Issue
+app.use((0, cors_1.default)({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+}));
 // Connecte to database with STRING_URI
 const db = `${process.env.MONGO_URI}`;
 mongoose_1.default
@@ -31,10 +37,16 @@ mongoose_1.default
 if (process.env.NODE_ENV === "production") {
     app.use(express_1.default.static("client/build"));
 }
+// passport setup
+require("./passport");
+app.use((0, cookie_session_1.default)({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`] }));
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session());
+app.use("/auth", require("./routes/api/auth")); // Route for authentication using social media
 app.use("/api/items", require("./routes/api/items")); // Route for Creating, Reading, Updating, and Deleting an Item
 app.use("/api/records", require("./routes/api/record")); // Route for Creating, Reading, Updating, and Deleting a Record
 app.use("/api/userz", require("./routes/api/userz")); // Route for Creating, Reading, Updating, and Deleting a Userz
-app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
+// app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
 app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
 // handle socket connection
 io.on("connection", (socket) => {

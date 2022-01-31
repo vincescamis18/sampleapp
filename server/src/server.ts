@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { Server } from "socket.io";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieSession from "cookie-session";
+import passport from "passport";
 
 import { addUser_chat, getUser_chat, removeUser_chat, getUsersInRoom_chat } from "./users/chatUsers";
 
@@ -16,7 +18,13 @@ const io = new Server(server);
 // Configure server
 app.use(express.json()); //Body parser
 app.use(express.urlencoded({ extended: false }));
-app.use(cors()); //Cross Origin Issue
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+		methods: "GET,POST,PUT,DELETE",
+		credentials: true,
+	})
+);
 
 // Connecte to database with STRING_URI
 const db = `${process.env.MONGO_URI}`;
@@ -33,10 +41,17 @@ if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
 
+// passport setup
+require("./passport");
+app.use(cookieSession({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`] }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/auth", require("./routes/api/auth")); // Route for authentication using social media
 app.use("/api/items", require("./routes/api/items")); // Route for Creating, Reading, Updating, and Deleting an Item
 app.use("/api/records", require("./routes/api/record")); // Route for Creating, Reading, Updating, and Deleting a Record
 app.use("/api/userz", require("./routes/api/userz")); // Route for Creating, Reading, Updating, and Deleting a Userz
-app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
+// app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
 app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
 
 // handle socket connection

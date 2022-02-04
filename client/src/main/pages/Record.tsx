@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
-import { fetchItem, createItem, updateItem, deleteItem } from "../redux/actions/recordAction";
-import { IRecord } from "../redux/actionSchemas/recordSchema";
+import { fetchRecord, createRecord, updateRecord, deleteRecord } from "../redux/actions/recordAction";
+import { IRecord, INewRecordInput } from "../redux/actionSchemas/recordSchema";
 
 import UploadImage from "../components/inputs/uploadImage";
+import MutipleImageV1 from "../components/inputs/MutipleImageV1";
 
 const Zample: React.FC = () => {
 	const dispatch = useDispatch();
 	const recordState = useSelector((state: RootState) => state.record);
-	const [newRecord, setNewRecord] = useState({
-		image: "",
+	const [newRecord, setNewRecord] = useState<INewRecordInput>({
+		images: null,
 		title: "",
 		date: "",
 		owner: "",
@@ -24,7 +25,6 @@ const Zample: React.FC = () => {
 	const [updatedRecord, setUpdatedRecord] = useState({
 		_id: "",
 		updItem: {
-			image: "",
 			title: "",
 			date: "",
 			owner: "",
@@ -39,16 +39,13 @@ const Zample: React.FC = () => {
 	const [deletedRecord, setDeletedRecord] = useState({ _id: "" });
 
 	useEffect(() => {
-		dispatch(fetchItem());
+		dispatch(fetchRecord());
 	}, []);
-
-	useEffect(() => {
-		console.log(updatedRecord);
-	}, [updatedRecord]);
 
 	const handleNewRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewRecord({ ...newRecord, [e.target.name]: e.target.value });
 	};
+
 	const handleNewRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewRecord({ ...newRecord, [e.target.name]: parseFloat(e.target.value) });
 	};
@@ -62,6 +59,7 @@ const Zample: React.FC = () => {
 			},
 		});
 	};
+
 	const handleUpdateRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUpdatedRecord({
 			...updatedRecord,
@@ -81,13 +79,15 @@ const Zample: React.FC = () => {
 	};
 
 	return (
-		<div style={{ backgroundColor: "black", height: "300vh", color: "white" }}>
+		<div style={{ backgroundColor: "black", height: "500vh", color: "white" }}>
 			<UploadImage />
 			<div>
 				<h1>FETCH ITEM</h1>
 				{recordState.map((record: IRecord) => (
 					<div key={record._id}>
-						<img src={record.image} alt="" style={{ height: 200 }} />
+						{record.images.map(image => (
+							<img key={image._id} alt="record" src={image.link} style={{ height: 200 }} />
+						))}
 						<h2>{`_id: ${record._id}`}</h2>
 						<h2>{`title: ${record.title}`}</h2>
 						<h2>{`date: ${record.date}`}</h2>
@@ -104,8 +104,7 @@ const Zample: React.FC = () => {
 			<br />
 			<div>
 				<h1>CREATE RECORD</h1>
-				<h2>image</h2>
-				<input type="text" name="image" placeholder="image" onChange={handleNewRecordInputChange} />
+				<MutipleImageV1 setNewRecord={setNewRecord} newRecord={newRecord} />
 				<h2>title</h2>
 				<input type="text" name="title" placeholder="title" onChange={handleNewRecordInputChange} />
 				<h2>date</h2>
@@ -125,7 +124,7 @@ const Zample: React.FC = () => {
 				<h2>creator</h2>
 				<input type="text" name="creator" placeholder="creator" onChange={handleNewRecordInputChange} />
 				<br /> <br />
-				<input type="button" value="CREATE" onClick={() => dispatch(createItem(newRecord))} />
+				<input type="button" value="CREATE" onClick={() => dispatch(createRecord(newRecord))} />
 			</div>
 
 			<br />
@@ -133,8 +132,6 @@ const Zample: React.FC = () => {
 				<h1>UPDATE RECORD</h1>
 				<h2>_id</h2>
 				<input type="text" name="_id" placeholder="_id" onChange={handleUpdateRecordIDInputChange} />
-				<h2>image</h2>
-				<input type="text" name="image" placeholder="image" onChange={handleUpdateRecordInputChange} />
 				<h2>title</h2>
 				<input type="text" name="title" placeholder="title" onChange={handleUpdateRecordInputChange} />
 				<h2>date</h2>
@@ -148,13 +145,13 @@ const Zample: React.FC = () => {
 				<h2>address</h2>
 				<input type="text" name="address" placeholder="address" onChange={handleUpdateRecordInputChange} />
 				<h2>coordinate_x</h2>
-				<input type="number" name="coordinate" placeholder="coordinate_x" onChange={handleUpdateRecordInputNumberChange} />
+				<input type="number" name="coordinate_x" placeholder="coordinate_x" onChange={handleUpdateRecordInputNumberChange} />
 				<h2>coordinate_y</h2>
-				<input type="number" name="coordinate" placeholder="coordinate_y" onChange={handleUpdateRecordInputNumberChange} />
+				<input type="number" name="coordinate_y" placeholder="coordinate_y" onChange={handleUpdateRecordInputNumberChange} />
 				<h2>creator</h2>
 				<input type="text" name="creator" placeholder="creator" onChange={handleUpdateRecordInputChange} />
 				<br /> <br />
-				<input type="button" value="UPDATE" onClick={() => dispatch(updateItem(updatedRecord))} />
+				<input type="button" value="UPDATE" onClick={() => dispatch(updateRecord(updatedRecord))} />
 			</div>
 
 			<br />
@@ -164,7 +161,7 @@ const Zample: React.FC = () => {
 				<h2>_id</h2>
 				<input type="text" name="_id" placeholder="_id" onChange={handleDeleteRecordIDInputChange} />
 				<br /> <br />
-				<input type="button" value="DELETE" onClick={() => dispatch(deleteItem(deletedRecord))} />
+				<input type="button" value="DELETE" onClick={() => dispatch(deleteRecord(deletedRecord))} />
 			</div>
 		</div>
 	);

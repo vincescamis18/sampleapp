@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 export interface IRecord {
-	image: string;
+	images: { link: string }[];
 	title: string;
 	date: string;
 	owner: string;
@@ -13,8 +13,8 @@ export interface IRecord {
 	creator: string;
 }
 
-const recordSchema = new mongoose.Schema({
-	image: { type: String },
+const recordSchema: IRecord = new mongoose.Schema({
+	images: [{ link: String }],
 	title: { type: String },
 	date: { type: Date },
 	owner: { type: String },
@@ -23,7 +23,7 @@ const recordSchema = new mongoose.Schema({
 	address: { type: String },
 	coordinate_x: { type: Number },
 	coordinate_y: { type: Number },
-	creator: { type: mongoose.Schema.Types.ObjectId, ref: "userz" },
+	creator: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
 });
 
 export const Record = mongoose.model("records", recordSchema);

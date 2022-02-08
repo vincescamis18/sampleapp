@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
-import { fetchItem, createItem, updateItem, deleteItem } from "../redux/actions/manageUserAction";
+import { fetchAllUser, createUser, updateUser, deleteUser } from "../redux/actions/manageUserAction";
 import { IUser } from "../redux/actionSchemas/manageUserSchema";
 
 import UploadImage from "../components/inputs/uploadImage";
@@ -9,7 +9,7 @@ import UploadImage from "../components/inputs/uploadImage";
 const User: React.FC = () => {
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.manageUser);
-	const [newRecord, setNewRecord] = useState({
+	const [newUser, setNewUser] = useState({
 		surname: "",
 		given_name: "",
 		user_profile: "",
@@ -19,7 +19,7 @@ const User: React.FC = () => {
 		email: "",
 		contact_number: "",
 	});
-	const [updatedRecord, setUpdatedRecord] = useState({
+	const [updatedUser, setUpdatedUser] = useState({
 		_id: "",
 		updItem: {
 			surname: "",
@@ -32,48 +32,48 @@ const User: React.FC = () => {
 			contact_number: "",
 		},
 	});
-	const [deletedRecord, setDeletedRecord] = useState({ _id: "" });
+	const [deletedUser, setDeletedUser] = useState({ _id: "" });
 
 	useEffect(() => {
-		dispatch(fetchItem());
+		dispatch(fetchAllUser());
 	}, []);
 
 	useEffect(() => {
-		console.log(updatedRecord);
-	}, [updatedRecord]);
+		console.log(updatedUser);
+	}, [updatedUser]);
 
 	const handleNewRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setNewRecord({ ...newRecord, [e.target.name]: e.target.value });
+		setNewUser({ ...newUser, [e.target.name]: e.target.value });
 	};
 	const handleNewRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setNewRecord({ ...newRecord, [e.target.name]: parseFloat(e.target.value) });
+		setNewUser({ ...newUser, [e.target.name]: parseFloat(e.target.value) });
 	};
 
 	const handleUpdateRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUpdatedRecord({
-			...updatedRecord,
+		setUpdatedUser({
+			...updatedUser,
 			updItem: {
-				...updatedRecord.updItem,
+				...updatedUser.updItem,
 				[e.target.name]: e.target.value,
 			},
 		});
 	};
 	const handleUpdateRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUpdatedRecord({
-			...updatedRecord,
+		setUpdatedUser({
+			...updatedUser,
 			updItem: {
-				...updatedRecord.updItem,
+				...updatedUser.updItem,
 				[e.target.name]: parseFloat(e.target.value),
 			},
 		});
 	};
 
 	const handleUpdateRecordIDInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUpdatedRecord({ ...updatedRecord, [e.target.name]: e.target.value });
+		setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
 	};
 
 	const handleDeleteRecordIDInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setDeletedRecord({ ...deletedRecord, [e.target.name]: e.target.value });
+		setDeletedUser({ ...deletedUser, [e.target.name]: e.target.value });
 	};
 
 	return (
@@ -116,7 +116,7 @@ const User: React.FC = () => {
 				<h2>contact_number</h2>
 				<input type="text" name="contact_number" placeholder="contact_number" onChange={handleNewRecordInputChange} />
 				<br /> <br />
-				<input type="button" value="CREATE" onClick={() => dispatch(createItem(newRecord))} />
+				<input type="button" value="CREATE" onClick={() => dispatch(createUser(newUser))} />
 			</div>
 
 			<br />
@@ -141,7 +141,7 @@ const User: React.FC = () => {
 				<h2>contact_number</h2>
 				<input type="text" name="contact_number" placeholder="contact_number" onChange={handleUpdateRecordInputNumberChange} />
 				<br /> <br />
-				<input type="button" value="UPDATE" onClick={() => dispatch(updateItem(updatedRecord))} />
+				<input type="button" value="UPDATE" onClick={() => dispatch(updateUser(updatedUser))} />
 			</div>
 
 			<br />
@@ -151,7 +151,7 @@ const User: React.FC = () => {
 				<h2>_id</h2>
 				<input type="text" name="_id" placeholder="_id" onChange={handleDeleteRecordIDInputChange} />
 				<br /> <br />
-				<input type="button" value="DELETE" onClick={() => dispatch(deleteItem(deletedRecord))} />
+				<input type="button" value="DELETE" onClick={() => dispatch(deleteUser(deletedUser))} />
 			</div>
 		</div>
 	);

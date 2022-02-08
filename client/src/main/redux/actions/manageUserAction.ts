@@ -33,19 +33,19 @@ const userDelete = (newItemArray: IUsers): UserActionSchema => {
 	};
 };
 
-export const fetchItem = () => {
+export const fetchAllUser = () => {
 	return (dispatch: Dispatch<UserActionSchema>) => {
 		axios
 			.get("/api/userz/")
 			.then(res => {
-				console.log("res.data1111", res.data);
+				// console.log("res.data", res.data); // Debug
 				dispatch(userFetch(res.data));
 			})
 			.catch(err => console.log(err));
 	};
 };
 
-export const createItem = (newItem: INewUser) => {
+export const createUser = (newItem: INewUser) => {
 	console.log("newItem111", newItem);
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
 		const users = getState().manageUser;
@@ -54,13 +54,14 @@ export const createItem = (newItem: INewUser) => {
 			.post("/api/userz/", newItem)
 			.then(res => {
 				const newRecordArray = [...users, res.data];
+				// console.log("newRecordArray", newRecordArray); // Debug
 				dispatch(userCreate(newRecordArray));
 			})
 			.catch(err => console.log(err));
 	};
 };
 
-export const updateItem = (updatedItem: { _id: string; updItem: INewUser }) => {
+export const updateUser = (updatedItem: { _id: string; updItem: INewUser }) => {
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
 		const users = getState().manageUser;
 
@@ -80,13 +81,14 @@ export const updateItem = (updatedItem: { _id: string; updItem: INewUser }) => {
 				users[index].contact_number = updatedItem.updItem.contact_number;
 
 				const newItemArray = [...users];
+				// console.log("newItemArray", newItemArray); // Debug
 				dispatch(userUpdate(newItemArray));
 			})
 			.catch(err => console.log("err", err));
 	};
 };
 
-export const deleteItem = (removeItem: { _id: string }) => {
+export const deleteUser = (removeItem: { _id: string }) => {
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
 		const users = getState().manageUser;
 
@@ -97,6 +99,7 @@ export const deleteItem = (removeItem: { _id: string }) => {
 				console.log(res);
 				console.log("successss");
 				const newItemArray = users.filter(item => item._id !== removeItem._id);
+				// console.log("newItemArray", newItemArray); // Debug
 				dispatch(userDelete(newItemArray));
 			})
 			.catch(err => console.log("err", err));

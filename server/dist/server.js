@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
 }
 // passport setup
 require("./passport");
-app.use((0, cookie_session_1.default)({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`] }));
+app.use((0, cookie_session_1.default)({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`], maxAge: 10 * 60 * 1000 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
 app.use("/auth", require("./routes/api/auth")); // Route for authentication using social media

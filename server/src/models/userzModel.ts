@@ -1,22 +1,26 @@
 const mongoose = require("mongoose");
 
-export interface IUserz {
-	username: string;
+export interface IUsers {
+	_id: string;
+	surname: string;
+	given_name: string;
+	user_profile: string;
+	province: string;
+	city: string;
+	barangay: string;
 	email: string;
-	password: string;
+	contact_number: string;
 }
 
-const userzSchema: IUserz = new mongoose.Schema({
-	first_name: { type: String, required: true },
-	last_name: { type: String, required: true },
-	middle_name: { type: String, required: true },
-	user_profile: { type: String, required: true },
-	province: { type: String, required: true },
-	city: { type: String, required: true },
-	barangay: { type: String, required: true },
-	email: { type: String, required: true },
-	contact_number: { type: String, required: true },
-	firebase_id: { type: String, required: true },
+const usersSchema: IUsers = new mongoose.Schema({
+	surname: { type: String },
+	given_name: { type: String },
+	user_profile: { type: String },
+	province: { type: String },
+	city: { type: String },
+	barangay: { type: String },
+	email: { type: String },
+	contact_number: { type: String },
 });
 
-export const Userz = mongoose.model("users", userzSchema);
+export const Users = mongoose.model("users", usersSchema);

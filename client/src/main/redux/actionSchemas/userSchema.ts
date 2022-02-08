@@ -1,30 +1,26 @@
 import { UserActionType } from "../actions/allActionTypes";
 
 export interface INewUser {
-	first_name: string;
-	last_name: string;
-	middle_name: string;
+	surname: string;
+	given_name: string;
 	user_profile: string;
 	province: string;
 	city: string;
 	barangay: string;
 	email: string;
 	contact_number: string;
-	firebase_id: string;
 }
 
 export type IUser = {
 	_id: string;
-	first_name: string;
-	last_name: string;
-	middle_name: string;
+	surname: string;
+	given_name: string;
 	user_profile: string;
 	province: string;
 	city: string;
 	barangay: string;
 	email: string;
 	contact_number: string;
-	firebase_id: string;
 };
 
 export type IUsers = IUser[];

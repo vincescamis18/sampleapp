@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
 
 // passport setup
 require("./passport");
-app.use(cookieSession({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`] }));
+app.use(cookieSession({ name: "memorya-session", keys: [`${process.env.SESSION_SECRET}`], maxAge: 10 * 60 * 1000 }));
 app.use(passport.initialize());
 app.use(passport.session());
 

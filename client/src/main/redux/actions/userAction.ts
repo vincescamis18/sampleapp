@@ -70,16 +70,14 @@ export const updateItem = (updatedItem: { _id: string; updItem: INewUser }) => {
 				console.log(res);
 				console.log("successss");
 				const index = users.findIndex(element => element._id === updatedItem._id);
-				users[index].first_name = updatedItem.updItem.first_name;
-				users[index].last_name = updatedItem.updItem.last_name;
-				users[index].middle_name = updatedItem.updItem.middle_name;
+				users[index].surname = updatedItem.updItem.surname;
+				users[index].given_name = updatedItem.updItem.given_name;
 				users[index].user_profile = updatedItem.updItem.user_profile;
 				users[index].province = updatedItem.updItem.province;
 				users[index].city = updatedItem.updItem.city;
 				users[index].barangay = updatedItem.updItem.barangay;
 				users[index].email = updatedItem.updItem.email;
 				users[index].contact_number = updatedItem.updItem.contact_number;
-				users[index].firebase_id = updatedItem.updItem.firebase_id;
 
 				const newItemArray = [...users];
 				dispatch(userUpdate(newItemArray));

@@ -10,30 +10,26 @@ const User: React.FC = () => {
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
 	const [newRecord, setNewRecord] = useState({
-		first_name: "",
-		last_name: "",
-		middle_name: "",
+		surname: "",
+		given_name: "",
 		user_profile: "",
 		province: "",
 		city: "",
 		barangay: "",
 		email: "",
 		contact_number: "",
-		firebase_id: "",
 	});
 	const [updatedRecord, setUpdatedRecord] = useState({
 		_id: "",
 		updItem: {
-			first_name: "",
-			last_name: "",
-			middle_name: "",
+			surname: "",
+			given_name: "",
 			user_profile: "",
 			province: "",
 			city: "",
 			barangay: "",
 			email: "",
 			contact_number: "",
-			firebase_id: "",
 		},
 	});
 	const [deletedRecord, setDeletedRecord] = useState({ _id: "" });
@@ -89,27 +85,24 @@ const User: React.FC = () => {
 					<div key={user._id}>
 						<img src={user.user_profile} alt="" style={{ height: 200 }} />
 						<h2>{`_id: ${user._id}`}</h2>
-						<h2>{`first_name: ${user.first_name}`}</h2>
-						<h2>{`last_name: ${user.last_name}`}</h2>
-						<h2>{`middle_name: ${user.middle_name}`}</h2>
+
+						<h2>{`surname: ${user.surname}`}</h2>
+						<h2>{`given_name: ${user.given_name}`}</h2>
 						<h2>{`province: ${user.province}`}</h2>
 						<h2>{`city: ${user.city}`}</h2>
 						<h2>{`barangay: ${user.barangay}`}</h2>
 						<h2>{`email: ${user.email}`}</h2>
 						<h2>{`contact_number: ${user.contact_number}`}</h2>
-						<h2>{`firebase_id: ${user.firebase_id}`}</h2>
 					</div>
 				))}
 			</div>
 			<br />
 			<div>
 				<h1>CREATE RECORD</h1>
-				<h2>first_name</h2>
-				<input type="text" name="first_name" placeholder="first_name" onChange={handleNewRecordInputChange} />
-				<h2>last_name</h2>
-				<input type="text" name="last_name" placeholder="last_name" onChange={handleNewRecordInputChange} />
-				<h2>middle_name</h2>
-				<input type="text" name="middle_name" placeholder="middle_name" onChange={handleNewRecordInputChange} />
+				<h2>surname</h2>
+				<input type="text" name="surname" placeholder="surname" onChange={handleNewRecordInputChange} />
+				<h2>given_name</h2>
+				<input type="text" name="given_name" placeholder="given_name" onChange={handleNewRecordInputChange} />
 				<h2>user_profile</h2>
 				<input type="text" name="user_profile" placeholder="user_profile" onChange={handleNewRecordInputChange} />
 				<h2>province</h2>
@@ -122,8 +115,6 @@ const User: React.FC = () => {
 				<input type="text" name="email" placeholder="email" onChange={handleNewRecordInputChange} />
 				<h2>contact_number</h2>
 				<input type="text" name="contact_number" placeholder="contact_number" onChange={handleNewRecordInputChange} />
-				<h2>firebase_id</h2>
-				<input type="text" name="firebase_id" placeholder="firebase_id" onChange={handleNewRecordInputChange} />
 				<br /> <br />
 				<input type="button" value="CREATE" onClick={() => dispatch(createItem(newRecord))} />
 			</div>
@@ -133,12 +124,10 @@ const User: React.FC = () => {
 				<h1>UPDATE RECORD</h1>
 				<h2>_id</h2>
 				<input type="text" name="_id" placeholder="_id" onChange={handleUpdateRecordIDInputChange} />
-				<h2>first_name</h2>
-				<input type="text" name="first_name" placeholder="first_name" onChange={handleUpdateRecordInputChange} />
-				<h2>last_name</h2>
-				<input type="text" name="last_name" placeholder="last_name" onChange={handleUpdateRecordInputChange} />
-				<h2>middle_name</h2>
-				<input type="text" name="middle_name" placeholder="middle_name" onChange={handleUpdateRecordInputChange} />
+				<h2>surname</h2>
+				<input type="text" name="surname" placeholder="surname" onChange={handleUpdateRecordInputChange} />
+				<h2>given_name</h2>
+				<input type="text" name="given_name" placeholder="given_name" onChange={handleUpdateRecordInputChange} />
 				<h2>user_profile</h2>
 				<input type="text" name="user_profile" placeholder="user_profile" onChange={handleUpdateRecordInputChange} />
 				<h2>province</h2>
@@ -151,8 +140,6 @@ const User: React.FC = () => {
 				<input type="text" name="email" placeholder="email" onChange={handleUpdateRecordInputChange} />
 				<h2>contact_number</h2>
 				<input type="text" name="contact_number" placeholder="contact_number" onChange={handleUpdateRecordInputNumberChange} />
-				<h2>firebase_id</h2>
-				<input type="text" name="firebase_id" placeholder="firebase_id" onChange={handleUpdateRecordInputChange} />
 				<br /> <br />
 				<input type="button" value="UPDATE" onClick={() => dispatch(updateItem(updatedRecord))} />
 			</div>

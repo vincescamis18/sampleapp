@@ -5,17 +5,44 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const passport_1 = __importDefault(require("passport"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const userzModel_1 = require("../../models/userzModel");
 const router = express_1.default.Router();
 const CLIENT_URL = "http://localhost:3000";
 router.get("/login/success", (req, res) => {
-    console.log("login success");
     if (req.user) {
-        console.log(req.user);
-        res.status(200).json({
-            success: true,
-            message: "successfull",
-            user: req.user,
-            token: "hatdo",
+        //[S:01] Checking for existing email
+        console.log(req.user.emails[0].value);
+        userzModel_1.Users.findOne({
+            email: req.user.emails[0].value,
+        }).then((user) => {
+            if (user) {
+                // create a jwt and send the token and user details
+                console.log("retrieving an existing user", user);
+                jsonwebtoken_1.default.sign({ id: user._id }, `${process.env.JWT_SECRET}`, {}, (err, token) => {
+                    return res.status(200).json({ token, user });
+                });
+            }
+            else {
+                const newUser = new userzModel_1.Users({
+                    given_name: req.user.name.givenName,
+                    surname: "",
+                    user_profile: req.user.photos[0].value,
+                    province: "",
+                    city: "",
+                    barangay: "",
+                    email: req.user.emails[0].value,
+                    contact_number: "",
+                });
+                // save new user to database with info from social media authentication
+                newUser.save().then((user) => {
+                    console.log("created a new user", user);
+                    // create a jwt and send the token and user details
+                    jsonwebtoken_1.default.sign({ id: user._id }, `${process.env.JWT_SECRET}`, {}, (err, token) => {
+                        return res.status(200).json({ token, user });
+                    });
+                });
+            }
         });
     }
 });

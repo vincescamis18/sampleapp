@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { RootState } from "../reducers/allReducer";
 
 import { UserActionType } from "./allActionTypes";
-import { UserActionSchema, IUsers, INewUser } from "../actionSchemas/userSchema";
+import { UserActionSchema, IUsers, INewUser } from "../actionSchemas/manageUserSchema";
 
 const userFetch = (allItem: IUsers): UserActionSchema => {
 	return {
@@ -48,7 +48,7 @@ export const fetchItem = () => {
 export const createItem = (newItem: INewUser) => {
 	console.log("newItem111", newItem);
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
-		const users = getState().user;
+		const users = getState().manageUser;
 
 		axios
 			.post("/api/userz/", newItem)
@@ -62,7 +62,7 @@ export const createItem = (newItem: INewUser) => {
 
 export const updateItem = (updatedItem: { _id: string; updItem: INewUser }) => {
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
-		const users = getState().user;
+		const users = getState().manageUser;
 
 		axios
 			.put("/api/userz/", updatedItem)
@@ -88,7 +88,7 @@ export const updateItem = (updatedItem: { _id: string; updItem: INewUser }) => {
 
 export const deleteItem = (removeItem: { _id: string }) => {
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
-		const users = getState().user;
+		const users = getState().manageUser;
 
 		console.log("oki", removeItem._id);
 		axios

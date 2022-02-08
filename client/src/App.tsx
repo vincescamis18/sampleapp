@@ -6,7 +6,7 @@ import Origin from "./main/pages/Origin";
 import Item from "./main/pages/Item";
 import Zample from "./main/pages/Zample";
 import Record from "./main/pages/Record";
-import User from "./main/pages/User";
+import ManageUser from "./main/pages/ManageUser";
 import Register from "./main/pages/Register";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
 				<Route path="/item" element={<Item />} />
 				<Route path="/zample" element={<Zample />} />
 				<Route path="/record" element={<Record />} />
-				<Route path="/user" element={<User />} />
+				<Route path="/manage_user" element={<ManageUser />} />
 				<Route path="/register" element={<Register />} />
 			</Routes>
 		</BrowserRouter>

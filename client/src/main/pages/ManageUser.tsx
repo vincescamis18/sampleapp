@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
-import { fetchItem, createItem, updateItem, deleteItem } from "../redux/actions/userAction";
-import { IUser } from "../redux/actionSchemas/userSchema";
+import { fetchItem, createItem, updateItem, deleteItem } from "../redux/actions/manageUserAction";
+import { IUser } from "../redux/actionSchemas/manageUserSchema";
 
 import UploadImage from "../components/inputs/uploadImage";
 
 const User: React.FC = () => {
 	const dispatch = useDispatch();
-	const userState = useSelector((state: RootState) => state.user);
+	const userState = useSelector((state: RootState) => state.manageUser);
 	const [newRecord, setNewRecord] = useState({
 		surname: "",
 		given_name: "",

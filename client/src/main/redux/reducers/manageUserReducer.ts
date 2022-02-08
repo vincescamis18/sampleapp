@@ -1,5 +1,5 @@
 import { UserActionType } from "../actions/allActionTypes";
-import { IUsers, UserActionSchema } from "../actionSchemas/userSchema";
+import { IUsers, UserActionSchema } from "../actionSchemas/manageUserSchema";
 
 const initialState: IUsers = [];
 

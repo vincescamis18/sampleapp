@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Users, IUsers } from "../../models/userzModel";
+const auth = require("../../middlewares/authentication");
 
 const router = express.Router();
 
@@ -12,14 +13,14 @@ router.get("/", (req: Request, res: Response) => {
 		.then((item: IUsers[]) => res.json(item));
 });
 
-// @route   GET /api/userz/:id
-// @desc    Retrieve all item
-// @access  Public
-router.get("/:_id", (req: Request, res: Response) => {
-	Users.findById(req.params._id)
-		.then((item: IUsers) => res.json(item))
-		.catch((err: any) => res.json(err));
-});
+// // @route   GET /api/userz/:id
+// // @desc    Retrieve all item
+// // @access  Public
+// router.get("/:_id", (req: Request, res: Response) => {
+// 	Users.findById(req.params._id)
+// 		.then((item: IUsers) => res.json(item))
+// 		.catch((err: any) => res.json(err));
+// });
 
 // @route   POST /api/userz/
 // @desc    Create new Item
@@ -47,6 +48,27 @@ router.delete("/:_id", (req: Request, res: Response) => {
 	Users.deleteOne({ _id: req.params._id })
 		.then(() => res.json({ msg: "Deleted successfully" }))
 		.catch((err: any) => res.json({ err }));
+});
+
+// @route   GET /api/userz/data
+// @dessc   Get user data by ID
+// @access  Private
+router.get("/data", auth, (req: any, res: Response) => {
+	Users.findById(req.user.id)
+		.then((user: IUsers) => {
+			console.log("user 101", user);
+			res.status(200).json({ user });
+		})
+		.catch((err: any) => res.json({ err }));
+});
+
+// @route   GET /api/userz/data
+// @dessc   Get user data by ID
+// @access  Private
+router.get("/verifyToken", auth, (req: any, res: Response) => {
+	Users.findById(req.user.id)
+		.then(() => res.status(200).json({ isTokenValid: true }))
+		.catch((err: any) => res.status(401).json({ err }));
 });
 
 module.exports = router;

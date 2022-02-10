@@ -1,0 +1,43 @@
+.register {
+	background-color: rgb(65, 65, 65);
+	width: 100vw;
+	height: 100vh;
+}
+
+.right-container {
+	display: flex;
+	height: 100%;
+	flex-direction: row-reverse;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	background-color: black;
+	width: 1000px;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.facebookBtn,
+.googleBtn {
+	margin: 10px;
+}
+
+.facebookBtn:active,
+.googleBtn:active {
+	opacity: 0.8;
+}
+
+.facebookBtn:hover,
+.googleBtn:hover,
+.policy:hover {
+	cursor: pointer;
+}
+
+.policy-text {
+	color: white;
+	font-family: cursive;
+	margin-top: 20px;
+}

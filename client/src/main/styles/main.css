@@ -179,6 +179,64 @@ button:focus {
   border-radius: 150px;
 }
 
+.register {
+  background-color: #414141;
+  width: 100vw;
+  height: 100vh;
+}
+
+.right-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+
+.input-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: black;
+  width: 1000px;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.facebookBtn,
+.googleBtn {
+  margin: 10px;
+}
+
+.facebookBtn:active,
+.googleBtn:active {
+  opacity: 0.8;
+}
+
+.facebookBtn:hover,
+.googleBtn:hover,
+.policy:hover {
+  cursor: pointer;
+}
+
+.policy-text {
+  color: white;
+  font-family: cursive;
+  margin-top: 20px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

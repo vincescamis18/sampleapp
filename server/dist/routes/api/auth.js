@@ -28,11 +28,10 @@ router.get("/login/success", (req, res) => {
                     given_name: req.user.name.givenName,
                     surname: "",
                     user_profile: req.user.photos[0].value,
-                    province: "",
-                    city: "",
-                    barangay: "",
                     email: req.user.emails[0].value,
-                    contact_number: "",
+                    location: "",
+                    bio: "",
+                    birthday: null,
                 });
                 // save new user to database with info from social media authentication
                 newUser.save().then((user) => {

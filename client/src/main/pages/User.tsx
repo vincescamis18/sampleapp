@@ -12,11 +12,10 @@ const User: React.FC = () => {
 		surname: "",
 		given_name: "",
 		user_profile: "",
-		province: "",
-		city: "",
-		barangay: "",
 		email: userState.email,
-		contact_number: "",
+		location: "",
+		bio: "",
+		birthday: "",
 	});
 
 	useEffect(() => {
@@ -48,11 +47,10 @@ const User: React.FC = () => {
 					<h2>{`_id: ${userState._id}`}</h2>
 					<h2>{`surname: ${userState.surname}`}</h2>
 					<h2>{`given_name: ${userState.given_name}`}</h2>
-					<h2>{`province: ${userState.province}`}</h2>
-					<h2>{`city: ${userState.city}`}</h2>
-					<h2>{`barangay: ${userState.barangay}`}</h2>
 					<h2>{`email: ${userState.email}`}</h2>
-					<h2>{`contact_number: ${userState.contact_number}`}</h2>
+					<h2>{`location: ${userState.location}`}</h2>
+					<h2>{`bio: ${userState.bio}`}</h2>
+					<h2>{`birthday: ${userState.birthday}`}</h2>
 				</div>
 			</div>
 			<br />
@@ -64,14 +62,12 @@ const User: React.FC = () => {
 				<input type="text" name="given_name" placeholder="given_name" onChange={handleUpdateRecordInputChange} />
 				<h2>user_profile</h2>
 				<input type="text" name="user_profile" placeholder="user_profile" onChange={handleUpdateRecordInputChange} />
-				<h2>province</h2>
-				<input type="text" name="province" placeholder="province" onChange={handleUpdateRecordInputChange} />
-				<h2>city</h2>
-				<input type="text" name="city" placeholder="city" onChange={handleUpdateRecordInputChange} />
-				<h2>barangay</h2>
-				<input type="text" name="barangay" placeholder="barangay" onChange={handleUpdateRecordInputChange} />
-				<h2>contact_number</h2>
-				<input type="text" name="contact_number" placeholder="contact_number" onChange={handleUpdateRecordInputNumberChange} />
+				<h2>location</h2>
+				<input type="text" name="location" placeholder="location" onChange={handleUpdateRecordInputChange} />
+				<h2>bio</h2>
+				<input type="text" name="bio" placeholder="bio" onChange={handleUpdateRecordInputChange} />
+				<h2>birthday</h2>
+				<input type="date" name="birthday" placeholder="birthday" onChange={handleUpdateRecordInputChange} />
 				<br /> <br />
 				<input type="button" value="UPDATE" onClick={() => dispatch(updateUser(updatedUser))} />
 			</div>

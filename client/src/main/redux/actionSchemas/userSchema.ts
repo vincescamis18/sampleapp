@@ -4,11 +4,10 @@ export interface INewUser {
 	surname: string;
 	given_name: string;
 	user_profile: string;
-	province: string;
-	city: string;
-	barangay: string;
 	email: string;
-	contact_number: string;
+	location: string;
+	bio: string;
+	birthday: string;
 }
 
 export type IUser = {
@@ -16,11 +15,10 @@ export type IUser = {
 	surname: string;
 	given_name: string;
 	user_profile: string;
-	province: string;
-	city: string;
-	barangay: string;
 	email: string;
-	contact_number: string;
+	location: string;
+	bio: string;
+	birthday: string;
 };
 
 export type IUserState = {
@@ -28,14 +26,13 @@ export type IUserState = {
 	surname: string;
 	given_name: string;
 	user_profile: string;
-	province: string;
-	city: string;
-	barangay: string;
 	email: string;
-	contact_number: string;
 	isLoading: boolean;
 	isTokenValid: boolean;
 	errorMsg: string;
+	location: string;
+	bio: string;
+	birthday: string;
 };
 
 export type IUsers = IUser[];

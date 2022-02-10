@@ -36,6 +36,34 @@ const zampleReducer = (state: IUserState = initialState, action: UserActionSchem
 				errorMsg: "",
 			};
 
+		case UserActionType.USER_LOADING:
+			return {
+				...state,
+				isLoading: true,
+			};
+
+		case UserActionType.USER_ERROR:
+			return {
+				_id: "",
+				surname: "",
+				given_name: "",
+				user_profile: "",
+				province: "",
+				city: "",
+				barangay: "",
+				email: "",
+				contact_number: "",
+				isLoading: false,
+				isTokenValid: false,
+				errorMsg: action.payload.errorMsg,
+			};
+
+		case UserActionType.USER_CLEAR_ERROR:
+			return {
+				...state,
+				errorMsg: "",
+			};
+
 		default:
 			return state;
 	}

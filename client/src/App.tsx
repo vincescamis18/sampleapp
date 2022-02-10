@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { fetchUser, userFetch } from "./main/redux/actions/userAction";
+import { fetchUser, retrieveLoginCredential } from "./main/redux/actions/userAction";
 
 import Origin from "./main/pages/Origin";
 import Home from "./main/pages/Home";
@@ -20,19 +19,8 @@ function App() {
 	const getUser = () => {
 		const token = localStorage.getItem("auth-token");
 		// console.log("token", token); // Debug
-		if (!token) {
-			axios
-				.get("/auth/login/success", {
-					withCredentials: true,
-					headers: { Accept: "application/json", "Content-Type": "application/json" },
-				})
-				.then(res => {
-					// console.log("user login success", res.data); // Debug
-					localStorage.setItem("auth-token", res.data.token);
-					dispatch(userFetch(res.data.user));
-				})
-				.catch(err => console.log(err));
-		} else dispatch(fetchUser());
+		if (!token) dispatch(retrieveLoginCredential());
+		else dispatch(fetchUser());
 	};
 
 	useEffect(() => {

@@ -50,4 +50,24 @@ interface IUserUpdateAction {
 	payload: { newItemArray: INewUser };
 }
 
-export type UserActionSchema = IUserFetchAction | IUserUpdateAction;
+interface IUserLoadingAction {
+	type: UserActionType.USER_LOADING;
+	payload: {};
+}
+
+interface IUserErrorAction {
+	type: UserActionType.USER_ERROR;
+	payload: { errorMsg: string };
+}
+
+interface IUserClearErrorAction {
+	type: UserActionType.USER_CLEAR_ERROR;
+	payload: {};
+}
+
+export type UserActionSchema =
+	| IUserFetchAction
+	| IUserUpdateAction
+	| IUserLoadingAction
+	| IUserErrorAction
+	| IUserClearErrorAction;

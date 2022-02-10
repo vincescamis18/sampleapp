@@ -8,6 +8,5 @@ $light-violet: #f5efff;
 @import "originSection02";
 @import "originSection03";
 
-.origin {
-	overflow-x: hidden;
-}
+@import "../home/home";
+@import "../header/navbarV1";

@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { fetchUser } from "./main/redux/actions/userAction";
+import { fetchUser, userFetch } from "./main/redux/actions/userAction";
 
 import Origin from "./main/pages/Origin";
+import Home from "./main/pages/Home";
 import Item from "./main/pages/Item";
 import Zample from "./main/pages/Zample";
 import Record from "./main/pages/Record";
@@ -17,19 +18,18 @@ function App() {
 	const dispatch = useDispatch();
 
 	const getUser = () => {
-		// console.log("getting user"); // Debug
 		const token = localStorage.getItem("auth-token");
-		// console.log(token);
+		// console.log("token", token); // Debug
 		if (!token) {
-			console.log("doesnt have");
 			axios
 				.get("/auth/login/success", {
 					withCredentials: true,
 					headers: { Accept: "application/json", "Content-Type": "application/json" },
 				})
 				.then(res => {
-					console.log("user login success", res.data);
+					// console.log("user login success", res.data); // Debug
 					localStorage.setItem("auth-token", res.data.token);
+					dispatch(userFetch(res.data.user));
 				})
 				.catch(err => console.log(err));
 		} else dispatch(fetchUser());
@@ -42,7 +42,8 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Origin />} />
+				<Route path="/" element={<Home />} />
+				<Route path="/Origin" element={<Origin />} />
 				<Route path="/item" element={<Item />} />
 				<Route path="/zample" element={<Zample />} />
 				<Route path="/record" element={<Record />} />

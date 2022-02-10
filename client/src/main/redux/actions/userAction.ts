@@ -5,7 +5,7 @@ import { RootState } from "../reducers/allReducer";
 import { UserActionType } from "./allActionTypes";
 import { UserActionSchema, INewUser, IUser } from "../actionSchemas/userSchema";
 
-const userFetch = (allItem: IUser): UserActionSchema => {
+export const userFetch = (allItem: IUser): UserActionSchema => {
 	return {
 		type: UserActionType.USER_FETCH,
 		payload: { allItem },

@@ -2,33 +2,33 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { RootState } from "../reducers/allReducer";
 
-import { UserActionType } from "./allActionTypes";
+import { ManageUserActionType } from "./allActionTypes";
 import { UserActionSchema, IUsers, INewUser } from "../actionSchemas/manageUserSchema";
 
 const userFetch = (allItem: IUsers): UserActionSchema => {
 	return {
-		type: UserActionType.USER_FETCH,
+		type: ManageUserActionType.MANAGE_USER_FETCH,
 		payload: { allItem },
 	};
 };
 
 const userCreate = (newItemArray: IUsers): UserActionSchema => {
 	return {
-		type: UserActionType.USER_CREATE,
+		type: ManageUserActionType.MANAGE_USER_CREATE,
 		payload: { newItemArray },
 	};
 };
 
 const userUpdate = (newItemArray: IUsers): UserActionSchema => {
 	return {
-		type: UserActionType.USER_UPDATE,
+		type: ManageUserActionType.MANAGE_USER_UPDATE,
 		payload: { newItemArray },
 	};
 };
 
 const userDelete = (newItemArray: IUsers): UserActionSchema => {
 	return {
-		type: UserActionType.USER_DELETE,
+		type: ManageUserActionType.MANAGE_USER_DELETE,
 		payload: { newItemArray },
 	};
 };

@@ -1,4 +1,4 @@
-import { UserActionType } from "../actions/allActionTypes";
+import { ManageUserActionType } from "../actions/allActionTypes";
 
 export interface INewUser {
 	surname: string;
@@ -26,22 +26,22 @@ export type IUser = {
 export type IUsers = IUser[];
 
 interface IUserFetchAction {
-	type: UserActionType.USER_FETCH;
+	type: ManageUserActionType.MANAGE_USER_FETCH;
 	payload: { allItem: IUsers };
 }
 
 interface IUserCreateAction {
-	type: UserActionType.USER_CREATE;
+	type: ManageUserActionType.MANAGE_USER_CREATE;
 	payload: { newItemArray: IUsers };
 }
 
 interface IUserUpdateAction {
-	type: UserActionType.USER_UPDATE;
+	type: ManageUserActionType.MANAGE_USER_UPDATE;
 	payload: { newItemArray: IUsers };
 }
 
 interface IUserDeleteAction {
-	type: UserActionType.USER_DELETE;
+	type: ManageUserActionType.MANAGE_USER_DELETE;
 	payload: { newItemArray: IUsers };
 }
 

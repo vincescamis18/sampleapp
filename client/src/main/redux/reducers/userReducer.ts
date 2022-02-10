@@ -19,7 +19,7 @@ const zampleReducer = (state: IUserState = initialState, action: UserActionSchem
 	switch (action.type) {
 		case UserActionType.USER_FETCH:
 			return {
-				...action.payload.allItem,
+				...action.payload.userDetails,
 				isTokenValid: state.isTokenValid,
 				isLoading: false,
 				errorMsg: "",
@@ -27,7 +27,7 @@ const zampleReducer = (state: IUserState = initialState, action: UserActionSchem
 
 		case UserActionType.USER_UPDATE:
 			return {
-				...action.payload.newItemArray,
+				...action.payload.updatedUserDetails,
 				_id: state._id,
 				email: state.email,
 				isTokenValid: state.isTokenValid,

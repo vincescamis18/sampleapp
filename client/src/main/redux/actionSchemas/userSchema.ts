@@ -1,5 +1,16 @@
 import { UserActionType } from "../actions/allActionTypes";
 
+// Raw input from user
+export interface INewUserInput {
+	surname: string;
+	given_name: string;
+	user_profile: FileList | null;
+	email: string;
+	location: string;
+	bio: string;
+	birthday: string;
+}
+
 export interface INewUser {
 	surname: string;
 	given_name: string;
@@ -39,12 +50,12 @@ export type IUsers = IUser[];
 
 interface IUserFetchAction {
 	type: UserActionType.USER_FETCH;
-	payload: { allItem: IUser };
+	payload: { userDetails: IUser };
 }
 
 interface IUserUpdateAction {
 	type: UserActionType.USER_UPDATE;
-	payload: { newItemArray: INewUser };
+	payload: { updatedUserDetails: INewUser };
 }
 
 interface IUserLoadingAction {

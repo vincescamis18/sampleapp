@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
 import { fetchUser, updateUser } from "../redux/actions/userAction";
+import { INewUserInput } from "../redux/actionSchemas/userSchema";
 
-import UploadImage from "../components/inputs/uploadImage";
+import UploadImage from "../components/inputs/SingleImageV1";
 
 const User: React.FC = () => {
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
-	const [updatedUser, setUpdatedUser] = useState({
+	const [updatedUser, setUpdatedUser] = useState<INewUserInput>({
 		surname: "",
 		given_name: "",
-		user_profile: "",
+		user_profile: null,
 		email: userState.email,
 		location: "",
 		bio: "",
@@ -29,16 +30,8 @@ const User: React.FC = () => {
 		});
 	};
 
-	const handleUpdateRecordInputNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUpdatedUser({
-			...updatedUser,
-			[e.target.name]: parseFloat(e.target.value),
-		});
-	};
-
 	return (
 		<div style={{ backgroundColor: "black", height: "300vh", color: "white" }}>
-			<UploadImage />
 			<div>
 				<h1>FETCH ITEM</h1>
 
@@ -56,12 +49,11 @@ const User: React.FC = () => {
 			<br />
 			<div>
 				<h1>UPDATE RECORD</h1>
+				<UploadImage updatedUser={updatedUser} setUpdatedUser={setUpdatedUser} />
 				<h2>surname</h2>
 				<input type="text" name="surname" placeholder="surname" onChange={handleUpdateRecordInputChange} />
 				<h2>given_name</h2>
 				<input type="text" name="given_name" placeholder="given_name" onChange={handleUpdateRecordInputChange} />
-				<h2>user_profile</h2>
-				<input type="text" name="user_profile" placeholder="user_profile" onChange={handleUpdateRecordInputChange} />
 				<h2>location</h2>
 				<input type="text" name="location" placeholder="location" onChange={handleUpdateRecordInputChange} />
 				<h2>bio</h2>

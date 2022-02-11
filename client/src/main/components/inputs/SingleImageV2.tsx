@@ -57,6 +57,7 @@ const SingleImageV2 = (props: IProps) => {
 						backgroundColor: "red",
 						zIndex: 1,
 						borderRadius: "100%",
+						objectFit: "cover",
 					}}
 				/>
 			</label>

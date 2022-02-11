@@ -165,10 +165,12 @@ button:focus {
 .profile-picture {
   width: 41px;
   height: 41px;
-  margin: 0px 00px 0px 20px;
+  margin: 0px 0px 0px 20px;
   border-radius: 100px;
   background-color: #dedede;
   z-index: 1;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .profile-name {
@@ -501,6 +503,8 @@ button:focus {
   z-index: 1;
   border-radius: 100%;
   margin-top: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .user-details-btm-container {

@@ -60,7 +60,7 @@ const MultipleImageV1 = (props: IProps) => {
 			/>
 
 			{images.map((image: string, index: number) => (
-				<img src={image} key={index} alt="record" style={{ height: 300, width: 300 }} />
+				<img src={image} key={index} alt="record" style={{ height: 300, width: 300, objectFit: "cover" }} />
 			))}
 			<div>{error && <h1>{error}</h1>}</div>
 			<br />

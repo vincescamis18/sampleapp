@@ -38,7 +38,7 @@ const SingleImageV1 = (props: IProps) => {
 				onChange={handleChangeFile}
 				accept="image/png, image/jpeg"
 			/>
-			{images ? <img src={images} alt="record" style={{ height: 300, width: 300 }} /> : <></>}
+			{images ? <img src={images} alt="record" style={{ height: 300, width: 300, objectFit: "cover" }} /> : <></>}
 			<div>{error && <h1>{error}</h1>}</div>
 			<br />
 			<label htmlFor="record-image">UPLOAD IMAGE 101</label>

@@ -11,3 +11,16 @@ $light-violet: #f5efff;
 @import "../home/home";
 @import "../header/navbarV1";
 @import "../register/register";
+@import "../modal/editProfileModalV1";
+
+* {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cursor-point:hover {
+	cursor: pointer;
+}
+
+.cursor-point:active {
+	opacity: 0.8;
+}

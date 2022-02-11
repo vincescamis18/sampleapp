@@ -101,7 +101,7 @@ button:focus {
 .navbar-container {
   width: 100%;
   height: 90px;
-  background-color: white;
+  background-color: #f4f4f4;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -235,6 +235,224 @@ button:focus {
   color: white;
   font-family: cursive;
   margin-top: 20px;
+}
+
+.editProfileModal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.editProfileModal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.close-btn {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  width: 55px;
+  height: 55px;
+}
+
+.top-section-container {
+  width: 1020px;
+  height: 358px;
+  background-color: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-top: 2px solid gray;
+  border-right: 2px solid gray;
+  border-left: 2px solid gray;
+}
+
+.top-section-block-01-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: black;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
+  width: 825px;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-top: 10px;
+}
+
+.image-input-seperator {
+  margin-right: 46px;
+}
+
+.block-edit-save-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: black;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit-margin {
+  margin: 9px 0px;
+}
+
+.save-btn {
+  margin: 9px 0px;
+}
+
+.close-btn:hover,
+.save-btn:hover {
+  cursor: pointer;
+}
+
+.close-btn:active,
+.save-btn:active {
+  opacity: 0.8;
+}
+
+.name-input {
+  width: 550px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin: 9px 0px;
+}
+
+.birthday-input::-webkit-input-placeholder,
+.location-input::-webkit-input-placeholder,
+.name-input::-webkit-input-placeholder {
+  color: white;
+}
+
+.birthday-input:-ms-input-placeholder,
+.location-input:-ms-input-placeholder,
+.name-input:-ms-input-placeholder {
+  color: white;
+}
+
+.birthday-input::-ms-input-placeholder,
+.location-input::-ms-input-placeholder,
+.name-input::-ms-input-placeholder {
+  color: white;
+}
+
+.birthday-input::placeholder,
+.location-input::placeholder,
+.name-input::placeholder {
+  color: white;
+}
+
+.top-section-block-02-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: black;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
+  width: 825px;
+}
+
+.birthday-input {
+  width: 310px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin: 9px 0px;
+}
+
+.location-input {
+  width: 500px;
+  height: 60px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin: 9px 0px;
+}
+
+.btm-section-container {
+  width: 1020px;
+  height: 180px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
+}
+
+.bio-input {
+  resize: none;
+  width: 825px;
+  height: 140px;
+  background-color: white;
+  padding: 10px;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cursor-point:hover {
+  cursor: pointer;
+}
+
+.cursor-point:active {
+  opacity: 0.8;
 }
 
 * {

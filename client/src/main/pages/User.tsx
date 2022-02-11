@@ -1,70 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
-import { fetchUser, updateUser } from "../redux/actions/userAction";
-import { INewUserInput } from "../redux/actionSchemas/userSchema";
+import { fetchUser } from "../redux/actions/userAction";
 
-import UploadImage from "../components/inputs/SingleImageV1";
+import NavbarV1 from "../components/headers/NavbarV1";
+import editProfileV1 from "../assets/images/buttons/editProfileV1.png";
+import EditProfileV1 from "../components/modal/EditProfileModalV1";
 
 const User: React.FC = () => {
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
-	const [updatedUser, setUpdatedUser] = useState<INewUserInput>({
-		surname: "",
-		given_name: "",
-		user_profile: null,
-		email: userState.email,
-		location: "",
-		bio: "",
-		birthday: "",
-	});
+	const [triggerEditProfile, setTriggerEditProfile] = useState(false);
 
-	useEffect(() => {
-		dispatch(fetchUser());
-	}, []);
+	const getAge = () => {
+		if (!userState.birthday) return "";
 
-	const handleUpdateRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setUpdatedUser({
-			...updatedUser,
-			[e.target.name]: e.target.value,
-		});
+		const today = new Date();
+		const birthDate = new Date(userState.birthday);
+
+		let age = today.getFullYear() - birthDate.getFullYear();
+		const m = today.getMonth() - birthDate.getMonth();
+
+		if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+
+		return age;
 	};
 
 	return (
-		<div style={{ backgroundColor: "black", height: "300vh", color: "white" }}>
-			<div>
-				<h1>FETCH ITEM</h1>
-
-				<div>
-					<img src={userState.user_profile} alt="" style={{ height: 200 }} />
-					<h2>{`_id: ${userState._id}`}</h2>
-					<h2>{`surname: ${userState.surname}`}</h2>
-					<h2>{`given_name: ${userState.given_name}`}</h2>
-					<h2>{`email: ${userState.email}`}</h2>
-					<h2>{`location: ${userState.location}`}</h2>
-					<h2>{`bio: ${userState.bio}`}</h2>
-					<h2>{`birthday: ${userState.birthday}`}</h2>
+		<div style={{ backgroundColor: "FFFFFF", height: "500vh" }}>
+			<NavbarV1 />
+			<div className="user-details-parent-container">
+				<div className="user-details-top-container">
+					<div className="user-details-top-left-container">
+						<img
+							src={editProfileV1}
+							alt="edit button"
+							className="cursor-point"
+							onClick={() => setTriggerEditProfile(!triggerEditProfile)}
+						/>
+						<div className="name-age-loc-container">
+							<h4>regular contributor</h4>
+							<h1>{`${userState.given_name} ${userState.surname}`}</h1>
+							<h4>{`${getAge()} | ${userState.location}`}</h4>
+						</div>
+					</div>
+					<img src={userState.user_profile} alt="user profile" className="img-container" />
+				</div>
+				<div className="user-details-btm-container">
+					<div className="bio-parent-container">
+						<div className="bio-output-container">
+							<span>{userState.bio}</span>
+						</div>
+					</div>
 				</div>
 			</div>
-			<br />
-			<div>
-				<h1>UPDATE RECORD</h1>
-				<UploadImage updatedUser={updatedUser} setUpdatedUser={setUpdatedUser} />
-				<h2>surname</h2>
-				<input type="text" name="surname" placeholder="surname" onChange={handleUpdateRecordInputChange} />
-				<h2>given_name</h2>
-				<input type="text" name="given_name" placeholder="given_name" onChange={handleUpdateRecordInputChange} />
-				<h2>location</h2>
-				<input type="text" name="location" placeholder="location" onChange={handleUpdateRecordInputChange} />
-				<h2>bio</h2>
-				<input type="text" name="bio" placeholder="bio" onChange={handleUpdateRecordInputChange} />
-				<h2>birthday</h2>
-				<input type="date" name="birthday" placeholder="birthday" onChange={handleUpdateRecordInputChange} />
-				<br /> <br />
-				<input type="button" value="UPDATE" onClick={() => dispatch(updateUser(updatedUser))} />
-			</div>
 
-			<br />
+			<EditProfileV1 modalTigger={triggerEditProfile} />
 		</div>
 	);
 };

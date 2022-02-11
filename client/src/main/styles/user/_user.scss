@@ -1,0 +1,72 @@
+.user-details-parent-container {
+	// background-color: red;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.user-details-top-container {
+	// background-color: yellow;
+	background-color: black;
+	width: 1335px;
+	height: 189px;
+	display: flex;
+}
+
+.user-details-top-left-container {
+	// background-color: blue;
+	background-color: black;
+	width: 1071px;
+	height: 189px;
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 50px 15px 15px;
+	align-items: flex-end;
+}
+
+.name-age-loc-container {
+	// background-color: pink;
+	background-color: black;
+	width: fit-content;
+	height: fit-content;
+	text-align: right;
+	color: white;
+}
+
+.img-container {
+	width: 230px;
+	height: 230px;
+	background-color: gray;
+	z-index: 1;
+	border-radius: 100%;
+	margin-top: 50px;
+}
+
+.user-details-btm-container {
+	// backgroundColor: green;
+	background-color: white;
+	width: 1335px;
+	height: 111px;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+}
+
+.bio-parent-container {
+	// backgroundColor: orange;
+	background-color: white;
+	width: 1071px;
+	height: 111px;
+	display: flex;
+	flex-direction: row-reverse;
+	padding: 15px 50px 15px 15px;
+	min-height: 111px;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.bio-output-container {
+	width: 668px;
+	text-align: right;
+	font-weight: bold;
+}

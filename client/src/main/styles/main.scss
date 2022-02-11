@@ -1,7 +1,21 @@
 @import "./origin/origin";
+@import "./home/home";
+@import "./header/navbarV1";
+@import "./register/register";
+@import "./modal/editProfileModalV1";
+@import "./user/user";
 
 * {
 	box-sizing: border-box;
 	padding: 0px;
 	margin: 0px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cursor-point:hover {
+	cursor: pointer;
+}
+
+.cursor-point:active {
+	opacity: 0.8;
 }

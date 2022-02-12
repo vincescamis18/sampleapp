@@ -7,6 +7,9 @@ import ExploreV1 from "../../assets/images/icons/exploreV1.png";
 import HomeV1 from "../../assets/images/icons/homeV1.png";
 import ProfileV1 from "../../assets/images/icons/profileV1.png";
 import SearchV1 from "../../assets/images/icons/searchV1.png";
+import ProfileV2 from "../../assets/images/icons/profileV2.png";
+import ProfileCardV1 from "../../assets/images/icons/profileCardV1.png";
+import ExitV1 from "../../assets/images/icons/exitV1.png";
 
 const NavbarV1: React.FC = () => {
 	const navigate = useNavigate();
@@ -16,15 +19,32 @@ const NavbarV1: React.FC = () => {
 		if (userState.given_name)
 			return (
 				<React.Fragment>
-					<img src={userState.user_profile} alt="profile" className="profile-picture" onClick={() => navigate("/user")} />
-					<div>
-						<span className="profile-name">{userState.given_name}</span>
+					<img src={userState.user_profile} alt="profile" className="profile-picture" />
+					<div className="dropdown">
+						<div className="dropbtn">{userState.given_name}</div>
+						<div className="dropdown-content">
+							<div className="option" onClick={() => navigate("/user")}>
+								<img src={ProfileV2} alt="profile" />
+								<span>Profile</span>
+							</div>
+
+							<div className="option">
+								<img src={ProfileCardV1} alt="account" />
+								<span>Account</span>
+							</div>
+
+							<div className="option last-option">
+								<img src={ExitV1} alt="exit" />
+								<span>Log out</span>
+							</div>
+						</div>
 					</div>
 				</React.Fragment>
 			);
 		return <img src={ProfileV1} alt="profile" className="unregistered-profile-icon" onClick={() => navigate("/register")} />;
 	};
 
+	if (userState.isLoading) return <div className="navbar-container"></div>;
 	return (
 		<div className="navbar-container">
 			<div className="logo" onClick={() => navigate("/")}>

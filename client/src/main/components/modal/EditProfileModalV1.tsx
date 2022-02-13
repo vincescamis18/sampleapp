@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
-import { updateUser } from "../../redux/actions/userAction";
+import { updateUser, updateUserWithoutProfilePicture } from "../../redux/actions/userAction";
 import { INewUserInput } from "../../redux/actionSchemas/userSchema";
 
 import UploadImage from "../inputs/SingleImageV2";
@@ -60,27 +60,38 @@ const EditProfile = (props: IProps) => {
 		});
 	};
 
+	const handleSaveBtn = () => {
+		// console.log(updatedUser); // Debug
+		setIsSubmited(true);
+		if (updatedUser.user_profile) dispatch(updateUser(updatedUser));
+		else dispatch(updateUserWithoutProfilePicture(updatedUser));
+	};
+
+	const handleCloseBtn = () => {
+		setShowModal(false);
+		setUpdatedUser({
+			surname: userState.surname,
+			given_name: userState.given_name,
+			user_profile: null,
+			email: userState.email,
+			location: userState.location,
+			bio: userState.bio,
+			birthday: new Date(userState.birthday).toISOString().split("T")[0],
+		});
+	};
+
 	if (!userState.surname) return <React.Fragment></React.Fragment>;
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="editProfileModal-background">
 			<div className="editProfileModal-container">
-				<img src={closeV1} alt="close button" className="close-btn" onClick={() => setShowModal(false)} />
+				<img src={closeV1} alt="close button" className="close-btn" onClick={handleCloseBtn} />
 				<div className="top-section-container">
 					<div className="top-section-block-01-container">
 						<div className="image-input-seperator">
 							<div className="block-edit-save-container">
 								<img src={editProfileV1} alt="edit profile" className="edit-margin" />
-								<img
-									src={saveProfileV1}
-									alt="save button"
-									className="save-btn"
-									onClick={() => {
-										console.log(updatedUser);
-										setIsSubmited(true);
-										dispatch(updateUser(updatedUser));
-									}}
-								/>
+								<img src={saveProfileV1} alt="save button" className="save-btn" onClick={handleSaveBtn} />
 							</div>
 							<div>
 								<input

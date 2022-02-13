@@ -82,6 +82,37 @@ export const fetchUser = () => {
 	};
 };
 
+export const updateUserWithoutProfilePicture = (updItem: INewUserInput) => {
+	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
+		const user = getState().user;
+
+		const updatedItem: { _id: string; updItem: INewUser } = {
+			_id: user._id,
+			updItem: {
+				surname: updItem.surname,
+				given_name: updItem.given_name,
+				user_profile: user.user_profile,
+				email: user.email,
+				location: updItem.location,
+				bio: updItem.bio,
+				birthday: updItem.birthday,
+			},
+		};
+
+		// update the user profile to database
+		axios
+			.put("/api/userz/", updatedItem)
+			.then(res => {
+				console.log(res); // Debug
+				dispatch(userUpdate(updatedItem.updItem));
+			})
+			.catch(err => {
+				console.log("err", err);
+				dispatch(userError(err.message));
+			});
+	};
+};
+
 export const updateUser = (updItem: INewUserInput) => {
 	return (dispatch: Dispatch<any>) => {
 		// console.log("updItem", updItem); // Debug

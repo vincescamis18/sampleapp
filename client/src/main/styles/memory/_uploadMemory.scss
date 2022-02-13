@@ -1,0 +1,87 @@
+.upload-memory {
+	background-color: black;
+	height: 300vh;
+
+	.form-center {
+		display: flex;
+		justify-content: center;
+	}
+
+	.form-container {
+		width: 1200px;
+		height: 2000px;
+		background-color: white;
+		margin: 100px 0px;
+		border-radius: 20px;
+		border: 1px solid black;
+	}
+
+	.title-padding {
+		padding: 75px;
+	}
+
+	.field-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.field-name {
+		width: 235px;
+		text-align: right;
+		padding-right: 25px;
+		font-weight: 500;
+	}
+
+	.normal-input-container {
+		margin: 10px 0px;
+		width: 850px;
+		height: 60px;
+		background-color: white;
+		padding: 10px;
+	}
+
+	.description-input-container {
+		border: 2px solid black;
+		margin: 10px 0px;
+		width: 850px;
+		height: 320px;
+		background-color: white;
+		padding: 10px;
+		resize: none;
+	}
+
+	.map-container {
+		width: 850px;
+		height: 375px;
+		background-color: grey;
+		margin: 10px 235px;
+	}
+
+	.policy-text {
+		display: flex;
+		align-items: center;
+		margin: 10px 235px;
+		color: black;
+	}
+
+	.reset-submit-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.submit-btn,
+	.reset-btn {
+		margin: 10px;
+	}
+
+	.submit-btn:hover,
+	.reset-btn:hover {
+		cursor: pointer;
+	}
+
+	.submit-btn:active,
+	.reset-btn:active {
+		opacity: 0.8;
+	}
+}

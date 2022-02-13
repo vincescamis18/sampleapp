@@ -805,6 +805,112 @@
   font-weight: 500;
 }
 
+.upload-memory {
+  background-color: black;
+  height: 300vh;
+}
+
+.upload-memory .form-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.upload-memory .form-container {
+  width: 1200px;
+  height: 2000px;
+  background-color: white;
+  margin: 100px 0px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.upload-memory .title-padding {
+  padding: 75px;
+}
+
+.upload-memory .field-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.upload-memory .field-name {
+  width: 235px;
+  text-align: right;
+  padding-right: 25px;
+  font-weight: 500;
+}
+
+.upload-memory .normal-input-container {
+  margin: 10px 0px;
+  width: 850px;
+  height: 60px;
+  background-color: white;
+  padding: 10px;
+}
+
+.upload-memory .description-input-container {
+  border: 2px solid black;
+  margin: 10px 0px;
+  width: 850px;
+  height: 320px;
+  background-color: white;
+  padding: 10px;
+  resize: none;
+}
+
+.upload-memory .map-container {
+  width: 850px;
+  height: 375px;
+  background-color: grey;
+  margin: 10px 235px;
+}
+
+.upload-memory .policy-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 235px;
+  color: black;
+}
+
+.upload-memory .reset-submit-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.upload-memory .submit-btn,
+.upload-memory .reset-btn {
+  margin: 10px;
+}
+
+.upload-memory .submit-btn:hover,
+.upload-memory .reset-btn:hover {
+  cursor: pointer;
+}
+
+.upload-memory .submit-btn:active,
+.upload-memory .reset-btn:active {
+  opacity: 0.8;
+}
+
 .image-layout-container {
   display: -webkit-box;
   display: -ms-flexbox;

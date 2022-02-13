@@ -12,6 +12,7 @@ import Record from "./main/pages/Record";
 import ManageUser from "./main/pages/ManageUser";
 import User from "./main/pages/User";
 import Register from "./main/pages/Register";
+import UploadMemory from "./main/pages/UploadMemory";
 
 function App() {
 	const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
 				<Route path="/manage_user" element={<ManageUser />} />
 				<Route path="/user" element={<User />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/upload-memory" element={<UploadMemory />} />
 			</Routes>
 		</BrowserRouter>
 	);

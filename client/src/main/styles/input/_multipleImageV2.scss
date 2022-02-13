@@ -1,0 +1,34 @@
+.image-layout-container {
+	display: flex;
+	justify-content: space-between;
+	width: 850px;
+	margin-left: 235px;
+}
+
+.image-container {
+	height: 200px;
+	width: 200px;
+	object-fit: cover;
+	border: 1px solid gray;
+}
+
+.error-msg {
+	color: red;
+	margin-left: 235px;
+	margin-top: 10px;
+}
+
+.upload-button {
+	margin-left: 235px;
+}
+
+.upload-button:hover {
+	cursor: pointer;
+}
+.upload-button:active {
+	opacity: 0.8;
+}
+
+.hide-input {
+	display: none;
+}

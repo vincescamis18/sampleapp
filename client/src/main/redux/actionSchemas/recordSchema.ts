@@ -79,26 +79,48 @@ export type IRecord = {
 };
 
 // Reducer record structure
-export type IRecords = IRecord[];
+export type IRecordState = { records: IRecord[]; isLoading: boolean; errorMsg: string; isTokenValid: boolean };
 
 interface IRecordFetchAction {
 	type: RecordActionType.RECORD_FETCH;
-	payload: { allItem: IRecords };
+	payload: { allItem: IRecord[] };
 }
 
 interface IRecordCreateAction {
 	type: RecordActionType.RECORD_CREATE;
-	payload: { newItemArray: IRecords };
+	payload: { newItemArray: IRecord[] };
 }
 
 interface IRecordUpdateAction {
 	type: RecordActionType.RECORD_UPDATE;
-	payload: { newItemArray: IRecords };
+	payload: { newItemArray: IRecord[] };
 }
 
 interface IRecordDeleteAction {
 	type: RecordActionType.RECORD_DELETE;
-	payload: { newItemArray: IRecords };
+	payload: { newItemArray: IRecord[] };
 }
 
-export type RecordActionSchema = IRecordFetchAction | IRecordCreateAction | IRecordUpdateAction | IRecordDeleteAction;
+interface IRecordLoadingAction {
+	type: RecordActionType.RECORD_LOADING;
+	payload: {};
+}
+
+interface IRecordErrorAction {
+	type: RecordActionType.RECORD_ERROR;
+	payload: { errorMsg: string };
+}
+
+interface IRecordClearErrorAction {
+	type: RecordActionType.RECORD_CLEAR_ERROR;
+	payload: {};
+}
+
+export type RecordActionSchema =
+	| IRecordFetchAction
+	| IRecordCreateAction
+	| IRecordUpdateAction
+	| IRecordDeleteAction
+	| IRecordLoadingAction
+	| IRecordErrorAction
+	| IRecordClearErrorAction;

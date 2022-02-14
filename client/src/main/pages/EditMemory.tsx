@@ -37,9 +37,9 @@ const EditMemory: React.FC = () => {
 	useEffect(() => {
 		// console.log(recordState); // Debug
 		// check if the get recordState has been fetch
-		if (recordState.length > 0) {
+		if (recordState.records.length > 0) {
 			// get record using the the id parameter
-			const editRecord = recordState.filter(record => record._id === id);
+			const editRecord = recordState.records.filter(record => record._id === id);
 
 			// console.log(editRecord); // Debug
 			// checks if the record exists before assigning initial values

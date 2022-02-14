@@ -1,25 +1,30 @@
 import { RecordActionType } from "../actions/allActionTypes";
-import { IRecords, RecordActionSchema } from "../actionSchemas/recordSchema";
+import { IRecordState, RecordActionSchema } from "../actionSchemas/recordSchema";
 
-const initialState: IRecords = [];
+const initialState: IRecordState = {
+	records: [],
+	isLoading: false,
+	errorMsg: "",
+	isTokenValid: true,
+};
 
-const zampleReducer = (state: IRecords = initialState, action: RecordActionSchema): IRecords => {
+const recordReducer = (state: IRecordState = initialState, action: RecordActionSchema): IRecordState => {
 	switch (action.type) {
 		case RecordActionType.RECORD_FETCH:
-			return action.payload.allItem;
+			return { records: action.payload.allItem, isLoading: false, errorMsg: "", isTokenValid: state.isTokenValid };
 
 		case RecordActionType.RECORD_CREATE:
-			return action.payload.newItemArray;
+			return { records: action.payload.newItemArray, isLoading: false, errorMsg: "", isTokenValid: state.isTokenValid };
 
 		case RecordActionType.RECORD_UPDATE:
-			return action.payload.newItemArray;
+			return { records: action.payload.newItemArray, isLoading: false, errorMsg: "", isTokenValid: state.isTokenValid };
 
 		case RecordActionType.RECORD_DELETE:
-			return action.payload.newItemArray;
+			return { records: action.payload.newItemArray, isLoading: false, errorMsg: "", isTokenValid: state.isTokenValid };
 
 		default:
 			return state;
 	}
 };
 
-export default zampleReducer;
+export default recordReducer;

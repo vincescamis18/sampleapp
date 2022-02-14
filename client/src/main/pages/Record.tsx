@@ -83,7 +83,7 @@ const Zample: React.FC = () => {
 			<UploadImage />
 			<div>
 				<h1>FETCH ITEM</h1>
-				{recordState.map((record: IRecord) => (
+				{recordState.records.map((record: IRecord) => (
 					<div key={record._id}>
 						{record.images.map(image => (
 							<img key={image._id} alt="record" src={image.link} style={{ height: 200 }} />

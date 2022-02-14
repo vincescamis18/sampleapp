@@ -5,7 +5,6 @@ import { RootState } from "../reducers/allReducer";
 import { RecordActionType } from "./allActionTypes";
 import {
 	RecordActionSchema,
-	IRecords,
 	IRecord,
 	INewRecordInput,
 	INewRecordEmpty,
@@ -14,28 +13,49 @@ import {
 } from "../actionSchemas/recordSchema";
 import { projectStorage } from "../../utilities/firebaseConfig";
 
-const recordFetch = (allItem: IRecords): RecordActionSchema => {
+const recordLoading = (): RecordActionSchema => {
+	return {
+		type: RecordActionType.RECORD_LOADING,
+		payload: {},
+	};
+};
+
+const recordError = (errorMsg: string): RecordActionSchema => {
+	return {
+		type: RecordActionType.RECORD_ERROR,
+		payload: { errorMsg },
+	};
+};
+
+const recordClearError = (): RecordActionSchema => {
+	return {
+		type: RecordActionType.RECORD_CLEAR_ERROR,
+		payload: {},
+	};
+};
+
+const recordFetch = (allItem: IRecord[]): RecordActionSchema => {
 	return {
 		type: RecordActionType.RECORD_FETCH,
 		payload: { allItem },
 	};
 };
 
-const recordCreate = (newItemArray: IRecords): RecordActionSchema => {
+const recordCreate = (newItemArray: IRecord[]): RecordActionSchema => {
 	return {
 		type: RecordActionType.RECORD_CREATE,
 		payload: { newItemArray },
 	};
 };
 
-const recordUpdate = (newItemArray: IRecords): RecordActionSchema => {
+const recordUpdate = (newItemArray: IRecord[]): RecordActionSchema => {
 	return {
 		type: RecordActionType.RECORD_UPDATE,
 		payload: { newItemArray },
 	};
 };
 
-const recordDelete = (newItemArray: IRecords): RecordActionSchema => {
+const recordDelete = (newItemArray: IRecord[]): RecordActionSchema => {
 	return {
 		type: RecordActionType.RECORD_DELETE,
 		payload: { newItemArray },
@@ -44,15 +64,20 @@ const recordDelete = (newItemArray: IRecords): RecordActionSchema => {
 
 export const fetchRecord = () => {
 	return (dispatch: Dispatch<RecordActionSchema>) => {
+		dispatch(recordLoading());
 		axios
 			.get("/api/records/")
 			.then(res => dispatch(recordFetch(res.data)))
-			.catch(err => console.log(err));
+			.catch(err => {
+				// console.log("err", err); // Debug
+				dispatch(recordError(err.message));
+			});
 	};
 };
 
 export const createRecord = (newItem: INewRecordInput) => {
 	return (dispatch: Dispatch<any>) => {
+		dispatch(recordLoading());
 		if (newItem.images) {
 			// Create an empty instance of the record to get the object_id, this will be used in naming the image in cloud
 			const emptyRecord: INewRecordEmpty = {
@@ -75,7 +100,10 @@ export const createRecord = (newItem: INewRecordInput) => {
 			axios
 				.post("/api/records/", emptyRecord)
 				.then(res => dispatch(saveImageToCloud(newItem, res.data)))
-				.catch(err => console.log(err));
+				.catch(err => {
+					// console.log("err", err); // Debug
+					dispatch(recordError(err.message));
+				});
 		}
 	};
 };
@@ -107,9 +135,15 @@ const saveImageToCloud = (newItem: INewRecordInput, emptyRecord: IRecord) => {
 									// save the created record if all of the image is saved in cloud
 									if (imageLinks.length === imageCount) dispatch(saveCreatedRecordToDatabase(newItem, emptyRecord, imageLinks));
 								})
-								.catch(err => console.log(err));
+								.catch(err => {
+									// console.log("err", err); // Debug
+									dispatch(recordError(err.message));
+								});
 					})
-					.catch(err => console.log(err));
+					.catch(err => {
+						// console.log("err", err); // Debug
+						dispatch(recordError(err.message));
+					});
 			}
 		}
 	};
@@ -117,7 +151,7 @@ const saveImageToCloud = (newItem: INewRecordInput, emptyRecord: IRecord) => {
 
 const saveCreatedRecordToDatabase = (newItem: INewRecordInput, emptyRecord: IRecord, imageLinks: string[]) => {
 	return (dispatch: Dispatch<RecordActionSchema>, getState: () => RootState) => {
-		const records = getState().record;
+		const records = getState().record.records;
 		let newRecord: IUpdateRecord = {
 			_id: emptyRecord._id,
 			updItem: {
@@ -144,12 +178,16 @@ const saveCreatedRecordToDatabase = (newItem: INewRecordInput, emptyRecord: IRec
 				// console.log(newRecordArray); // Debug
 				dispatch(recordCreate(newRecordArray));
 			})
-			.catch(err => console.log(err));
+			.catch(err => {
+				// console.log("err", err); // Debug
+				dispatch(recordError(err.message));
+			});
 	};
 };
 export const updateRecord = (updatedItem: { _id: string; updItem: IUpdateRecordInput }) => {
 	return (dispatch: Dispatch<RecordActionSchema>, getState: () => RootState) => {
-		const records = getState().record;
+		dispatch(recordLoading());
+		const records = getState().record.records;
 		axios
 			.put("/api/records/", updatedItem)
 			.then(res => {
@@ -168,13 +206,17 @@ export const updateRecord = (updatedItem: { _id: string; updItem: IUpdateRecordI
 				// console.log("newItemArray", newItemArray); // Debug
 				dispatch(recordUpdate(newItemArray));
 			})
-			.catch(err => console.log("err", err));
+			.catch(err => {
+				// console.log("err", err); // Debug
+				dispatch(recordError(err.message));
+			});
 	};
 };
 
 export const deleteRecord = (removeItem: { _id: string }) => {
 	return (dispatch: Dispatch<RecordActionSchema>, getState: () => RootState) => {
-		const records = getState().record;
+		dispatch(recordLoading());
+		const records = getState().record.records;
 		axios
 			.delete(`/api/records/${removeItem._id}`)
 			.then(res => {
@@ -182,6 +224,9 @@ export const deleteRecord = (removeItem: { _id: string }) => {
 				const newItemArray = records.filter(item => item._id !== removeItem._id);
 				dispatch(recordDelete(newItemArray));
 			})
-			.catch(err => console.log("err", err));
+			.catch(err => {
+				// console.log("err", err); // Debug
+				dispatch(recordError(err.message));
+			});
 	};
 };

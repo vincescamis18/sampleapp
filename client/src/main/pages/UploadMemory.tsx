@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
 import { createRecord } from "../redux/actions/recordAction";
 import { INewRecordInput } from "../redux/actionSchemas/recordSchema";
+import { useNavigate } from "react-router-dom";
 
 import MutipleImageV2 from "../components/inputs/MultipleImageV2";
 import NavbarV1 from "../components/headers/NavbarV1";
@@ -13,8 +14,10 @@ import submitBtnV1 from "../assets/images/buttons/submitBtnV1.png";
 import resetBtnV1 from "../assets/images/buttons/resetBtnV1.png";
 
 const AddMemory: React.FC = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
+	const recordState = useSelector((state: RootState) => state.record);
 	const [newRecord, setNewRecord] = useState<INewRecordInput>({
 		images: null,
 		title: "",
@@ -27,8 +30,15 @@ const AddMemory: React.FC = () => {
 		coordinate_y: 101,
 		creator: userState._id,
 	});
+	const [isSubmited, setIsSubmited] = useState(false);
 
 	useEffect(() => {
+		// redirect to user page if the upload submission is successful
+		if (isSubmited && !recordState.isLoading) navigate("/user");
+	}, [recordState]);
+
+	useEffect(() => {
+		// set creator id and intial owner field value
 		if (!userState.isLoading && userState._id) {
 			setNewRecord({ ...newRecord, creator: userState._id, owner: `${userState.given_name} ${userState.surname}` });
 		}
@@ -65,6 +75,7 @@ const AddMemory: React.FC = () => {
 			newRecord.creator
 		) {
 			console.log("submit...", newRecord);
+			setIsSubmited(true);
 			dispatch(createRecord(newRecord));
 		} else console.log("incomplete details", newRecord);
 	};

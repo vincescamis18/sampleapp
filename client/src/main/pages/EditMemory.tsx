@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reducers/allReducer";
 import { updateRecord, fetchRecord } from "../redux/actions/recordAction";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import NavbarV1 from "../components/headers/NavbarV1";
 
 import addMemoryV1 from "../assets/images/logo/editMemoryV1.png";
@@ -12,6 +14,7 @@ import emptyPhotoV1 from "../assets/images/logo/emptyPhotoV1.png";
 
 const EditMemory: React.FC = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const recordState = useSelector((state: RootState) => state.record);
 	const [updatedRecord, setUpdatedRecord] = useState({
@@ -29,6 +32,7 @@ const EditMemory: React.FC = () => {
 		},
 	});
 	const [images, setImages] = useState<{ link: string; _id: string }[]>([]);
+	const [isSubmited, setIsSubmited] = useState(false);
 
 	useEffect(() => {
 		dispatch(fetchRecord());
@@ -42,7 +46,7 @@ const EditMemory: React.FC = () => {
 			const editRecord = recordState.records.filter(record => record._id === id);
 
 			// console.log(editRecord); // Debug
-			// checks if the record exists before assigning initial values
+			// checks if the record exists before assigning initial field values
 			if (editRecord[0]) {
 				let { _id, title, date, owner, description, tag, address, coordinate_x, coordinate_y, creator, images } = editRecord[0];
 				setImages(images);
@@ -53,6 +57,9 @@ const EditMemory: React.FC = () => {
 				});
 			}
 		}
+
+		// redirect to user page if the edit submission is successful
+		if (isSubmited && !recordState.isLoading) navigate("/user");
 	}, [recordState]);
 
 	const handleUpdateRecordInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -77,6 +84,7 @@ const EditMemory: React.FC = () => {
 			updatedRecord.updItem.creator
 		) {
 			console.log("submit...", updatedRecord);
+			setIsSubmited(true);
 			dispatch(updateRecord(updatedRecord));
 		} else console.log("incomplete details", updatedRecord);
 	};

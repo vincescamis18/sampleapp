@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
 import { IRecord } from "../../redux/actionSchemas/recordSchema";
+import { useNavigate } from "react-router-dom";
 
 import closeV1 from "../../assets/images/buttons/closeV1.png";
 import arrowLeftV1 from "../../assets/images/icons/arrowLeftV1.png";
@@ -13,6 +14,7 @@ interface IProps {
 }
 
 const ViewMemoryV1 = (props: IProps) => {
+	const navigate = useNavigate();
 	const userState = useSelector((state: RootState) => state.user);
 
 	const [initialLaunch, setInitialLaunch] = useState(true);
@@ -60,7 +62,7 @@ const ViewMemoryV1 = (props: IProps) => {
 				<div className="dot-container-bottom">
 					<div className="dot-container-column">
 						{props.record?.images.map((item, index) => (
-							<div className={index == page ? "active-dot" : "inactive-dot"}></div>
+							<div key={index} className={index == page ? "active-dot" : "inactive-dot"}></div>
 						))}
 					</div>
 				</div>
@@ -89,7 +91,10 @@ const ViewMemoryV1 = (props: IProps) => {
 								•••
 							</span>
 							<div>
-								<span className={showEdit ? "showEdit cursor-point" : "hideEdit"} onClick={() => console.log("edit")}>
+								<span
+									className={showEdit ? "showEdit cursor-point" : "hideEdit"}
+									onClick={() => navigate(`/edit-memory/${props.record?._id}`)}
+								>
 									Edit
 								</span>
 							</div>

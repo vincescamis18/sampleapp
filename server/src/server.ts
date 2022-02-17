@@ -38,7 +38,7 @@ mongoose
 	.catch((err: any) => console.log(err));
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/build"));
+	app.use(express.static("../../client/build"));
 }
 
 // passport setup

@@ -35,7 +35,7 @@ mongoose_1.default
     .then(() => console.log("[S:01] Database Connected"))
     .catch((err) => console.log(err));
 if (process.env.NODE_ENV === "production") {
-    app.use(express_1.default.static("client/build"));
+    app.use(express_1.default.static("../../client/build"));
 }
 // passport setup
 require("./passport");

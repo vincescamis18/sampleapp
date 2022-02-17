@@ -1,8 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
 import { useNavigate } from "react-router-dom";
-
+import { logout } from "../../redux/actions/userAction";
 import ExploreV1 from "../../assets/images/icons/exploreV1.png";
 import HomeV1 from "../../assets/images/icons/homeV1.png";
 import ProfileV1 from "../../assets/images/icons/profileV1.png";
@@ -13,7 +13,13 @@ import ExitV1 from "../../assets/images/icons/exitV1.png";
 
 const NavbarV1: React.FC = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
+
+	const handleLogout = () => {
+		dispatch(logout());
+		navigate("/");
+	};
 
 	const Profile = () => {
 		if (userState.given_name)
@@ -35,7 +41,7 @@ const NavbarV1: React.FC = () => {
 
 							<div className="option last-option">
 								<img src={ExitV1} alt="exit" />
-								<span>Log out</span>
+								<span onClick={handleLogout}>Log out</span>
 							</div>
 						</div>
 					</div>

@@ -32,6 +32,7 @@ export enum UserActionType {
 	USER_LOADING = "USER_LOADING",
 	USER_ERROR = "USER_ERROR",
 	USER_CLEAR_ERROR = "USER_CLEAR_ERROR",
+	USER_LOGOUT = "USER_LOGOUT",
 }
 
 export enum ManageUserActionType {

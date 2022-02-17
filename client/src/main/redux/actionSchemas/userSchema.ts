@@ -73,9 +73,15 @@ interface IUserClearErrorAction {
 	payload: {};
 }
 
+interface IUserLogoutAction {
+	type: UserActionType.USER_LOGOUT;
+	payload: {};
+}
+
 export type UserActionSchema =
 	| IUserFetchAction
 	| IUserUpdateAction
 	| IUserLoadingAction
 	| IUserErrorAction
-	| IUserClearErrorAction;
+	| IUserClearErrorAction
+	| IUserLogoutAction;

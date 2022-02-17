@@ -62,6 +62,21 @@ const zampleReducer = (state: IUserState = initialState, action: UserActionSchem
 				errorMsg: "",
 			};
 
+		case UserActionType.USER_LOGOUT:
+			return {
+				_id: "",
+				surname: "",
+				given_name: "",
+				user_profile: "",
+				email: "",
+				location: "",
+				bio: "",
+				birthday: "",
+				isLoading: false,
+				isTokenValid: false,
+				errorMsg: "",
+			};
+
 		default:
 			return state;
 	}

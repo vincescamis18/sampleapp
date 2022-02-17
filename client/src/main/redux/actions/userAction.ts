@@ -6,6 +6,13 @@ import { UserActionType } from "./allActionTypes";
 import { UserActionSchema, INewUser, IUser, INewUserInput } from "../actionSchemas/userSchema";
 import { projectStorage } from "../../utilities/firebaseConfig";
 
+const userLogout = (): UserActionSchema => {
+	return {
+		type: UserActionType.USER_LOGOUT,
+		payload: {},
+	};
+};
+
 const userLoading = (): UserActionSchema => {
 	return {
 		type: UserActionType.USER_LOADING,
@@ -53,6 +60,23 @@ export const retrieveLoginCredential = () => {
 				// console.log("user login success", res.data); // Debug
 				localStorage.setItem("auth-token", res.data.token);
 				dispatch(userFetch(res.data.user));
+			})
+			.catch(err => {
+				console.log("err", err); // Debug
+				dispatch(userError(err));
+			});
+	};
+};
+
+export const logout = () => {
+	return (dispatch: Dispatch<UserActionSchema>) => {
+		// authenticate user using social media and get token
+		axios
+			.get("/auth/logout")
+			.then(res => {
+				// console.log("user logout success", res.data); // Debug
+				localStorage.setItem("auth-token", "");
+				dispatch(userLogout());
 			})
 			.catch(err => {
 				console.log("err", err); // Debug

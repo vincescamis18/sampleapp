@@ -8,7 +8,7 @@ const passport_1 = __importDefault(require("passport"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userzModel_1 = require("../../models/userzModel");
 const router = express_1.default.Router();
-const CLIENT_URL = "http://localhost:3000";
+const CLIENT_URL = "http://memorya.herokuapp.com";
 router.get("/login/success", (req, res) => {
     if (req.user) {
         //[S:01] Checking for existing email

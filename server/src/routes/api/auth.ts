@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { Users, IUsers } from "../../models/userzModel";
 const router: any = express.Router();
 
-const CLIENT_URL = "http://localhost:3000";
+const CLIENT_URL = "http://memorya.herokuapp.com";
 
 router.get("/login/success", (req: any, res: Response) => {
 	if (req.user) {

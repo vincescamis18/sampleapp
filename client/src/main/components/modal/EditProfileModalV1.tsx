@@ -25,7 +25,7 @@ const EditProfile = (props: IProps) => {
 		surname: "",
 		given_name: "",
 		user_profile: null,
-		email: userState.email,
+		email: "",
 		location: "",
 		bio: "",
 		birthday: "",
@@ -41,15 +41,15 @@ const EditProfile = (props: IProps) => {
 		// handle the submission of the form after clicking the btn and successful api call
 		if (isSubmited && !userState.isLoading) setShowModal(!showModal);
 
-		// set the initial value of input
-		if (userState.birthday)
+		// set the initial value of input based on availability
+		if (userState.email)
 			setUpdatedUser({
 				...updatedUser,
 				surname: userState.surname,
 				given_name: userState.given_name,
 				location: userState.location,
 				bio: userState.bio,
-				birthday: new Date(userState.birthday).toISOString().split("T")[0],
+				birthday: userState.birthday ? new Date(userState.birthday).toISOString().split("T")[0] : "",
 			});
 	}, [userState]);
 
@@ -62,9 +62,12 @@ const EditProfile = (props: IProps) => {
 
 	const handleSaveBtn = () => {
 		// console.log(updatedUser); // Debug
-		setIsSubmited(true);
-		if (updatedUser.user_profile) dispatch(updateUser(updatedUser));
-		else dispatch(updateUserWithoutProfilePicture(updatedUser));
+		// Prevent user from submiting incomplete details
+		if (updatedUser.surname && updatedUser.given_name && updatedUser.location && updatedUser.bio && updatedUser.birthday) {
+			setIsSubmited(true);
+			if (updatedUser.user_profile) dispatch(updateUser(updatedUser));
+			else dispatch(updateUserWithoutProfilePicture(updatedUser));
+		}
 	};
 
 	const handleCloseBtn = () => {
@@ -76,11 +79,11 @@ const EditProfile = (props: IProps) => {
 			email: userState.email,
 			location: userState.location,
 			bio: userState.bio,
-			birthday: new Date(userState.birthday).toISOString().split("T")[0],
+			birthday: userState.birthday ? new Date(userState.birthday).toISOString().split("T")[0] : "",
 		});
 	};
 
-	if (!userState.surname) return <React.Fragment></React.Fragment>;
+	if (!userState.email) return <React.Fragment></React.Fragment>;
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="editProfileModal-background">

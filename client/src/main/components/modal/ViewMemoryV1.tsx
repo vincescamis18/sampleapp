@@ -70,7 +70,7 @@ const ViewMemoryV1 = (props: IProps) => {
 		</div>
 	);
 
-	if (!userState.surname) return <React.Fragment></React.Fragment>;
+	if (!userState.email) return <React.Fragment></React.Fragment>;
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">

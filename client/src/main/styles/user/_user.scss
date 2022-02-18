@@ -74,12 +74,12 @@
 
 .side-menu-parent {
 	position: sticky;
-	top: 0px;
+	top: 100px;
 
 	.side-menu-container {
 		position: absolute;
 		right: 20px;
-		padding-top: 20px;
+		margin-top: 20px;
 		display: flex;
 		flex-flow: column;
 	}

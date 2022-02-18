@@ -91,7 +91,13 @@
   height: 100vh;
 }
 
-.navbar-container {
+.navbar-parent {
+  width: 100%;
+  height: 90px;
+  background-color: #f4f4f4;
+}
+
+.navbar-parent .navbar-container {
   width: 100%;
   height: 90px;
   background-color: #f4f4f4;
@@ -104,9 +110,11 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 0px 150px;
+  position: fixed;
+  z-index: 2;
 }
 
-.navbar-container .logo {
+.navbar-parent .logo {
   width: 400px;
   height: 50px;
   margin: 0px 20px;
@@ -115,7 +123,7 @@
   padding-top: 15px;
 }
 
-.navbar-container .search-container {
+.navbar-parent .search-container {
   background-color: #c4c4c4;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -126,13 +134,13 @@
   border-radius: 10px;
 }
 
-.navbar-container .search-icon {
+.navbar-parent .search-icon {
   width: 24px;
   height: 24px;
   margin: 0px 15px;
 }
 
-.navbar-container .search-input {
+.navbar-parent .search-input {
   width: 550px;
   height: 50px;
   background-color: #c4c4c4;
@@ -140,22 +148,22 @@
   margin: 0px 25px 0px 0px;
 }
 
-.navbar-container .home-icon,
-.navbar-container .compass-icon,
-.navbar-container .unregistered-profile-icon {
+.navbar-parent .home-icon,
+.navbar-parent .compass-icon,
+.navbar-parent .unregistered-profile-icon {
   width: 31px;
   height: 31px;
   margin: 0px 00px 0px 20px;
 }
 
-.navbar-container .logo:hover,
-.navbar-container .home-icon:hover,
-.navbar-container .compass-icon:hover,
-.navbar-container .unregistered-profile-icon:hover {
+.navbar-parent .logo:hover,
+.navbar-parent .home-icon:hover,
+.navbar-parent .compass-icon:hover,
+.navbar-parent .unregistered-profile-icon:hover {
   cursor: pointer;
 }
 
-.navbar-container .profile-picture {
+.navbar-parent .profile-picture {
   width: 41px;
   height: 41px;
   margin: 0px -20px 0px 20px;
@@ -166,12 +174,12 @@
      object-fit: cover;
 }
 
-.navbar-container .dropdown {
+.navbar-parent .dropdown {
   float: left;
   overflow: hidden;
 }
 
-.navbar-container .dropdown .dropbtn {
+.navbar-parent .dropdown .dropbtn {
   font-size: 16px;
   text-align: center;
   border: none;
@@ -186,19 +194,19 @@
   cursor: default;
 }
 
-.navbar-container .dropdown:hover .dropbtn {
+.navbar-parent .dropdown:hover .dropbtn {
   border-bottom-right-radius: 0px;
   border-top-right-radius: 20px;
 }
 
-.navbar-container .dropdown-content {
+.navbar-parent .dropdown-content {
   display: none;
   position: absolute;
   min-width: 150px;
   z-index: 2;
 }
 
-.navbar-container .option {
+.navbar-parent .option {
   border-top: 2px solid white;
   background-color: #ddd;
   float: none;
@@ -212,28 +220,28 @@
   padding: 8px 8px 8px 15px;
 }
 
-.navbar-container .last-option {
+.navbar-parent .last-option {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
 
-.navbar-container .dropdown-content img {
+.navbar-parent .dropdown-content img {
   margin-right: 10px;
 }
 
-.navbar-container .option:hover {
+.navbar-parent .option:hover {
   background-color: #b4b4b4;
   cursor: pointer;
 }
 
-.navbar-container .dropdown:hover .dropdown-content {
+.navbar-parent .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.navbar-container input:focus,
-.navbar-container select:focus,
-.navbar-container textarea:focus,
-.navbar-container button:focus {
+.navbar-parent input:focus,
+.navbar-parent select:focus,
+.navbar-parent textarea:focus,
+.navbar-parent button:focus {
   outline: none;
 }
 
@@ -597,13 +605,13 @@
 .side-menu-parent {
   position: -webkit-sticky;
   position: sticky;
-  top: 0px;
+  top: 100px;
 }
 
 .side-menu-parent .side-menu-container {
   position: absolute;
   right: 20px;
-  padding-top: 20px;
+  margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -667,6 +675,7 @@
 
 .view-memory-modal-background .view-memory-modal-container {
   position: fixed;
+  margin-top: 45px;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);

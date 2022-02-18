@@ -1,11 +1,19 @@
-.navbar-container {
+.navbar-parent {
 	width: 100%;
 	height: 90px;
 	background-color: #f4f4f4;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	padding: 0px 150px;
+
+	.navbar-container {
+		width: 100%;
+		height: 90px;
+		background-color: #f4f4f4;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 0px 150px;
+		position: fixed;
+		z-index: 2;
+	}
 
 	.logo {
 		width: 400px;

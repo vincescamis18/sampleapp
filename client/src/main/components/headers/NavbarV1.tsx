@@ -50,22 +50,24 @@ const NavbarV1: React.FC = () => {
 		return <img src={ProfileV1} alt="profile" className="unregistered-profile-icon" onClick={() => navigate("/register")} />;
 	};
 
-	if (userState.isLoading) return <div className="navbar-container"></div>;
+	if (userState.isLoading) return <div className="navbar-parent"></div>;
 	return (
-		<div className="navbar-container">
-			<div className="logo" onClick={() => navigate("/")}>
-				Logo
-			</div>
+		<div className="navbar-parent">
+			<div className="navbar-container">
+				<div className="logo" onClick={() => navigate("/")}>
+					Logo
+				</div>
 
-			<div className="search-container">
-				<img src={SearchV1} alt="search" className="search-icon" />
-				<input className="search-input" placeholder="Search" type="text" name="" id="" />
-			</div>
+				<div className="search-container">
+					<img src={SearchV1} alt="search" className="search-icon" />
+					<input className="search-input" placeholder="Search" type="text" name="" id="" />
+				</div>
 
-			<div style={{ display: "flex", alignItems: "center" }}>
-				<img src={HomeV1} alt="home" className="home-icon" />
-				<img src={ExploreV1} alt="explore" className="compass-icon" />
-				<Profile />
+				<div style={{ display: "flex", alignItems: "center" }}>
+					<img src={HomeV1} alt="home" className="home-icon" />
+					<img src={ExploreV1} alt="explore" className="compass-icon" />
+					<Profile />
+				</div>
 			</div>
 		</div>
 	);

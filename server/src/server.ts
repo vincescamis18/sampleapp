@@ -32,7 +32,7 @@ mongoose
 	.connect(db, {
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
-		// useFindAndModify: false,
+		useFindAndModify: false,
 	})
 	.then(() => console.log("[S:01] Database Connected"))
 	.catch((err: any) => console.log(err));
@@ -53,6 +53,7 @@ app.use("/api/records", require("./routes/api/record")); // Route for Creating, 
 app.use("/api/userz", require("./routes/api/userz")); // Route for Creating, Reading, Updating, and Deleting a Userz
 // app.use("/api/users", require("./routes/api/users")); // Route for login, signup, and userData
 app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
+app.use("/api/bug", require("./routes/api/bug")); //Route for Creating, Reading, Updating, and Deleting a bug
 
 // handle socket connection
 io.on("connection", (socket: any) => {

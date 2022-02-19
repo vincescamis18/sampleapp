@@ -50,6 +50,7 @@ app.use("/api/userz", require("./routes/api/userz")); // Route for Creating, Rea
 app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
 app.use("/api/bug", require("./routes/api/bug")); // Route for Creating, Reading, Updating, and Deleting a bug
 app.use("/api/report", require("./routes/api/report")); // Route for Creating, Reading, Updating, and Deleting a report
+app.use("/api/comment", require("./routes/api/comment")); // Route for Creating, Reading, and Updating a comment
 // handle socket connection
 io.on("connection", (socket) => {
     // handle the newly joined client by sending previous messages and greating & notifying everyone that new client has joined

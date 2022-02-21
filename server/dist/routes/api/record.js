@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const recordModel_1 = require("../../models/recordModel");
+const commentModel_1 = require("../../models/commentModel");
 const router = express_1.default.Router();
 // @route   GET /api/records/
 // @desc    Retrieve all item
@@ -27,8 +28,19 @@ router.get("/:_id", (req, res) => {
 // @access  Public
 router.post("/", (req, res) => {
     console.log(req.body);
-    const newItem = new recordModel_1.Record(req.body);
-    newItem.save().then((item) => res.json(item));
+    // create a new record instance
+    const newRecord = new recordModel_1.Record(req.body);
+    newRecord
+        .save()
+        .then((record) => {
+        // create a comment section instance
+        const newComment = new commentModel_1.Comment({ record_id: record._id, comments: [] });
+        newComment
+            .save()
+            .then(() => res.json(record))
+            .catch((err) => res.json(err));
+    })
+        .catch((err) => res.json(err));
 });
 // @route   PUT /api/records/
 // @desc    Update Item by _id (Append, upset: false)

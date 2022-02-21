@@ -1,5 +1,6 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Errback } from "express";
 import { Record, IRecord } from "../../models/recordModel";
+import { Comment } from "../../models/commentModel";
 
 const router = express.Router();
 
@@ -26,8 +27,19 @@ router.get("/:_id", (req: Request, res: Response) => {
 // @access  Public
 router.post("/", (req, res) => {
 	console.log(req.body);
-	const newItem = new Record(req.body);
-	newItem.save().then((item: any) => res.json(item));
+	// create a new record instance
+	const newRecord = new Record(req.body);
+	newRecord
+		.save()
+		.then((record: any) => {
+			// create a comment section instance
+			const newComment = new Comment({ record_id: record._id, comments: [] });
+			newComment
+				.save()
+				.then(() => res.json(record))
+				.catch((err: Errback) => res.json(err));
+		})
+		.catch((err: Errback) => res.json(err));
 });
 
 // @route   PUT /api/records/

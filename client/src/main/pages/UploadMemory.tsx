@@ -34,7 +34,7 @@ const AddMemory: React.FC = () => {
 
 	useEffect(() => {
 		// redirect to user page if the upload submission is successful
-		if (isSubmited && !recordState.isLoading) navigate("/user");
+		if (isSubmited && !recordState.isLoading) navigate("/profile");
 	}, [recordState]);
 
 	useEffect(() => {

@@ -39,7 +39,7 @@ function App() {
 				<Route path="/zample" element={<Zample />} />
 				<Route path="/record" element={<Record />} />
 				<Route path="/manage_user" element={<ManageUser />} />
-				<Route path="/user" element={<User />} />
+				<Route path="/profile" element={<User />} />
 				<Route path="/profile/:id" element={<VisitUser />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/upload-memory" element={<UploadMemory />} />

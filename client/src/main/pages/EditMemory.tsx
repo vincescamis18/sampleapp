@@ -60,7 +60,7 @@ const EditMemory: React.FC = () => {
 		}
 
 		// redirect to user page if the edit submission is successful
-		if (isSubmited && !recordState.isLoading) navigate("/user");
+		if (isSubmited && !recordState.isLoading) navigate("/profile");
 	}, [recordState]);
 
 	const handleUpdateRecordInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

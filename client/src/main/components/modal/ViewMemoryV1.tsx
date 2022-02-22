@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
 import { IRecord } from "../../redux/actionSchemas/recordSchema";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 import { IUser } from "../../redux/actionSchemas/userSchema";
@@ -19,6 +19,7 @@ interface IProps {
 
 const ViewMemoryV1 = (props: IProps) => {
 	const navigate = useNavigate();
+	const params = useParams();
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
 	const commentState = useSelector((state: RootState) => state.comment);
@@ -150,6 +151,17 @@ const ViewMemoryV1 = (props: IProps) => {
 		}
 	};
 
+	const handleUserNavigate = (navigateUserID: string) => {
+		// checks if the target user is the user itself && if the page is already at target profile page
+		if (navigateUserID === userState._id && params.id) {
+			dispatch(commentReset());
+			navigate("/profile");
+		} else if (navigateUserID !== userState._id && params.id !== navigateUserID) {
+			dispatch(commentReset());
+			navigate(`/profile/${navigateUserID}`);
+		}
+	};
+
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">
@@ -167,8 +179,8 @@ const ViewMemoryV1 = (props: IProps) => {
 					<div className="details-container" id="details-container-height">
 						<div className="picture-name-menu-container">
 							<div className="picture-name-container">
-								<img src={creatorState.user_profile} alt="user profile" className="display-picture" />
-								<span>
+								<img className="display-picture" src={creatorState.user_profile} alt="user profile" />
+								<span className="cursor-point" onClick={() => handleUserNavigate(creatorState._id)}>
 									<b>{`${creatorState.given_name} ${creatorState.surname}`}</b>
 								</span>
 							</div>
@@ -206,7 +218,7 @@ const ViewMemoryV1 = (props: IProps) => {
 								<div key={index} className="comment-view-container">
 									<img src={comment.user_id.user_profile} alt="user profile" className="comment-view-user" />
 									<div className="comment-view-name-msg">
-										<p>
+										<p className="cursor-point" onClick={() => handleUserNavigate(comment.user_id._id)}>
 											<b> {`${comment.user_id.given_name} ${comment.user_id.surname}`} </b>{" "}
 										</p>
 										<p>{comment.message}</p>

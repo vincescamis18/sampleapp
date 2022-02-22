@@ -29,7 +29,7 @@ const NavbarV1: React.FC = () => {
 					<div className="dropdown">
 						<div className="dropbtn">{userState.given_name}</div>
 						<div className="dropdown-content">
-							<div className="option" onClick={() => navigate("/user")}>
+							<div className="option" onClick={() => navigate("/profile")}>
 								<img src={ProfileV2} alt="profile" />
 								<span>Profile</span>
 							</div>

@@ -13,6 +13,15 @@ router.get("/", (req: Request, res: Response) => {
 		.then((item: IUsers[]) => res.json(item));
 });
 
+// @route   GET /api/userz/
+// @desc    Retrieve all item
+// @access  Public
+router.get("/details/:_id", (req: Request, res: Response) => {
+	Users.findById(req.params._id)
+		.select("given_name surname location bio birthday user_profile")
+		.then((item: IUsers[]) => res.json(item));
+});
+
 // // @route   GET /api/userz/:id
 // // @desc    Retrieve all item
 // // @access  Public

@@ -15,6 +15,14 @@ router.get("/", (req, res) => {
         .sort({ date: 1 })
         .then((item) => res.json(item));
 });
+// @route   GET /api/userz/
+// @desc    Retrieve all item
+// @access  Public
+router.get("/details/:_id", (req, res) => {
+    userzModel_1.Users.findById(req.params._id)
+        .select("given_name surname location bio birthday user_profile")
+        .then((item) => res.json(item));
+});
 // // @route   GET /api/userz/:id
 // // @desc    Retrieve all item
 // // @access  Public

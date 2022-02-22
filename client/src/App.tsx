@@ -11,6 +11,7 @@ import Zample from "./main/pages/Zample";
 import Record from "./main/pages/Record";
 import ManageUser from "./main/pages/ManageUser";
 import User from "./main/pages/User";
+import VisitUser from "./main/pages/VisitUser";
 import Register from "./main/pages/Register";
 import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
@@ -39,6 +40,7 @@ function App() {
 				<Route path="/record" element={<Record />} />
 				<Route path="/manage_user" element={<ManageUser />} />
 				<Route path="/user" element={<User />} />
+				<Route path="/profile/:id" element={<VisitUser />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/upload-memory" element={<UploadMemory />} />
 				<Route path="/edit-memory/:id" element={<EditMemory />} />

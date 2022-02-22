@@ -4,6 +4,8 @@ import { RootState } from "../../redux/reducers/allReducer";
 import { IRecord } from "../../redux/actionSchemas/recordSchema";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+import { IUser } from "../../redux/actionSchemas/userSchema";
 import { fetchComment, createComment, commentReset } from "../../redux/actions/commentAction";
 
 import closeV1 from "../../assets/images/buttons/closeV1.png";
@@ -27,14 +29,32 @@ const ViewMemoryV1 = (props: IProps) => {
 	const [page, setPage] = useState(0);
 	const [comment, setComment] = useState("");
 
+	const [creatorState, setCreatorState] = useState<IUser>({
+		_id: "",
+		surname: "",
+		given_name: "",
+		user_profile: "",
+		email: "",
+		location: "",
+		bio: "",
+		birthday: "",
+	});
+
 	// toggle the visibility of modal and prevent the toggle in initial load
 	useEffect(() => {
 		if (initialLaunch) setInitialLaunch(false);
-		// else setShowModal(!showModal);
-		else setShowModal(true);
+		else setShowModal(!showModal);
 
 		// retrive the comment of the selected record
-		if (props.record) dispatch(fetchComment(props.record._id));
+		if (props.record) {
+			dispatch(fetchComment(props.record._id));
+
+			// Get the creator details
+			axios
+				.get(`/api/userz/details/${props.record.creator}`)
+				.then((res: any) => setCreatorState(res.data))
+				.catch(err => console.log(err));
+		}
 	}, [props.modalTigger]);
 
 	// Disable scroll when modal appear
@@ -130,7 +150,6 @@ const ViewMemoryV1 = (props: IProps) => {
 		}
 	};
 
-	if (!userState.email) return <React.Fragment></React.Fragment>;
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">
@@ -148,15 +167,23 @@ const ViewMemoryV1 = (props: IProps) => {
 					<div className="details-container" id="details-container-height">
 						<div className="picture-name-menu-container">
 							<div className="picture-name-container">
-								<img src={userState.user_profile} alt="user profile" className="display-picture" />
-								<span> {`${userState.given_name} ${userState.surname}`}</span>
+								<img src={creatorState.user_profile} alt="user profile" className="display-picture" />
+								<span>
+									<b>{`${creatorState.given_name} ${creatorState.surname}`}</b>
+								</span>
 							</div>
 
 							<div className="no-select mini-menu-container">
 								<div className="mini-menu-option-container">
-									<span className="menu-item cursor-point" onClick={() => navigate(`/edit-memory/${props.record?._id}`)}>
-										Edit Post
-									</span>
+									{props.record?.creator === userState._id ? (
+										<span className="menu-item cursor-point" onClick={() => navigate(`/edit-memory/${props.record?._id}`)}>
+											Edit Post
+										</span>
+									) : (
+										<span className="menu-item cursor-point" onClick={() => console.log("Report")}>
+											Report Post
+										</span>
+									)}
 								</div>
 								<div className="mini-menu-icon" onClick={() => setShowEdit(!showEdit)}>
 									•••

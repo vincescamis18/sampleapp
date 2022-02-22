@@ -10,5 +10,7 @@ const usersSchema = new mongoose.Schema({
     location: { type: String },
     bio: { type: String },
     birthday: { type: Date },
+}, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 });
 exports.Users = mongoose.model("users", usersSchema);

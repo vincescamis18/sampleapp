@@ -11,14 +11,19 @@ export interface IUsers {
 	birthday: Date;
 }
 
-const usersSchema: IUsers = new mongoose.Schema({
-	surname: { type: String },
-	given_name: { type: String },
-	user_profile: { type: String },
-	email: { type: String },
-	location: { type: String },
-	bio: { type: String },
-	birthday: { type: Date },
-});
+const usersSchema: IUsers = new mongoose.Schema(
+	{
+		surname: { type: String },
+		given_name: { type: String },
+		user_profile: { type: String },
+		email: { type: String },
+		location: { type: String },
+		bio: { type: String },
+		birthday: { type: Date },
+	},
+	{
+		timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+	}
+);
 
 export const Users = mongoose.model("users", usersSchema);

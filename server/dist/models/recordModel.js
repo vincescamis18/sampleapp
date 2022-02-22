@@ -13,5 +13,7 @@ const recordSchema = new mongoose.Schema({
     coordinate_x: { type: Number },
     coordinate_y: { type: Number },
     creator: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+}, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
 });
 exports.Record = mongoose.model("records", recordSchema);

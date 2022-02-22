@@ -5,7 +5,7 @@ import { Comment } from "../../models/commentModel";
 const router = express.Router();
 
 // @route   GET /api/records/
-// @desc    Retrieve all item
+// @desc    Retrieve all record
 // @access  Public
 router.get("/", (req: Request, res: Response) => {
 	Record.find()
@@ -13,8 +13,17 @@ router.get("/", (req: Request, res: Response) => {
 		.then((item: IRecord[]) => res.json(item));
 });
 
+// @route   GET /api/records/user/:id
+// @desc    Retrieve record by creator id
+// @access  Public
+router.get("/user/:creator", (req: Request, res: Response) => {
+	Record.find({ creator: req.params.creator })
+		.then((item: IRecord[]) => res.json(item))
+		.catch((err: any) => res.json(err));
+});
+
 // @route   GET /api/records/:id
-// @desc    Retrieve all item
+// @desc    Retrieve specific record by id
 // @access  Public
 router.get("/:_id", (req: Request, res: Response) => {
 	Record.findById(req.params._id)
@@ -23,7 +32,7 @@ router.get("/:_id", (req: Request, res: Response) => {
 });
 
 // @route   POST /api/records/
-// @desc    Create new Item
+// @desc    Create new record
 // @access  Public
 router.post("/", (req, res) => {
 	console.log(req.body);
@@ -43,7 +52,7 @@ router.post("/", (req, res) => {
 });
 
 // @route   PUT /api/records/
-// @desc    Update Item by _id (Append, upset: false)
+// @desc    Update record by _id
 // @access  Public
 router.put("/", (req: Request, res: Response) => {
 	const { updItem, _id } = req.body;
@@ -53,7 +62,7 @@ router.put("/", (req: Request, res: Response) => {
 });
 
 // @route   DELETE /api/records/
-// @desc    Update Item by _id (Append, upset: false)
+// @desc    Delete record by _id
 // @access  Public
 router.delete("/:_id", (req: Request, res: Response) => {
 	Record.deleteOne({ _id: req.params._id })

@@ -62,11 +62,11 @@ const recordDelete = (newItemArray: IRecord[]): RecordActionSchema => {
 	};
 };
 
-export const fetchRecord = () => {
+export const fetchRecord = (_id: string) => {
 	return (dispatch: Dispatch<RecordActionSchema>) => {
 		dispatch(recordLoading());
 		axios
-			.get("/api/records/")
+			.get(`/api/records/user/${_id}`)
 			.then(res => dispatch(recordFetch(res.data)))
 			.catch(err => {
 				// console.log("err", err); // Debug

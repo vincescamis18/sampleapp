@@ -9,6 +9,7 @@ import MutipleImageV1 from "../components/inputs/MutipleImageV1";
 
 const Zample: React.FC = () => {
 	const dispatch = useDispatch();
+	const userState = useSelector((state: RootState) => state.user);
 	const recordState = useSelector((state: RootState) => state.record);
 	const [newRecord, setNewRecord] = useState<INewRecordInput>({
 		images: null,
@@ -39,8 +40,8 @@ const Zample: React.FC = () => {
 	const [deletedRecord, setDeletedRecord] = useState({ _id: "" });
 
 	useEffect(() => {
-		dispatch(fetchRecord());
-	}, []);
+		if (userState._id) dispatch(fetchRecord(userState._id));
+	}, [userState]);
 
 	const handleNewRecordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewRecord({ ...newRecord, [e.target.name]: e.target.value });

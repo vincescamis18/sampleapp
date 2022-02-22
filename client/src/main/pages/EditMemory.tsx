@@ -16,6 +16,7 @@ const EditMemory: React.FC = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+	const userState = useSelector((state: RootState) => state.user);
 	const recordState = useSelector((state: RootState) => state.record);
 	const [updatedRecord, setUpdatedRecord] = useState({
 		_id: "",
@@ -35,8 +36,8 @@ const EditMemory: React.FC = () => {
 	const [isSubmited, setIsSubmited] = useState(false);
 
 	useEffect(() => {
-		dispatch(fetchRecord());
-	}, []);
+		if (userState._id) dispatch(fetchRecord(userState._id));
+	}, [userState]);
 
 	useEffect(() => {
 		// console.log(recordState); // Debug

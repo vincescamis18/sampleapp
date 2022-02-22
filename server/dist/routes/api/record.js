@@ -8,15 +8,23 @@ const recordModel_1 = require("../../models/recordModel");
 const commentModel_1 = require("../../models/commentModel");
 const router = express_1.default.Router();
 // @route   GET /api/records/
-// @desc    Retrieve all item
+// @desc    Retrieve all record
 // @access  Public
 router.get("/", (req, res) => {
     recordModel_1.Record.find()
         .sort({ date: 1 })
         .then((item) => res.json(item));
 });
+// @route   GET /api/records/user/:id
+// @desc    Retrieve record by creator id
+// @access  Public
+router.get("/user/:creator", (req, res) => {
+    recordModel_1.Record.find({ creator: req.params.creator })
+        .then((item) => res.json(item))
+        .catch((err) => res.json(err));
+});
 // @route   GET /api/records/:id
-// @desc    Retrieve all item
+// @desc    Retrieve specific record by id
 // @access  Public
 router.get("/:_id", (req, res) => {
     recordModel_1.Record.findById(req.params._id)
@@ -24,7 +32,7 @@ router.get("/:_id", (req, res) => {
         .catch((err) => res.json(err));
 });
 // @route   POST /api/records/
-// @desc    Create new Item
+// @desc    Create new record
 // @access  Public
 router.post("/", (req, res) => {
     console.log(req.body);
@@ -43,7 +51,7 @@ router.post("/", (req, res) => {
         .catch((err) => res.json(err));
 });
 // @route   PUT /api/records/
-// @desc    Update Item by _id (Append, upset: false)
+// @desc    Update record by _id
 // @access  Public
 router.put("/", (req, res) => {
     const { updItem, _id } = req.body;
@@ -52,7 +60,7 @@ router.put("/", (req, res) => {
         .catch((err) => res.json({ err }));
 });
 // @route   DELETE /api/records/
-// @desc    Update Item by _id (Append, upset: false)
+// @desc    Delete record by _id
 // @access  Public
 router.delete("/:_id", (req, res) => {
     recordModel_1.Record.deleteOne({ _id: req.params._id })

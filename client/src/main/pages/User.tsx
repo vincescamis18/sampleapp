@@ -21,28 +21,24 @@ const User: React.FC = () => {
 	const [selectRecord, setSelectRecord] = useState<IRecord>();
 	const [triggerEditProfile, setTriggerEditProfile] = useState(false);
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
-	const [userMemories, setUserMemories] = useState<IRecord[]>();
 
 	useEffect(() => {
-		dispatch(fetchRecord());
-	}, []);
-
-	useEffect(() => {
-		// retrieve all the memory of the user
-		if (recordState.records.length > 0 && userState._id) {
-			let allUserMemories = recordState.records.filter((record: any) => record.creator == userState._id);
-			setUserMemories(allUserMemories);
-		}
-	}, [recordState, userState]);
+		if (userState._id) dispatch(fetchRecord(userState._id));
+	}, [userState]);
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
 	const emptyImages = () => {
-		if (userMemories?.length) {
-			const numberOfEmptySlots = userMemories?.length % 4;
+		if (recordState.records?.length) {
+			const numberOfEmptySlots = recordState.records?.length % 4;
 			const emptySlots = [];
 			for (let a = 0; a < numberOfEmptySlots; a++) emptySlots.push(a);
-			return emptySlots.map(() => (
-				<img src="https://www.everynation.org.ph/img/logos/icon-check@2x.jpg" alt="image" className="memory-display-container" />
+			return emptySlots.map((item: any, index: number) => (
+				<img
+					src="https://www.everynation.org.ph/img/logos/icon-check@2x.jpg"
+					alt="image"
+					key={index}
+					className="memory-display-container"
+				/>
 			));
 		}
 	};
@@ -50,19 +46,14 @@ const User: React.FC = () => {
 	const DisplayUserAllMemories = () => (
 		<div className="user-memory-parent">
 			<div className="user-memory-container">
-				{userMemories?.map((record: IRecord, index: number) => (
-					<React.Fragment key={index}>
-						{record.creator === userState._id ? (
-							<img
-								className="cursor-point memory-display-container"
-								src={record.images[0].link}
-								alt="image"
-								onClick={() => selectMemory(record)}
-							/>
-						) : (
-							<React.Fragment></React.Fragment>
-						)}
-					</React.Fragment>
+				{recordState.records?.map((record: IRecord, index: number) => (
+					<img
+						className="cursor-point memory-display-container"
+						src={record.images[0].link}
+						key={index}
+						alt="empty image"
+						onClick={() => selectMemory(record)}
+					/>
 				))}
 				{emptyImages()}
 			</div>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
 import { IRecord } from "../../redux/actionSchemas/recordSchema";
 import { useNavigate } from "react-router-dom";
+
+import { fetchComment, createComment, commentReset } from "../../redux/actions/commentAction";
 
 import closeV1 from "../../assets/images/buttons/closeV1.png";
 import arrowLeftV1 from "../../assets/images/icons/arrowLeftV1.png";
@@ -15,20 +17,37 @@ interface IProps {
 
 const ViewMemoryV1 = (props: IProps) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
+	const commentState = useSelector((state: RootState) => state.comment);
 
 	const [initialLaunch, setInitialLaunch] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 	const [showEdit, setShowEdit] = useState(false);
 	const [page, setPage] = useState(0);
+	const [comment, setComment] = useState("");
 
 	// toggle the visibility of modal and prevent the toggle in initial load
 	useEffect(() => {
 		if (initialLaunch) setInitialLaunch(false);
-		else setShowModal(!showModal);
+		// else setShowModal(!showModal);
+		else setShowModal(true);
+
+		// retrive the comment of the selected record
+		if (props.record) dispatch(fetchComment(props.record._id));
 	}, [props.modalTigger]);
 
+	// Disable scroll when modal appear
+	// useEffect(() => {
+	// 	const body = document.querySelector("body");
+	// 	if (body) {
+	// 		if (showModal) body.style.overflow = "hidden";
+	// 		else body.style.overflow = "auto";
+	// 	}
+	// }, [showModal]);
+
 	const handleCloseBtn = () => {
+		dispatch(commentReset());
 		setShowModal(false);
 		setShowEdit(false);
 		setPage(0);
@@ -70,6 +89,47 @@ const ViewMemoryV1 = (props: IProps) => {
 		</div>
 	);
 
+	function handleHeightAdjustment() {
+		if (document.getElementById("comment-input-height")) {
+			let commentInput = document.getElementById("comment-input-height");
+			let details = document.getElementById("details-container-height");
+			if (commentInput && details) {
+				commentInput.style.height = "6px"; // set the initial height
+				commentInput.style.height = commentInput.scrollHeight + "px"; // add the scroll height
+
+				// where scroll is not yet visible and the height is still adjusting, adjust the whitespace between input and view comment
+				if (commentInput.scrollHeight <= 105) {
+					details.style.height = "545px";
+					// add for added white space from scroll height
+					if (commentInput.scrollHeight == 105) details.style.height = `${details.clientHeight + 3}px`;
+					details.style.height = `${details.clientHeight - commentInput.scrollHeight + 37}px`;
+				}
+
+				// visibility of scroll when reach 6th rows
+				if (commentInput.scrollHeight > 110) commentInput.style.overflowY = "scroll";
+				else commentInput.style.overflowY = "hidden";
+			}
+		}
+	}
+
+	const handleKeyPress = (e: any) => {
+		if (e.key == "Enter") {
+			setComment("");
+			handleHeightAdjustment();
+
+			if (props.record) dispatch(createComment(props.record._id, e.target.value));
+			e.preventDefault();
+
+			let element = document.getElementById("comment-input-height");
+			let details = document.getElementById("details-container-height");
+			if (element && details) {
+				element.style.height = "37px";
+				element.style.overflowY = "hidden";
+				details.style.height = "545px";
+			}
+		}
+	};
+
 	if (!userState.email) return <React.Fragment></React.Fragment>;
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
@@ -85,25 +145,25 @@ const ViewMemoryV1 = (props: IProps) => {
 						)}
 					</div>
 
-					<div className="details-container">
-						<div className="no-select option-container">
-							<span className="option-btn" onClick={() => setShowEdit(!showEdit)}>
-								•••
-							</span>
-							<div>
-								<span
-									className={showEdit ? "showEdit cursor-point" : "hideEdit"}
-									onClick={() => navigate(`/edit-memory/${props.record?._id}`)}
-								>
-									Edit
-								</span>
+					<div className="details-container" id="details-container-height">
+						<div className="picture-name-menu-container">
+							<div className="picture-name-container">
+								<img src={userState.user_profile} alt="user profile" className="display-picture" />
+								<span> {`${userState.given_name} ${userState.surname}`}</span>
+							</div>
+
+							<div className="no-select mini-menu-container">
+								<div className="mini-menu-option-container">
+									<span className="menu-item cursor-point" onClick={() => navigate(`/edit-memory/${props.record?._id}`)}>
+										Edit Post
+									</span>
+								</div>
+								<div className="mini-menu-icon" onClick={() => setShowEdit(!showEdit)}>
+									•••
+								</div>
 							</div>
 						</div>
 
-						<div className="picture-name-container">
-							<img src={userState.user_profile} alt="user profile" className="display-picture" />
-							<span>{`${userState.given_name} ${userState.surname}`}</span>
-						</div>
 						<p className="title">{props.record?.title}</p>
 						<div className="border"></div>
 						<div className="owner-date-container">
@@ -112,6 +172,38 @@ const ViewMemoryV1 = (props: IProps) => {
 						</div>
 						<span className="light-text">{props.record?.address}</span>
 						<p className="description-text">{props.record?.description}</p>
+						<div>
+							<div className="border"></div>
+
+							{commentState.comments.map((comment, index) => (
+								<div key={index} className="comment-view-container">
+									<img src={comment.user_id.user_profile} alt="user profile" className="comment-view-user" />
+									<div className="comment-view-name-msg">
+										<p>
+											<b> {`${comment.user_id.given_name} ${comment.user_id.surname}`} </b>{" "}
+										</p>
+										<p>{comment.message}</p>
+									</div>
+								</div>
+							))}
+							<div className="comment-input-container">
+								<img src={userState.user_profile} alt="user profile" className="comment-input-user" />
+								<textarea
+									name="comment"
+									id="comment-input-height"
+									className="comment-input-msg"
+									placeholder="Write a comment..."
+									rows={1}
+									value={comment}
+									onInput={handleHeightAdjustment}
+									onChange={e => {
+										setComment(e.target.value);
+										handleHeightAdjustment();
+									}}
+									onKeyPress={handleKeyPress}
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

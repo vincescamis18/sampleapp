@@ -1,29 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../redux/reducers/allReducer";
-import { fetchRecord } from "../redux/actions/recordAction";
+
+import axios from "axios";
+import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 
 import NavbarV1 from "../components/headers/NavbarV1";
 import EditProfileV1 from "../components/modal/EditProfileModalV1";
-import ViewMemoryV1 from "../components/modal/ViewMemoryV1";
+import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
 
 import editProfileV1 from "../assets/images/buttons/editProfileV1.png";
 import filterBtnV1 from "../assets/images/buttons/filterBtnV1.png";
 import addBtnV1 from "../assets/images/buttons/addBtnV1.png";
-import { IRecord } from "../redux/actionSchemas/recordSchema";
+import emptyV1 from "../assets/images/icons/emptyV1.png";
 
 const User: React.FC = () => {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
-	const recordState = useSelector((state: RootState) => state.record);
-	const [selectRecord, setSelectRecord] = useState<IRecord>();
+	const [recordState, setRecordState] = useState<{ records: IRecordWithCreator[] }>({
+		records: [],
+	});
+	const [selectRecord, setSelectRecord] = useState<IRecordWithCreator>();
 	const [triggerEditProfile, setTriggerEditProfile] = useState(false);
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
 
 	useEffect(() => {
-		if (userState._id) dispatch(fetchRecord(userState._id));
+		// retrive user record with creator details
+		if (userState._id)
+			axios
+				.get(`/api/records/record-creator/user/${userState._id}`)
+				.then((res: any) => setRecordState({ records: res.data }))
+				.catch(err => console.log("err", err));
 	}, [userState]);
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
@@ -33,12 +41,7 @@ const User: React.FC = () => {
 			const emptySlots = [];
 			for (let a = 0; a < numberOfEmptySlots; a++) emptySlots.push(a);
 			return emptySlots.map((item: any, index: number) => (
-				<img
-					src="https://www.everynation.org.ph/img/logos/icon-check@2x.jpg"
-					alt="image"
-					key={index}
-					className="memory-display-container"
-				/>
+				<img src={emptyV1} alt="image" key={index} className="memory-display-container" />
 			));
 		}
 	};
@@ -46,7 +49,7 @@ const User: React.FC = () => {
 	const DisplayUserAllMemories = () => (
 		<div className="user-memory-parent">
 			<div className="user-memory-container">
-				{recordState.records?.map((record: IRecord, index: number) => (
+				{recordState.records?.map((record: IRecordWithCreator, index: number) => (
 					<img
 						className="cursor-point memory-display-container"
 						src={record.images[0].link}
@@ -84,7 +87,7 @@ const User: React.FC = () => {
 		return age;
 	};
 
-	const selectMemory = (record: IRecord) => {
+	const selectMemory = (record: IRecordWithCreator) => {
 		setTriggerViewMemory(!triggerViewMemory);
 		setSelectRecord(record);
 	};
@@ -119,7 +122,7 @@ const User: React.FC = () => {
 			</div>
 
 			<EditProfileV1 modalTigger={triggerEditProfile} />
-			<ViewMemoryV1 modalTigger={triggerViewMemory} record={selectRecord} />
+			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
 			<SideMenu />
 			<DisplayUserAllMemories />
 		</div>

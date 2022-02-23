@@ -3,15 +3,17 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 import { IUser } from "../redux/actionSchemas/userSchema";
-import { IRecord } from "../redux/actionSchemas/recordSchema";
+import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 
 import NavbarV1 from "../components/headers/NavbarV1";
-import ViewMemoryV1 from "../components/modal/ViewMemoryV1";
+import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
 
-const User: React.FC = () => {
+import emptyV1 from "../assets/images/icons/emptyV1.png";
+
+const VisitUser: React.FC = () => {
 	const { id } = useParams();
 
-	const [recordState, setRecordState] = useState<{ records: IRecord[] }>({
+	const [recordState, setRecordState] = useState<{ records: IRecordWithCreator[] }>({
 		records: [],
 	});
 	const [userState, setUserState] = useState<IUser>({
@@ -25,18 +27,15 @@ const User: React.FC = () => {
 		birthday: "",
 	});
 
-	const [selectRecord, setSelectRecord] = useState<IRecord>();
+	const [selectRecord, setSelectRecord] = useState<IRecordWithCreator>();
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
 
 	useEffect(() => {
 		if (id) {
-			// retrive selected user record
+			// retrive selected user record with creator details
 			axios
-				.get(`/api/records/user/${id}`)
-				.then((res: any) => {
-					console.log({ records: res.data });
-					setRecordState({ records: res.data });
-				})
+				.get(`/api/records/record-creator/user/${id}`)
+				.then((res: any) => setRecordState({ records: res.data }))
 				.catch(err => console.log("err", err));
 
 			// retrive selected user details
@@ -54,12 +53,7 @@ const User: React.FC = () => {
 			const emptySlots = [];
 			for (let a = 0; a < numberOfEmptySlots; a++) emptySlots.push(a);
 			return emptySlots.map((item: any, index: number) => (
-				<img
-					src="https://www.everynation.org.ph/img/logos/icon-check@2x.jpg"
-					alt="image"
-					key={index}
-					className="memory-display-container"
-				/>
+				<img src={emptyV1} alt="image" key={index} className="memory-display-container" />
 			));
 		}
 	};
@@ -67,7 +61,7 @@ const User: React.FC = () => {
 	const DisplayUserAllMemories = () => (
 		<div className="user-memory-parent">
 			<div className="user-memory-container">
-				{recordState.records.map((record: IRecord, index: number) => (
+				{recordState.records.map((record: IRecordWithCreator, index: number) => (
 					<img
 						className="cursor-point memory-display-container"
 						src={record.images[0].link}
@@ -96,7 +90,7 @@ const User: React.FC = () => {
 		return age;
 	};
 
-	const selectMemory = (record: IRecord) => {
+	const selectMemory = (record: IRecordWithCreator) => {
 		setTriggerViewMemory(!triggerViewMemory);
 		setSelectRecord(record);
 	};
@@ -126,10 +120,10 @@ const User: React.FC = () => {
 				</div>
 			</div>
 
-			<ViewMemoryV1 modalTigger={triggerViewMemory} record={selectRecord} />
+			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
 			<DisplayUserAllMemories />
 		</div>
 	);
 };
 
-export default User;
+export default VisitUser;

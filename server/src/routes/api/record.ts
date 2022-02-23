@@ -13,6 +13,16 @@ router.get("/", (req: Request, res: Response) => {
 		.then((item: IRecord[]) => res.json(item));
 });
 
+// @route   GET /api/records/record-creator
+// @desc    Retrieve all record with creator details
+// @access  Public
+router.get("/record-creator", (req: Request, res: Response) => {
+	Record.find()
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.sort({ date: 1 })
+		.then((item: IRecord[]) => res.json(item));
+});
+
 // @route   GET /api/records/user/:id
 // @desc    Retrieve record by creator id
 // @access  Public

@@ -65,7 +65,7 @@ const NavbarV1: React.FC = () => {
 
 				<div style={{ display: "flex", alignItems: "center" }}>
 					<img src={HomeV1} alt="home" className="home-icon" />
-					<img src={ExploreV1} alt="explore" className="compass-icon" />
+					<img src={ExploreV1} alt="explore" className="compass-icon" onClick={() => navigate("/explore")} />
 					<Profile />
 				</div>
 			</div>

@@ -15,6 +15,7 @@ import VisitUser from "./main/pages/VisitUser";
 import Register from "./main/pages/Register";
 import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
+import Explore from "./main/pages/Explore";
 
 function App() {
 	const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/upload-memory" element={<UploadMemory />} />
 				<Route path="/edit-memory/:id" element={<EditMemory />} />
+				<Route path="/explore" element={<Explore />} />
 			</Routes>
 		</BrowserRouter>
 	);

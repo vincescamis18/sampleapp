@@ -78,6 +78,26 @@ export type IRecord = {
 	creator: string;
 };
 
+// Record with creator details
+export type IRecordWithCreator = {
+	_id: string;
+	images: { link: string; _id: string }[];
+	title: string;
+	date: string;
+	owner: string;
+	description: string;
+	tag: string;
+	address: string;
+	coordinate_x: number;
+	coordinate_y: number;
+	creator: {
+		_id: string;
+		given_name: string;
+		surname: string;
+		user_profile: string;
+	};
+};
+
 // Reducer record structure
 export type IRecordState = { records: IRecord[]; isLoading: boolean; errorMsg: string; isTokenValid: boolean };
 

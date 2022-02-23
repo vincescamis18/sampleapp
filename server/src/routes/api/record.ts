@@ -24,10 +24,21 @@ router.get("/record-creator", (req: Request, res: Response) => {
 });
 
 // @route   GET /api/records/user/:id
-// @desc    Retrieve record by creator id
+// @desc    Retrieve all records of user by id
 // @access  Public
 router.get("/user/:creator", (req: Request, res: Response) => {
 	Record.find({ creator: req.params.creator })
+		.then((item: IRecord[]) => res.json(item))
+		.catch((err: any) => res.json(err));
+});
+
+// @route   GET /api/records/user/:id
+// @desc    Retrieve all records of user by id with creator details
+// @access  Public
+router.get("/record-creator/user/:creator", (req: Request, res: Response) => {
+	Record.find({ creator: req.params.creator })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.sort({ date: 1 })
 		.then((item: IRecord[]) => res.json(item))
 		.catch((err: any) => res.json(err));
 });

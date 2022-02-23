@@ -148,13 +148,15 @@ const ViewMemoryV2 = (props: IProps) => {
 	};
 
 	const handleUserNavigate = (navigateUserID: string | undefined) => {
-		// checks if the target user is the user itself && if the page is already at target profile page
-		if (navigateUserID !== userState._id && params.id !== navigateUserID) {
+		// Checks if the target page is not the current page
+		if (
+			!(locationURL.pathname === "/profile" && !params.id && navigateUserID === userState._id) &&
+			!(locationURL.pathname !== "/profile" && params.id && navigateUserID === params.id)
+		) {
 			dispatch(commentReset());
-			navigate(`/profile/${navigateUserID}`);
-		} else if ((navigateUserID === userState._id && params.id) || (locationURL.pathname !== "/profile" && !locationURL.search)) {
-			dispatch(commentReset());
-			navigate("/profile");
+			// checks if target page is other user or user itself
+			if (navigateUserID !== userState._id) navigate(`/profile/${navigateUserID}`);
+			else navigate("/profile");
 		}
 	};
 

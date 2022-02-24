@@ -17,6 +17,8 @@ import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
 
+import ScrollToTop from "./main/utilities/scrollToTop";
+
 function App() {
 	const dispatch = useDispatch();
 
@@ -33,6 +35,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/Origin" element={<Origin />} />

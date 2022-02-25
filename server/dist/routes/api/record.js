@@ -32,7 +32,7 @@ router.get("/user/:creator", (req, res) => {
         .then((item) => res.json(item))
         .catch((err) => res.json(err));
 });
-// @route   GET /api/records/user/:id
+// @route   GET /api/records/record-creator/user/:id
 // @desc    Retrieve all records of user by id with creator details
 // @access  Public
 router.get("/record-creator/user/:creator", (req, res) => {
@@ -40,6 +40,14 @@ router.get("/record-creator/user/:creator", (req, res) => {
         .populate("creator", ["surname", "given_name", "user_profile"])
         .sort({ date: 1 })
         .then((item) => res.json(item))
+        .catch((err) => res.json(err));
+});
+// @route   GET /api/records/record-count/user/:id
+// @desc    Get the number of record posted by user
+// @access  Public
+router.get("/record-count/user/:creator", (req, res) => {
+    recordModel_1.Record.find({ creator: req.params.creator })
+        .then((item) => res.json({ count: item.length }))
         .catch((err) => res.json(err));
 });
 // @route   GET /api/records/:id

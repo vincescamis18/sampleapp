@@ -39,6 +39,15 @@ const ViewMemoryV2 = (props: IProps) => {
 		if (props.record) dispatch(fetchComment(props.record._id));
 	}, [props.modalTigger]);
 
+	// Prevent outer scroll to move if the modal is visible
+	useEffect(() => {
+		if (showModal == true) {
+			const xValue = window.pageXOffset;
+			const yValue = window.pageYOffset;
+			window.onscroll = () => window.scrollTo(xValue, yValue);
+		} else window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
+	}, [showModal]);
+
 	// Disable scroll when modal appear
 	// useEffect(() => {
 	// 	const body = document.querySelector("body");
@@ -117,18 +126,22 @@ const ViewMemoryV2 = (props: IProps) => {
 
 	const handleKeyPress = (e: any) => {
 		if (e.key == "Enter") {
-			setComment("");
-			handleHeightAdjustment();
+			//redirect unregistered user to registration
+			if (!userState._id) navigate("/register");
+			else {
+				setComment("");
+				handleHeightAdjustment();
 
-			if (props.record) dispatch(createComment(props.record._id, e.target.value));
-			e.preventDefault();
+				if (props.record) dispatch(createComment(props.record._id, e.target.value));
+				e.preventDefault();
 
-			let element = document.getElementById("comment-input-height");
-			let details = document.getElementById("details-container-height");
-			if (element && details) {
-				element.style.height = "37px";
-				element.style.overflowY = "hidden";
-				details.style.height = "545px";
+				let element = document.getElementById("comment-input-height");
+				let details = document.getElementById("details-container-height");
+				if (element && details) {
+					element.style.height = "37px";
+					element.style.overflowY = "hidden";
+					details.style.height = "545px";
+				}
 			}
 		}
 	};
@@ -160,6 +173,11 @@ const ViewMemoryV2 = (props: IProps) => {
 		}
 	};
 
+	const handleEditMemory = () => {
+		window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
+		navigate(`/edit-memory/${props.record?._id}`);
+	};
+
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">
@@ -186,7 +204,7 @@ const ViewMemoryV2 = (props: IProps) => {
 							<div className="no-select mini-menu-container">
 								<div className="mini-menu-option-container">
 									{props.record?.creator._id === userState._id ? (
-										<span className="menu-item cursor-point" onClick={() => navigate(`/edit-memory/${props.record?._id}`)}>
+										<span className="menu-item cursor-point" onClick={handleEditMemory}>
 											Edit Post
 										</span>
 									) : (
@@ -228,10 +246,7 @@ const ViewMemoryV2 = (props: IProps) => {
 									setComment(e.target.value);
 									handleHeightAdjustment();
 								}}
-								onKeyPress={e => {
-									if (userState._id) handleKeyPress(e);
-									else navigate("/register"); // unregistered user
-								}}
+								onKeyPress={handleKeyPress}
 							/>
 						</div>
 					</div>

@@ -1,0 +1,19 @@
+.loading-parent {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.25);
+	z-index: 100;
+}
+
+.loading-container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	color: #6622cc;
+	font-size: 25px;
+	font-weight: 100;
+}

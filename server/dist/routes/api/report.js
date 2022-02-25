@@ -28,7 +28,7 @@ router.get("/:_id", (req, res) => {
 // @access  Public
 router.post("/", (req, res) => {
     console.log(req.body);
-    const newItem = new reportModel_1.Report(req.body);
+    const newItem = new reportModel_1.Report(Object.assign(Object.assign({}, req.body), { status: "pending" }));
     newItem.save().then((item) => res.json(item));
 });
 // @route   PUT /api/report/

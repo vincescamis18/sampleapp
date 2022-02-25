@@ -6,6 +6,8 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 import { fetchComment, createComment, commentReset } from "../../redux/actions/commentAction";
 
+import ReportCotent from "./ReportContent";
+
 import closeV1 from "../../assets/images/buttons/closeV1.png";
 import arrowLeftV1 from "../../assets/images/icons/arrowLeftV1.png";
 import arrowRightV1 from "../../assets/images/icons/arrowRightV1.png";
@@ -23,6 +25,8 @@ const ViewMemoryV2 = (props: IProps) => {
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
 	const commentState = useSelector((state: RootState) => state.comment);
+
+	const [triggerReportContent, setTriggerReportContent] = useState(false);
 
 	const [initialLaunch, setInitialLaunch] = useState(true);
 	const [showModal, setShowModal] = useState(false);
@@ -178,10 +182,17 @@ const ViewMemoryV2 = (props: IProps) => {
 		navigate(`/edit-memory/${props.record?._id}`);
 	};
 
+	const handleReportMemory = () => {
+		if (!userState._id) navigate("/register");
+		else setTriggerReportContent(!triggerReportContent);
+	};
+
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">
 			<div className="view-memory-modal-container">
+				<ReportCotent modalTigger={triggerReportContent} recordId={props.record?._id} />
+
 				<img src={closeV1} alt="close button" className="close-btn" onClick={handleCloseBtn} />
 				<div className="image-details-container">
 					<div className="image-container">
@@ -208,7 +219,7 @@ const ViewMemoryV2 = (props: IProps) => {
 											Edit Post
 										</span>
 									) : (
-										<span className="menu-item cursor-point" onClick={() => console.log("Report")}>
+										<span className="menu-item cursor-point" onClick={handleReportMemory}>
 											Report Post
 										</span>
 									)}

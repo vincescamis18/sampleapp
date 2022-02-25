@@ -937,7 +937,7 @@
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  z-index: 10;
+  z-index: 3;
   width: 400px;
   background-color: #e6e6e6;
   padding: 10px 20px;
@@ -1141,6 +1141,87 @@
   color: #6622cc;
   font-size: 25px;
   font-weight: 100;
+}
+
+.report-parent {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+.report-parent .report-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.report-parent .report-container {
+  width: 550px;
+  height: 550px;
+  margin: 25px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+.report-parent .title-exist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 5px;
+}
+
+.report-parent .exit {
+  width: 55px;
+  height: 55px;
+}
+
+.report-parent .report-type-container {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.report-parent .report-type {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.report-parent .description {
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 200px;
+  resize: none;
+}
+
+.report-parent .submit-btn-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 * {

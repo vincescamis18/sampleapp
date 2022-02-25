@@ -1,0 +1,61 @@
+.report-parent {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.25);
+	z-index: 5;
+
+	.report-center {
+		display: flex;
+		justify-content: center;
+	}
+
+	.report-container {
+		width: 550px;
+		height: 550px;
+		margin: 25px;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 30px;
+	}
+
+	.title-exist {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 5px;
+	}
+
+	.exit {
+		width: 55px;
+		height: 55px;
+	}
+
+	.report-type-container {
+		margin-top: 20px;
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.report-type {
+		width: fit-content;
+		margin: 3px;
+		padding: 5px 10px;
+		border-radius: 15px;
+	}
+
+	.description {
+		padding: 10px;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		width: 100%;
+		height: 200px;
+		resize: none;
+	}
+
+	.submit-btn-center {
+		display: flex;
+		justify-content: center;
+	}
+}

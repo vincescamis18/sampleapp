@@ -22,6 +22,9 @@ const recordReducer = (state: IRecordState = initialState, action: RecordActionS
 		case RecordActionType.RECORD_DELETE:
 			return { records: action.payload.newItemArray, isLoading: false, errorMsg: "", isTokenValid: state.isTokenValid };
 
+		case RecordActionType.RECORD_LOADING:
+			return { ...state, isLoading: true };
+
 		default:
 			return state;
 	}

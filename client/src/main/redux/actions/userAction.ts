@@ -109,6 +109,7 @@ export const fetchUser = () => {
 export const updateUserWithoutProfilePicture = (updItem: INewUserInput) => {
 	return (dispatch: Dispatch<UserActionSchema>, getState: () => RootState) => {
 		const user = getState().user;
+		dispatch(userLoading());
 
 		const updatedItem: { _id: string; updItem: INewUser } = {
 			_id: user._id,
@@ -139,6 +140,7 @@ export const updateUserWithoutProfilePicture = (updItem: INewUserInput) => {
 
 export const updateUser = (updItem: INewUserInput) => {
 	return (dispatch: Dispatch<any>) => {
+		dispatch(userLoading());
 		// console.log("updItem", updItem); // Debug
 		dispatch(saveImageToCloud(updItem));
 	};

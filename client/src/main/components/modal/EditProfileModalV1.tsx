@@ -4,6 +4,8 @@ import { RootState } from "../../redux/reducers/allReducer";
 import { updateUser, updateUserWithoutProfilePicture } from "../../redux/actions/userAction";
 import { INewUserInput } from "../../redux/actionSchemas/userSchema";
 
+import LoadingScreeenV1 from "../loadingScreens/loadingScreeenV1";
+
 import UploadImage from "../inputs/SingleImageV2";
 import saveProfileV1 from "../../assets/images/buttons/saveProfileV1.png";
 import editProfileV1 from "../../assets/images/logo/editProfileV1.png";
@@ -87,6 +89,7 @@ const EditProfile = (props: IProps) => {
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="editProfileModal-background">
+			<LoadingScreeenV1 modalTigger={userState.isLoading} />
 			<div className="editProfileModal-container">
 				<img src={closeV1} alt="close button" className="close-btn" onClick={handleCloseBtn} />
 				<div className="top-section-container">

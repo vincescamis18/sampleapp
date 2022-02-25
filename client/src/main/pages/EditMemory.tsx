@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import NavbarV1 from "../components/headers/NavbarV1";
+import LoadingScreeenV1 from "../components/loadingScreens/loadingScreeenV1";
 
 import addMemoryV1 from "../assets/images/logo/editMemoryV1.png";
 import memoryInformationV1 from "../assets/images/logo/memoryInformationV1.png";
@@ -100,6 +101,7 @@ const EditMemory: React.FC = () => {
 	return (
 		<div className="upload-memory">
 			<NavbarV1 />
+			<LoadingScreeenV1 modalTigger={recordState.isLoading} />
 			<div className="form-center">
 				<div className="form-container">
 					<img src={addMemoryV1} alt="Add Memory" className="title-padding" />

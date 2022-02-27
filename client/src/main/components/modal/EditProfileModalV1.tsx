@@ -39,6 +39,15 @@ const EditProfile = (props: IProps) => {
 		else setShowModal(!showModal);
 	}, [props.modalTigger]);
 
+	// Prevent outer scroll to move if the modal is visible
+	useEffect(() => {
+		if (showModal == true) {
+			const xValue = window.pageXOffset;
+			const yValue = window.pageYOffset;
+			window.onscroll = () => window.scrollTo(xValue, yValue);
+		} else window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
+	}, [showModal]);
+
 	useEffect(() => {
 		// handle the submission of the form after clicking the btn and successful api call
 		if (isSubmited && !userState.isLoading) setShowModal(!showModal);

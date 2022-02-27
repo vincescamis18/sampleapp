@@ -52,15 +52,6 @@ const ViewMemoryV2 = (props: IProps) => {
 		} else window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
 	}, [showModal]);
 
-	// Disable scroll when modal appear
-	// useEffect(() => {
-	// 	const body = document.querySelector("body");
-	// 	if (body) {
-	// 		if (showModal) body.style.overflow = "hidden";
-	// 		else body.style.overflow = "auto";
-	// 	}
-	// }, [showModal]);
-
 	const handleCloseBtn = () => {
 		dispatch(commentReset());
 		setComment("");

@@ -229,6 +229,9 @@ const ViewMemoryV2 = (props: IProps) => {
 						</div>
 						<span className="light-text">{props.record?.address}</span>
 						<p className="description-text">{props.record?.description}</p>
+						<p className="description-text" style={{ color: "blue" }}>
+							{props.record?.tag}
+						</p>
 
 						<div className="border"></div>
 

@@ -2,18 +2,18 @@ const mongoose = require("mongoose");
 
 export interface IBug {
 	_id: string;
-	type: string;
 	title: string;
-	description101: string;
-	date: string;
+	description: string;
+	reporter: string;
+	status: string;
 }
 
 const bugSchema: IBug = new mongoose.Schema(
 	{
-		type: { type: String },
 		title: { type: String },
-		description101: { type: String },
+		description: { type: String },
 		reporter: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+		status: { type: String },
 	},
 	{
 		timestamps: { createdAt: "created_at", updatedAt: "updated_at" },

@@ -27,7 +27,7 @@ router.get("/:_id", (req: Request, res: Response) => {
 // @access  Public
 router.post("/", (req, res) => {
 	console.log(req.body);
-	const newItem = new Bug(req.body);
+	const newItem = new Bug({ ...req.body, status: "pending" });
 	newItem.save().then((item: Errback) => res.json(item));
 });
 

@@ -28,7 +28,7 @@ router.get("/:_id", (req, res) => {
 // @access  Public
 router.post("/", (req, res) => {
     console.log(req.body);
-    const newItem = new bugModel_1.Bug(req.body);
+    const newItem = new bugModel_1.Bug(Object.assign(Object.assign({}, req.body), { status: "pending" }));
     newItem.save().then((item) => res.json(item));
 });
 // @route   PUT /api/bug/

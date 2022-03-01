@@ -87,8 +87,11 @@ const User: React.FC = () => {
 				<div className="information-tigger-option-container">
 					<img src={questionV1} className="information-trigger" />
 					<div className="information-option-container">
-						<div className="information-option information-option-first cursor-point">
-							<span onClick={() => setTriggerReportBug(!triggerReportBug)}>Report A Bug</span>
+						<div
+							className="information-option information-option-first cursor-point"
+							onClick={() => setTriggerReportBug(!triggerReportBug)}
+						>
+							<span>Report A Bug</span>
 						</div>
 						<div className="information-option cursor-point">
 							<span>FAQ</span>

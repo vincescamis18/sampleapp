@@ -1,0 +1,76 @@
+.bug-parent {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.25);
+	z-index: 5;
+
+	.bug-center {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.bug-container {
+		width: 550px;
+		height: 515px;
+		margin: 25px;
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 30px;
+	}
+
+	.title-exist {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 5px;
+		margin-bottom: 25px;
+	}
+
+	.exit {
+		width: 55px;
+		height: 55px;
+	}
+
+	.bug-type-container {
+		margin-top: 20px;
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.bug-type {
+		width: fit-content;
+		margin: 3px;
+		padding: 5px 10px;
+		border-radius: 15px;
+	}
+
+	.bug-title {
+		// width: 550px;
+		width: 100%;
+		height: 60px;
+		// background-color: black;
+		// color: white;
+		// border: 1px solid white;
+		padding: 10px;
+		// margin: 9px 0px;
+	}
+
+	.description {
+		padding: 10px;
+		margin-top: 20px;
+		margin-bottom: 10px;
+		width: 100%;
+		height: 200px;
+		resize: none;
+	}
+
+	.submit-btn-center {
+		display: flex;
+		justify-content: center;
+	}
+}

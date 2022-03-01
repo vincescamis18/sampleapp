@@ -10,31 +10,17 @@ import submitBtnV2 from "../../assets/images/buttons/submitBtnV2.png";
 
 interface IProps {
 	modalTigger: boolean;
-	recordId: string | undefined;
 }
 
-const ReportContent = (props: IProps) => {
+const ReportBug = (props: IProps) => {
 	const userState = useSelector((state: RootState) => state.user);
 	const [initialLaunch, setInitialLaunch] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const choices = [
-		"Nudity",
-		"Violence",
-		"Harassment",
-		"Self-Harm",
-		"Gross Content",
-		"Spam",
-		"False Information",
-		"Unauthorized Sales",
-		"Terrorism",
-		"Hate Speech",
-		"Others",
-	];
-	const [selectedType, setSelectedType] = useState<string[]>([]);
 	const [description, setDescription] = useState<string>("");
+	const [title, setTitle] = useState<string>("");
 
 	// toggle the visibility of modal and prevent the toggle in initial load
 	useEffect(() => {
@@ -42,35 +28,29 @@ const ReportContent = (props: IProps) => {
 		else setShowModal(!showModal);
 	}, [props.modalTigger]);
 
+	// Prevent outer scroll to move if the modal is visible
+	useEffect(() => {
+		if (showModal == true) {
+			const xValue = window.pageXOffset;
+			const yValue = window.pageYOffset;
+			window.onscroll = () => window.scrollTo(xValue, yValue);
+		} else window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
+	}, [showModal]);
+
 	const handleCloseBtn = () => {
 		setShowModal(false);
-		setSelectedType([]);
 		setDescription("");
-	};
-
-	// Called when item is selected or unselected
-	const handleOnPressType = (type: string) => {
-		if (!selectedType.includes(type)) {
-			// Item is newly selected
-			// Add highlight to clinic name and add to selectedType array
-			const newSelectedService = [...selectedType, type];
-			setSelectedType(newSelectedService);
-		} else {
-			// Unselect type
-			// Remove highlighted clinic name and remove to selectedType array
-			let newSelectedService = [...selectedType];
-			newSelectedService.splice(newSelectedService.indexOf(type), 1);
-			setSelectedType(newSelectedService);
-		}
+		setTitle("");
 	};
 
 	const handleSubmit = () => {
-		if (selectedType.length > 0) {
+		if (title) {
 			if (description) {
 				setIsSubmitting(true);
-				const body = { type: selectedType, description, reporter: userState._id, record_id: props.recordId };
+
+				const body = { title, description, reporter: userState._id };
 				axios
-					.post("/api/report", body)
+					.post("/api/bug", body)
 					.then(() => {
 						setIsSubmitting(false);
 						handleCloseBtn();
@@ -79,36 +59,30 @@ const ReportContent = (props: IProps) => {
 					.catch(err => console.log(err));
 			} else console.log("Please enter a description first");
 		} else {
-			console.log("Select a service first");
+			console.log("Please enter a title first");
 		}
 	};
 
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<React.Fragment>
-			<div className="report-parent">
+			<div className="bug-parent">
 				<LoadingScreenV1 modalTigger={isSubmitting} />
-				<div className="report-center">
-					<div className="report-container">
+				<div className="bug-center">
+					<div className="bug-container">
 						<div className="title-exist">
-							<h1>Report Abuse</h1>
+							<h1>Report Bug</h1>
 							<img src={closeV1} alt="close button" className="cursor-point exit" onClick={handleCloseBtn} />
 						</div>
-						<div className="report-type-container">
-							{choices.map((item, index) => (
-								<div
-									key={index}
-									onClick={() => handleOnPressType(item)}
-									className="cursor-point report-type"
-									style={{
-										backgroundColor: selectedType.includes(item) ? "black" : "gray",
-										color: selectedType.includes(item) ? "white" : "white",
-									}}
-								>
-									{item}
-								</div>
-							))}
-						</div>
+
+						<input
+							type="text"
+							name="title"
+							id="title"
+							className="bug-title"
+							placeholder="Title"
+							onChange={e => setTitle(e.target.value)}
+						/>
 
 						<textarea
 							name="description"
@@ -128,4 +102,4 @@ const ReportContent = (props: IProps) => {
 	);
 };
 
-export default ReportContent;
+export default ReportBug;

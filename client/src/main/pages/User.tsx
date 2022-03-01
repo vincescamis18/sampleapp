@@ -9,10 +9,12 @@ import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 import NavbarV1 from "../components/headers/NavbarV1";
 import EditProfileV1 from "../components/modal/EditProfileModalV1";
 import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
+import ReportBug from "../components/modal/ReportBug";
 
 import editProfileV1 from "../assets/images/buttons/editProfileV1.png";
 import filterBtnV1 from "../assets/images/buttons/filterBtnV1.png";
 import addBtnV1 from "../assets/images/buttons/addBtnV1.png";
+import questionV1 from "../assets/images/buttons/questionV1.png";
 import emptyV1 from "../assets/images/icons/emptyV1.png";
 
 const User: React.FC = () => {
@@ -24,6 +26,7 @@ const User: React.FC = () => {
 	const [selectRecord, setSelectRecord] = useState<IRecordWithCreator>();
 	const [triggerEditProfile, setTriggerEditProfile] = useState(false);
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
+	const [triggerReportBug, setTriggerReportBug] = useState(false);
 
 	useEffect(() => {
 		// retrive user record with creator details
@@ -68,6 +71,26 @@ const User: React.FC = () => {
 			<div className="side-menu-container">
 				<img src={filterBtnV1} alt="filter" className="cursor-point filter-btn" />
 				<img src={addBtnV1} alt="add" className="cursor-point add-btn" onClick={() => navigate("/upload-memory")} />
+				<div className="information-tigger-option-container">
+					<img src={questionV1} className="information-trigger" />
+					<div className="information-option-container">
+						<div className="information-option information-option-first cursor-point">
+							<span onClick={() => setTriggerReportBug(!triggerReportBug)}>Report A Bug</span>
+						</div>
+						<div className="information-option cursor-point">
+							<span>FAQ</span>
+						</div>
+						<div className="information-option cursor-point">
+							<span>Pricacy</span>
+						</div>
+						<div className="information-option cursor-point">
+							<span>T & C</span>
+						</div>
+						<div className="information-option information-option-last cursor-point">
+							<span>Copyright</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -125,6 +148,7 @@ const User: React.FC = () => {
 			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
 			<SideMenu />
 			<DisplayUserAllMemories />
+			<ReportBug modalTigger={triggerReportBug} />
 		</div>
 	);
 };

@@ -619,6 +619,9 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .side-menu-parent .filter-btn {
@@ -630,6 +633,63 @@
 .side-menu-parent .add-btn {
   width: 50px;
   height: 50px;
+  margin-bottom: 15px;
+}
+
+.side-menu-parent .information-tigger-option-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.side-menu-parent .information-trigger {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 3px;
+}
+
+.side-menu-parent .information-option-container {
+  display: none;
+}
+
+.side-menu-parent .information-option-container:hover {
+  display: block;
+}
+
+.side-menu-parent .information-tigger-option-container:hover .information-option-container {
+  display: block;
+}
+
+.side-menu-parent .information-trigger:hover .information-option-container {
+  display: block;
+}
+
+.side-menu-parent .information-option {
+  background-color: #1877f2;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.side-menu-parent .information-option-first {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.side-menu-parent .information-option-last {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .user-memory-parent {

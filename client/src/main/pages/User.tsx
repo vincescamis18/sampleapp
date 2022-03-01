@@ -23,6 +23,7 @@ const User: React.FC = () => {
 	const [recordState, setRecordState] = useState<{ records: IRecordWithCreator[] }>({
 		records: [],
 	});
+	const [userBadge, setUserBadge] = useState<String>("");
 	const [selectRecord, setSelectRecord] = useState<IRecordWithCreator>();
 	const [triggerEditProfile, setTriggerEditProfile] = useState(false);
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
@@ -30,11 +31,23 @@ const User: React.FC = () => {
 
 	useEffect(() => {
 		// retrive user record with creator details
-		if (userState._id)
+		if (userState._id) {
 			axios
 				.get(`/api/records/record-creator/user/${userState._id}`)
 				.then((res: any) => setRecordState({ records: res.data }))
 				.catch(err => console.log("err", err));
+
+			// set user badge based on no. of record post
+			axios
+				.get(`/api/records/record-count/user/${userState._id}`)
+				.then((res: any) => {
+					if (res.data.count == 0) setUserBadge("");
+					else if (res.data.count > 0) setUserBadge("Novice Contributor");
+					else if (res.data.count > 100) setUserBadge("Expert Contributor");
+					else if (res.data.count > 1000) setUserBadge("Master Contributor");
+				})
+				.catch(err => console.log("err", err));
+		}
 	}, [userState]);
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
@@ -128,7 +141,7 @@ const User: React.FC = () => {
 							onClick={() => setTriggerEditProfile(!triggerEditProfile)}
 						/>
 						<div className="name-age-loc-container">
-							<h4>regular contributor</h4>
+							<h4 style={{ color: "#34A853" }}>{userBadge}</h4>
 							<h1>{`${userState.given_name} ${userState.surname}`}</h1>
 							{userState.location ? <h4>{`${getAge()} | ${userState.location}`}</h4> : <React.Fragment></React.Fragment>}
 						</div>

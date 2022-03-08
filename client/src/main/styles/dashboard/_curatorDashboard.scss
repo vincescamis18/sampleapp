@@ -1,0 +1,46 @@
+.dashboard-parent {
+	display: flex;
+
+	.side-menu-container {
+		width: 250px;
+		background-color: #e5e5e5;
+		position: fixed;
+		height: 100vh;
+	}
+
+	.side-menu-space {
+		margin-left: 250px;
+	}
+
+	.side-menu-title {
+		display: flex;
+		height: 80px;
+		width: 100%;
+		background-color: #ced132;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
+		font-size: 20px;
+	}
+
+	.side-menu-option {
+		display: flex;
+		height: 60px;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		background-color: black;
+		color: white;
+		margin-top: 1px;
+		font-size: 18px;
+	}
+
+	.side-menu-option:hover {
+		cursor: pointer;
+		background-color: rgb(50, 50, 50);
+	}
+
+	.side-menu-option:active {
+		background-color: rgb(75, 75, 75);
+	}
+}

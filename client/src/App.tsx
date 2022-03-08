@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { fetchUser, retrieveLoginCredential } from "./main/redux/actions/userAction";
+import { fetchUserAccess } from "./main/redux/actions/userAccessAction";
 
 import Origin from "./main/pages/Origin";
 import Home from "./main/pages/Home";
@@ -16,6 +17,7 @@ import Register from "./main/pages/Register";
 import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
+import CuratorDashboard from "./main/pages/CuratorDashboard";
 
 import ScrollToTop from "./main/utilities/scrollToTop";
 
@@ -24,9 +26,11 @@ function App() {
 
 	const getUser = () => {
 		const token = localStorage.getItem("auth-token");
-		// console.log("token", token); // Debug
 		if (!token) dispatch(retrieveLoginCredential());
-		else dispatch(fetchUser());
+		else {
+			dispatch(fetchUser());
+			dispatch(fetchUserAccess());
+		}
 	};
 
 	useEffect(() => {
@@ -49,6 +53,7 @@ function App() {
 				<Route path="/upload-memory" element={<UploadMemory />} />
 				<Route path="/edit-memory/:id" element={<EditMemory />} />
 				<Route path="/explore" element={<Explore />} />
+				<Route path="/dashboard" element={<CuratorDashboard />} />
 			</Routes>
 		</BrowserRouter>
 	);

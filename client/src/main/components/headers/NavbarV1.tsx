@@ -10,11 +10,13 @@ import SearchV1 from "../../assets/images/icons/searchV1.png";
 import ProfileV2 from "../../assets/images/icons/profileV2.png";
 import ProfileCardV1 from "../../assets/images/icons/profileCardV1.png";
 import ExitV1 from "../../assets/images/icons/exitV1.png";
+import DashboardV1 from "../../assets/images/icons/dashboardV1.png";
 
 const NavbarV1: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const userState = useSelector((state: RootState) => state.user);
+	const userAccess = useSelector((state: RootState) => state.userAccess);
 
 	const handleLogout = () => {
 		dispatch(logout());
@@ -33,6 +35,15 @@ const NavbarV1: React.FC = () => {
 								<img src={ProfileV2} alt="profile" />
 								<span>Profile</span>
 							</div>
+
+							{userAccess.user_access === "moderator" ? (
+								<div className="option" onClick={() => navigate("/dashboard")}>
+									<img src={DashboardV1} alt="profile" />
+									<span>Dashboard</span>
+								</div>
+							) : (
+								<React.Fragment></React.Fragment>
+							)}
 
 							<div className="option">
 								<img src={ProfileCardV1} alt="account" />

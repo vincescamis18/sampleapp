@@ -730,7 +730,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  z-index: 2;
 }
 
 .view-memory-modal-background .view-memory-modal-container {
@@ -1836,6 +1836,7 @@
   background-color: #e5e5e5;
   position: fixed;
   height: 100vh;
+  z-index: 2;
 }
 
 .dashboard-parent .side-menu-space {
@@ -1908,6 +1909,37 @@
 
 .memory-of-the-day-parent .fc-event {
   cursor: pointer;
+}
+
+.display-memory-of-the-day-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.display-memory-of-the-day-parent .memory-of-the-day-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1335px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.display-memory-of-the-day-parent .memory-of-the-day-display-container {
+  width: 100%;
+  height: 550px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: black;
 }
 
 * {

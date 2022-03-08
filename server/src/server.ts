@@ -55,8 +55,9 @@ app.use("/api/userz", require("./routes/api/userz")); // Route for CRUD a Userz
 // app.use("/room", require("./routes/api/room")); //Route for Creating forum and handling messages
 app.use("/api/bug", require("./routes/api/bug")); // Route for CRUD a bug
 app.use("/api/report", require("./routes/api/report")); // Route for CRUD a report
-app.use("/api/comment", require("./routes/api/comment")); // Route for Creating, Reading, and Updating a comment
-app.use("/api/user-access", require("./routes/api/userAccess")); // Route for Creating, Reading, and Updating a user-archive
+app.use("/api/comment", require("./routes/api/comment")); // Route for CRUD a comment
+app.use("/api/featured-memory", require("./routes/api/featuredMemory")); // Route for CRUD a user-archive
+app.use("/api/user-access", require("./routes/api/userAccess")); // Route for CRUD a user-archive
 
 // handle socket connection
 io.on("connection", (socket: any) => {

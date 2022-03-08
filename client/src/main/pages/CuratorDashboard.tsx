@@ -1,6 +1,7 @@
 import React from "react";
 
 import NavbarV1 from "../components/headers/NavbarV1";
+import MemoryOfTheDay from "../components/curatorDashboard/MemoryOfTheDay";
 
 const CuratorDashboard = () => {
 	const SideDashboard = () => (
@@ -25,6 +26,7 @@ const CuratorDashboard = () => {
 			<NavbarV1 />
 			<div className="dashboard-parent">
 				<SideDashboard />
+				<MemoryOfTheDay />
 			</div>
 		</React.Fragment>
 	);

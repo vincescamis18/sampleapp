@@ -1,0 +1,17 @@
+.memory-of-the-day-parent {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+
+	.calendar-container {
+		width: 625px;
+		margin: 25px;
+		height: fit-content;
+		padding: 10px;
+		border: 1px solid black;
+	}
+
+	.fc-event {
+		cursor: pointer;
+	}
+}

@@ -5,6 +5,7 @@ import recordReducer from "./recordReducer";
 import manageUserReducer from "./manageUserReducer";
 import userReducer from "./userReducer";
 import commentReducer from "./commentReducer";
+import userAccessReducer from "./userAccessReducer";
 
 const reducers = combineReducers({
 	item: itemReducer,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
 	manageUser: manageUserReducer,
 	user: userReducer,
 	comment: commentReducer,
+	userAccess: userAccessReducer,
 });
 
 export default reducers;

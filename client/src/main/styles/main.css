@@ -1408,6 +1408,119 @@
      object-fit: cover;
 }
 
+.all-memory-v2-parent .all-memory-v2-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.all-memory-v2-parent .all-memory-v2-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 550px;
+  height: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.all-memory-v2-parent .all-memory-v2-display-container {
+  width: 175px;
+  height: 175px;
+  margin-bottom: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.all-memory-v2-parent .checkbox-container {
+  position: absolute;
+  background-color: #fff;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.all-memory-v2-parent .checkbox-active {
+  background-color: #00e8fc;
+}
+
+.all-memory-v2-parent .checkbox-memory-container {
+  position: relative;
+}
+
+.all-memory-v2-parent .search-container {
+  background-color: #c4c4c4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.all-memory-v2-parent .search-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0px 15px;
+}
+
+.all-memory-v2-parent .search-input {
+  width: 275px;
+  height: 50px;
+  background-color: #c4c4c4;
+  border: 0px solid black;
+  margin: 0px 25px 0px 0px;
+}
+
+.all-memory-v2-parent input:focus {
+  outline: none;
+}
+
+.all-memory-v2-parent .search-submit-container {
+  height: 90px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.all-memory-v2-parent .submit-btn {
+  height: 50px;
+  padding: 0px 55px;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #0ec3b9;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.all-memory-v2-parent .submit-btn:hover {
+  cursor: pointer;
+  background-color: #0faca4;
+}
+
+.all-memory-v2-parent .submit-btn:active {
+  cursor: pointer;
+  background-color: #119992;
+}
+
 .dashboard-parent {
   display: -webkit-box;
   display: -ms-flexbox;

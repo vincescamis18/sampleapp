@@ -1,0 +1,94 @@
+.all-memory-v2-parent {
+	.all-memory-v2-center {
+		display: flex;
+		justify-content: center;
+	}
+
+	.all-memory-v2-container {
+		display: flex;
+		width: 550px;
+		height: 100%;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-self: center;
+	}
+
+	.all-memory-v2-display-container {
+		width: 175px;
+		height: 175px;
+		margin-bottom: 7px;
+		object-fit: cover;
+	}
+
+	.checkbox-container {
+		position: absolute;
+		background-color: #fff;
+		top: 5px;
+		left: 5px;
+		width: 30px;
+		height: 30px;
+		border: 1px solid black;
+	}
+
+	.checkbox-active {
+		background-color: #00e8fc;
+	}
+
+	.checkbox-memory-container {
+		position: relative;
+	}
+
+	.search-container {
+		background-color: #c4c4c4;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+	}
+
+	.search-icon {
+		width: 24px;
+		height: 24px;
+		margin: 0px 15px;
+	}
+
+	.search-input {
+		width: 275px;
+		height: 50px;
+		background-color: #c4c4c4;
+		border: 0px solid black;
+		margin: 0px 25px 0px 0px;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	.search-submit-container {
+		height: 90px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.submit-btn {
+		height: 50px;
+		padding: 0px 55px;
+		font-weight: 500;
+		font-size: 20px;
+		background-color: #0ec3b9;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+	}
+
+	.submit-btn:hover {
+		cursor: pointer;
+		background-color: #0faca4;
+	}
+
+	.submit-btn:active {
+		cursor: pointer;
+		background-color: #119992;
+	}
+}

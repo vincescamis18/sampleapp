@@ -50,6 +50,27 @@ router.get("/details-record-user/", (req, res) => {
         }
     });
 });
+// @route   GET /api/featured-memory-today/
+// @desc    Retrieve the featured memory of the day
+// @access  Public
+router.get("/featured-memory-today/", (req, res) => {
+    console.log("Retrieve the featured memory of the day");
+    const currentDate = new Date();
+    featuredMemoryModel_1.FeaturedMemory.find({ date_start: { $lte: currentDate }, date_end: { $gt: currentDate } })
+        .populate("record_id")
+        .then((featuredMemory) => {
+        if (featuredMemory.length > 0) {
+            userzModel_1.Users.findById(featuredMemory[0].record_id.creator)
+                .select("_id surname given_name user_profile")
+                .then((user) => {
+                featuredMemory[0].record_id.creator = user;
+                res.json(featuredMemory);
+            });
+        }
+        else
+            res.json({ msg: "No set up" });
+    });
+});
 // @route   GET /api/featured-memory/:id
 // @desc    Retrieve featured-memory by id
 // @access  Public

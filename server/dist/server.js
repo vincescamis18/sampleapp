@@ -51,8 +51,9 @@ app.use("/api/userz", require("./routes/api/userz")); // Route for CRUD a Userz
 app.use("/api/bug", require("./routes/api/bug")); // Route for CRUD a bug
 app.use("/api/report", require("./routes/api/report")); // Route for CRUD a report
 app.use("/api/comment", require("./routes/api/comment")); // Route for CRUD a comment
-app.use("/api/featured-memory", require("./routes/api/featuredMemory")); // Route for CRUD a user-archive
-app.use("/api/user-access", require("./routes/api/userAccess")); // Route for CRUD a user-archive
+app.use("/api/featured-memory", require("./routes/api/featuredMemory")); // Route for CRUD a featured-memory
+app.use("/api/compiled-memory", require("./routes/api/compiledMemory")); // Route for CRUD a compiled-memory
+app.use("/api/user-access", require("./routes/api/userAccess")); // Route for CRUD a user-access
 // handle socket connection
 io.on("connection", (socket) => {
     // handle the newly joined client by sending previous messages and greating & notifying everyone that new client has joined

@@ -73,6 +73,16 @@ router.post("/", (req, res) => {
 		.catch((item: Errback) => res.json(item));
 });
 
+// @route   PUT /api/compiled-memory/
+// @desc    Update compiled-memory by _id
+// @access  Public
+router.put("/", (req: Request, res: Response) => {
+	const { updItem, _id } = req.body;
+	CompiledMemory.updateOne({ _id }, { $set: updItem })
+		.then((updItem: any) => res.json(updItem))
+		.catch((err: any) => res.json({ err }));
+});
+
 // @route	POST /api/compiled-memory
 // @desc	Append compiled-memory record
 // @access	Public

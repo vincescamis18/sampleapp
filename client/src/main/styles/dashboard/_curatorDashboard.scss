@@ -44,4 +44,12 @@
 	.side-menu-option:active {
 		background-color: rgb(75, 75, 75);
 	}
+
+	.side-menu-option-selected {
+		background-color: rgba(255, 0, 0, 0.9);
+		width: 10px;
+		height: 60px;
+		position: absolute;
+		left: 0px;
+	}
 }

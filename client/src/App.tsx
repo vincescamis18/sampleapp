@@ -18,6 +18,7 @@ import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
 import CuratorDashboard from "./main/pages/CuratorDashboard";
+import CuratedCollection from "./main/pages/CuratedCollection";
 
 import ScrollToTop from "./main/utilities/scrollToTop";
 
@@ -54,6 +55,7 @@ function App() {
 				<Route path="/edit-memory/:id" element={<EditMemory />} />
 				<Route path="/explore" element={<Explore />} />
 				<Route path="/dashboard" element={<CuratorDashboard />} />
+				<Route path="/collection/:id" element={<CuratedCollection />} />
 			</Routes>
 		</BrowserRouter>
 	);

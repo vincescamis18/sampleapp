@@ -1,0 +1,26 @@
+.curated-collection-page-parent {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+
+	.header-container {
+		display: flex;
+		background-color: #f0f0f0;
+		height: 500px;
+		width: 1400px;
+		border-radius: 30px;
+		border: 1px solid black;
+	}
+
+	.img-collection-container {
+		height: 500px;
+		width: 500px;
+		object-fit: cover;
+		padding: 20px;
+	}
+
+	.info-collection-container {
+		text-align: justify;
+		padding: 20px 40px 20px 20px;
+	}
+}

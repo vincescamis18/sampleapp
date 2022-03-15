@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { fetchUser, retrieveLoginCredential } from "./main/redux/actions/userAction";
@@ -39,7 +39,7 @@ function App() {
 	}, []);
 
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<ScrollToTop />
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -57,7 +57,7 @@ function App() {
 				<Route path="/dashboard" element={<CuratorDashboard />} />
 				<Route path="/collection/:id" element={<CuratedCollection />} />
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
 

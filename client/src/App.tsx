@@ -19,6 +19,7 @@ import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
 import CuratorDashboard from "./main/pages/CuratorDashboard";
 import CuratedCollection from "./main/pages/CuratedCollection";
+import MemoryView from "./main/pages/MemoryView";
 
 import ScrollToTop from "./main/utilities/scrollToTop";
 
@@ -47,6 +48,7 @@ function App() {
 				<Route path="/item" element={<Item />} />
 				<Route path="/zample" element={<Zample />} />
 				<Route path="/record" element={<Record />} />
+				<Route path="/memory/:id" element={<MemoryView />} />
 				<Route path="/manage_user" element={<ManageUser />} />
 				<Route path="/profile" element={<User />} />
 				<Route path="/profile/:id" element={<VisitUser />} />

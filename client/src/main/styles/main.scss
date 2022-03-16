@@ -18,6 +18,7 @@
 @import "./memory/memoryOfTheDay";
 @import "./dashboard/curatedCollection";
 @import "./curated/curatedCollectionPage";
+@import "./memory/viewMemory";
 
 * {
 	box-sizing: border-box;
@@ -65,4 +66,9 @@
 
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }

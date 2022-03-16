@@ -23,6 +23,17 @@ router.get("/record-creator", (req: Request, res: Response) => {
 		.then((item: IRecord[]) => res.json(item));
 });
 
+// @route   GET /api/records/record-creator
+// @desc    Retrieve all record with creator details
+// @access  Public
+router.get("/record-creator/:_id", (req: Request, res: Response) => {
+	const { _id } = req.params;
+	Record.findById(_id)
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.sort({ date: 1 })
+		.then((item: IRecord[]) => res.json(item));
+});
+
 // @route   GET /api/records/user/:id
 // @desc    Retrieve all records of user by id
 // @access  Public
@@ -59,6 +70,35 @@ router.get("/:_id", (req: Request, res: Response) => {
 	Record.findById(req.params._id)
 		.then((item: IRecord) => res.json(item))
 		.catch((err: any) => res.json(err));
+});
+
+// @route   GET /api/records/search/
+// @desc    Get all record with no search filter
+// @access  Public
+router.get("/search/title/", (req: Request, res: Response) => {
+	const { word } = req.params;
+	Record.find()
+		.sort({ date: 1 })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.then((item: IRecord[]) => res.json(item));
+});
+
+// @route   GET /api/records/search/:word
+// @desc    Filter record by title
+// @access  Public
+router.get("/search/title/:word", (req: Request, res: Response) => {
+	const { word } = req.params;
+	Record.find()
+		.sort({ date: 1 })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.then((item: IRecord[]) => {
+			// filter the title that has the search word on it
+			const filteredRecord: IRecord[] = [];
+			item.forEach(item => {
+				if (item.title.toLocaleLowerCase().includes(word.toLocaleLowerCase())) filteredRecord.push(item);
+			});
+			res.json(filteredRecord);
+		});
 });
 
 // @route   POST /api/records/

@@ -12,6 +12,7 @@ import closeV1 from "../../assets/images/buttons/closeV1.png";
 import arrowLeftV1 from "../../assets/images/icons/arrowLeftV1.png";
 import arrowRightV1 from "../../assets/images/icons/arrowRightV1.png";
 import emptyV2 from "../../assets/images/icons/emptyV2.png";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 interface IProps {
 	modalTigger: boolean;
@@ -37,7 +38,7 @@ const ViewMemoryV2 = (props: IProps) => {
 	// toggle the visibility of modal and prevent the toggle in initial load
 	useEffect(() => {
 		if (initialLaunch) setInitialLaunch(false);
-		else setShowModal(!showModal);
+		else setShowModal(true);
 
 		// retrive the comment of the selected record
 		if (props.record) dispatch(fetchComment(props.record._id));
@@ -178,6 +179,12 @@ const ViewMemoryV2 = (props: IProps) => {
 		else setTriggerReportContent(!triggerReportContent);
 	};
 
+	const handleViewMemory = () => {
+		window.onscroll = () => window.scrollTo(window.pageXOffset, window.pageYOffset);
+		console.log(`https://memorya.herokuapp.com/#/memory/${props.record?._id}`);
+		navigate(`/memory/${props.record?._id}`);
+	};
+
 	if (!showModal) return <React.Fragment></React.Fragment>;
 	return (
 		<div className="view-memory-modal-background">
@@ -214,6 +221,28 @@ const ViewMemoryV2 = (props: IProps) => {
 											Report Post
 										</span>
 									)}
+
+									{/* <span className="menu-item cursor-point" onClick={handleViewMemory}>
+										View Post
+									</span> */}
+
+									<span className="menu-item cursor-point">
+										<FacebookShareButton
+											url={`https://memorya.herokuapp.com/#/memory/${props.record?._id}`}
+											title="Checkout this memory"
+										>
+											Share to FB
+										</FacebookShareButton>
+									</span>
+
+									<span className="menu-item cursor-point">
+										<TwitterShareButton
+											url={`https://memorya.herokuapp.com/#/memory/${props.record?._id}`}
+											title="Checkout this memory"
+										>
+											Share to Twitter
+										</TwitterShareButton>
+									</span>
 								</div>
 								<div className="mini-menu-icon" onClick={() => setShowEdit(!showEdit)}>
 									•••

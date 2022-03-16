@@ -19,16 +19,21 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 
 	const [viewRecord, setViewRecord] = useState<IRecordWithCreator>();
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
+	const [searchWord, setSearchWord] = useState("");
 
 	useEffect(() => {
+		retriveRecordByTitle();
+	}, []);
+
+	const retriveRecordByTitle = () => {
 		axios
-			.get(`/api/records/record-creator`)
+			.get(`/api/records/search/title/${searchWord}`)
 			.then(res => {
 				console.log("Record-creator", res.data);
 				setRecordState({ records: res.data });
 			})
 			.catch(err => console.log("err", err));
-	}, []);
+	};
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
 	const emptyImages = () => {
@@ -69,13 +74,25 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 		setViewRecord(record);
 	};
 
+	const handleKeyPress = (e: any) => {
+		if (e.key == "Enter") retriveRecordByTitle();
+	};
+
 	return (
 		<div className="all-memory-v2-parent">
 			<ViewMemoryV3 modalTigger={triggerViewMemory} record={viewRecord} />
 			<div className="search-submit-container">
 				<div className="search-container">
 					<img src={SearchV1} alt="search" className="search-icon" />
-					<input className="search-input" placeholder="Search" type="text" name="" id="" />
+					<input
+						className="search-input"
+						placeholder="Search"
+						type="text"
+						name="search-input"
+						id="search-input"
+						onChange={e => setSearchWord(e.target.value)}
+						onKeyPress={handleKeyPress}
+					/>
 				</div>
 				<input type="button" value="Set" onClick={props.setMemoryOfTheDay} className="submit-btn" />
 			</div>

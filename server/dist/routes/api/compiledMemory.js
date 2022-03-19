@@ -27,6 +27,42 @@ router.get("/details-record/", (req, res) => {
         .then((item) => res.json(item))
         .catch((err) => res.json(err));
 });
+// @route   GET /api/compiled-memory/search/title/:word
+// @desc    Filter compiled-memory by title
+// @access  Public
+router.get("/search/title/:word", (req, res) => {
+    const { word } = req.params;
+    console.log("Filter compiled-memory by title", word);
+    if (!word)
+        return res.json({ err: "Missing field" });
+    compiledMemoryModel_1.CompiledMemory.find()
+        .populate("records.record")
+        .sort({ created_at: 1 })
+        .then((item) => {
+        // filter the title that has the search word on it
+        const filteredRecord = [];
+        item.forEach((item) => {
+            if (item.title.toLocaleLowerCase().includes(word.toLocaleLowerCase()))
+                filteredRecord.push(item);
+        });
+        res.json(filteredRecord);
+    })
+        .catch((err) => res.json(err));
+});
+// @route   GET /api/compiled-memory/filter/date/:startDate/:endDate
+// @desc    Filter compiled-memory by startDate and endDate
+// @access  Public
+router.get("/filter/date/:startDate/:endDate", (req, res) => {
+    const { startDate, endDate } = req.params;
+    console.log("Filter compiled-memory by startDate and endDate", startDate, endDate);
+    if (!startDate || !endDate)
+        return res.json({ err: "Missing field" });
+    compiledMemoryModel_1.CompiledMemory.find({ created_at: { $gte: startDate, $lte: endDate } })
+        .populate("records.record")
+        .sort({ created_at: 1 })
+        .then((featuredMemory) => res.json(featuredMemory))
+        .catch((err) => res.json(err));
+});
 // @route   GET /api/compiled-memory/:id
 // @desc    Retrieve specific compiled-memory section by id
 // @access  Public

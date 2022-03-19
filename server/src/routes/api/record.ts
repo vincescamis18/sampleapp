@@ -101,6 +101,46 @@ router.get("/search/title/:word", (req: Request, res: Response) => {
 		});
 });
 
+// @route   GET /api/records/search/:word
+// @desc    Filter record by location
+// @access  Public
+router.get("/filter/location/:word", (req: Request, res: Response) => {
+	const { word } = req.params;
+	console.log("Filter record by location", word);
+
+	if (!word) return res.json({ err: "Missing field" });
+
+	Record.find()
+		.sort({ date: 1 })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.then((item: IRecord[]) => {
+			// filter the title that has the search word on it
+			const filteredRecord: IRecord[] = [];
+			item.forEach(item => {
+				if (item.address.toLocaleLowerCase().includes(word.toLocaleLowerCase())) filteredRecord.push(item);
+			});
+
+			res.json(filteredRecord);
+		})
+		.catch((err: Errback) => res.json(err));
+});
+
+// @route   GET /api/records/filter/date-start/:date
+// @desc    Filter record by startDate and endDate
+// @access  Public
+router.get("/filter/date/:startDate/:endDate", (req: Request, res: Response) => {
+	const { startDate, endDate } = req.params;
+	console.log("Filter record by startDate and endDate", startDate, endDate);
+
+	if (!startDate || !endDate) return res.json({ err: "Missing field" });
+
+	Record.find({ date: { $gte: startDate, $lte: endDate } })
+		.sort({ date: 1 })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.then((featuredMemory: any) => res.json(featuredMemory))
+		.catch((err: Errback) => res.json(err));
+});
+
 // @route   POST /api/records/
 // @desc    Create new record
 // @access  Public

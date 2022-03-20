@@ -80,19 +80,30 @@ const CurratedCollection = () => {
 			</React.Fragment>
 		);
 
+	const DisplayCollectionInformation = () => (
+		<div className="display-curated-collection-parent no-select">
+			<div className="curated-collection-container">
+				{recordState.records.length > 0 ? (
+					<React.Fragment>
+						<div className="description-container">
+							<div className="description-section">
+								<h2>{curationInformation.title}</h2>
+								<h4 className="text-gap">{`${curationInformation.description}`}</h4>
+							</div>
+						</div>
+						<img className="curated-collection-display-container" src={curationInformation.images[0].link} alt="record image" />
+					</React.Fragment>
+				) : (
+					<div className="curated-collection-display-container" />
+				)}
+			</div>
+		</div>
+	);
+
 	return (
 		<React.Fragment>
 			<NavbarV1 />
-			<div className="curated-collection-page-parent">
-				<div className="header-container">
-					<img className="img-collection-container" src={curationInformation.images[0].link} alt="curation" />
-					<div className="info-collection-container">
-						<h1>{curationInformation.title}</h1>
-						<p>{curationInformation.description}</p>
-					</div>
-				</div>
-			</div>
-
+			<DisplayCollectionInformation />
 			<div style={{ backgroundColor: "FFFFFF", paddingBottom: "500px" }}>
 				<ViewMemoryV2 modalTigger={triggerViewMemory} record={viewRecord} />
 				<DisplayUserAllMemories />

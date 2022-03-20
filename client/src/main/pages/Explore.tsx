@@ -19,25 +19,29 @@ const Explore: React.FC = () => {
 	}, []);
 
 	const DisplayAllCuratedCollection = () => (
-		<div className="curated-collection-parent">
-			<div className="display-all-curation-parent">
-				<div className="display-all-curation-container">
-					{allCuratedCollection?.map((collection: any, index: number) => (
-						<div
-							className="cursor-point colection-container colection-container-idle"
-							onClick={() => navigate(`/collection/${collection._id}`)}
-							key={index}
-						>
-							<div className="collection-img-container">
-								<img className="collection-img-container" src={collection.images[0].link} alt="record image" />
-							</div>
+		<div className="container-center">
+			<div className="container-width-explore">
+				<div className="curated-collection-parent">
+					<div className="display-all-curation-parent">
+						<div>
+							{allCuratedCollection?.map((collection: any, index: number) => (
+								<div
+									className="cursor-point colection-container colection-container-idle"
+									onClick={() => navigate(`/collection/${collection._id}`)}
+									key={index}
+								>
+									<div className="collection-img-container">
+										<img className="collection-img-container" src={collection.images[0].link} alt="record image" />
+									</div>
 
-							<div className="collection-info-container">
-								<h1>{collection.title}</h1>
-								<p>{collection.description}</p>
-							</div>
+									<div className="collection-info-container">
+										<h1>{collection.title}</h1>
+										<p>{collection.description}</p>
+									</div>
+								</div>
+							))}
 						</div>
-					))}
+					</div>
 				</div>
 			</div>
 		</div>

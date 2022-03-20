@@ -1950,6 +1950,89 @@
   background-color: black;
 }
 
+.display-memory-of-the-day-parent .description-container {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: transparent;
+  color: transparent;
+  height: 550px;
+  width: 1335px;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.display-memory-of-the-day-parent .text-gap {
+  text-align: justify;
+  margin-top: 20px;
+}
+
+.display-memory-of-the-day-parent .memory-of-the-day-container:hover .description-section {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #00000080;
+  color: white;
+  height: 550px;
+  width: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px;
+}
+
+.display-memory-of-the-day-parent .description-section {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: transparent;
+  color: transparent;
+  height: 550px;
+  width: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px;
+}
+
+.container-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.container-width-explore {
+  width: 1335px;
+}
+
+.container-width-curator-dashboard {
+  width: 90%;
+  margin: 50px 0px;
+}
+
 .curated-collection-parent {
   width: 100%;
 }
@@ -2177,11 +2260,6 @@
           justify-content: center;
 }
 
-.curated-collection-parent .display-all-curation-parent .display-all-curation-container {
-  width: 90%;
-  margin: 50px 0px;
-}
-
 .curated-collection-parent .display-all-curation-parent .header-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2238,51 +2316,111 @@
   margin: 10px;
 }
 
-.curated-collection-page-parent {
+.display-curated-collection-parent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 50px;
 }
 
-.curated-collection-page-parent .header-container {
+.display-curated-collection-parent .curated-collection-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #f0f0f0;
-  height: 500px;
-  width: 1400px;
-  border-radius: 30px;
-  border: 1px solid black;
+  width: 1335px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
 }
 
-.curated-collection-page-parent .img-collection-container {
-  height: 500px;
-  width: 500px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  padding: 20px;
+.display-curated-collection-parent .curated-collection-display-container {
+  width: 100%;
+  height: 550px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: black;
 }
 
-.curated-collection-page-parent .info-collection-container {
+.display-curated-collection-parent .text-gap {
   text-align: justify;
-  padding: 20px 40px 20px 20px;
+  margin-top: 20px;
 }
 
-.view-memory-background {
+.display-curated-collection-parent .description-container {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: transparent;
+  color: transparent;
+  height: 550px;
+  width: 1335px;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.display-curated-collection-parent .curated-collection-container:hover .description-section {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #00000080;
+  color: white;
+  height: 550px;
+  width: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px;
+}
+
+.display-curated-collection-parent .description-section {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: transparent;
+  color: transparent;
+  height: 550px;
+  width: 500px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px;
+}
+
+.view-memory-modal-background {
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  z-index: 3;
 }
 
-.view-memory-background .view-memory-container {
+.view-memory-modal-background .view-memory-modal-container {
   position: fixed;
   margin-top: 45px;
   top: 50%;
@@ -2302,7 +2440,7 @@
           align-items: center;
 }
 
-.view-memory-background .close-btn {
+.view-memory-modal-background .close-btn {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -2311,56 +2449,56 @@
   z-index: 1;
 }
 
-.view-memory-background .back-arrow:hover,
-.view-memory-background .next-arrow:hover,
-.view-memory-background .close-btn:hover {
+.view-memory-modal-background .back-arrow:hover,
+.view-memory-modal-background .next-arrow:hover,
+.view-memory-modal-background .close-btn:hover {
   cursor: pointer;
 }
 
-.view-memory-background .back-arrow:active,
-.view-memory-background .next-arrow:active,
-.view-memory-background .close-btn:active {
+.view-memory-modal-background .back-arrow:active,
+.view-memory-modal-background .next-arrow:active,
+.view-memory-modal-background .close-btn:active {
   opacity: 0.8;
 }
 
-.view-memory-background .image-details-container {
+.view-memory-modal-background .image-details-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.view-memory-background .image-container {
+.view-memory-modal-background .image-container {
   width: 800px;
   height: 600px;
   background-color: black;
 }
 
-.view-memory-background .image-container .image-record {
+.view-memory-modal-background .image-container .image-record {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
 
-.view-memory-background .image-container .multi-image-container {
+.view-memory-modal-background .image-container .multi-image-container {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-.view-memory-background .image-container .back-arrow {
+.view-memory-modal-background .image-container .back-arrow {
   position: absolute;
   left: 20px;
   top: 283px;
 }
 
-.view-memory-background .image-container .next-arrow {
+.view-memory-modal-background .image-container .next-arrow {
   position: absolute;
   right: 20px;
   top: 283px;
 }
 
-.view-memory-background .image-container .dot-container-middle {
+.view-memory-modal-background .image-container .dot-container-middle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2372,18 +2510,18 @@
           align-items: center;
 }
 
-.view-memory-background .image-container .dot-container-bottom {
+.view-memory-modal-background .image-container .dot-container-bottom {
   position: absolute;
   bottom: 10px;
 }
 
-.view-memory-background .image-container .dot-container-column {
+.view-memory-modal-background .image-container .dot-container-column {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.view-memory-background .image-container .active-dot {
+.view-memory-modal-background .image-container .active-dot {
   width: 10px;
   height: 10px;
   background-color: white;
@@ -2391,7 +2529,7 @@
   margin: 0px 5px;
 }
 
-.view-memory-background .image-container .inactive-dot {
+.view-memory-modal-background .image-container .inactive-dot {
   width: 10px;
   height: 10px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -2399,7 +2537,7 @@
   margin: 0px 5px;
 }
 
-.view-memory-background .details-container {
+.view-memory-modal-background .details-container {
   width: 400px;
   height: 545px;
   background-color: white;
@@ -2408,7 +2546,7 @@
   background-color: white;
 }
 
-.view-memory-background .details-container .showEdit {
+.view-memory-modal-background .details-container .showEdit {
   display: block;
   margin-top: 6px;
   width: 50px;
@@ -2418,11 +2556,11 @@
   color: white;
 }
 
-.view-memory-background .details-container .hideEdit {
+.view-memory-modal-background .details-container .hideEdit {
   display: none;
 }
 
-.view-memory-background .details-container .picture-name-menu-container {
+.view-memory-modal-background .details-container .picture-name-menu-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2431,7 +2569,7 @@
           justify-content: space-between;
 }
 
-.view-memory-background .details-container .picture-name-container {
+.view-memory-modal-background .details-container .picture-name-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2440,7 +2578,7 @@
           align-items: center;
 }
 
-.view-memory-background .details-container .display-picture {
+.view-memory-modal-background .details-container .display-picture {
   width: 50px;
   height: 50px;
   background-color: gray;
@@ -2450,12 +2588,12 @@
   margin-right: 10px;
 }
 
-.view-memory-background .details-container .mini-menu-container {
+.view-memory-modal-background .details-container .mini-menu-container {
   justify-items: center;
   text-align: right;
 }
 
-.view-memory-background .details-container .mini-menu-container:hover .menu-item {
+.view-memory-modal-background .details-container .mini-menu-container:hover .menu-item {
   display: block;
   border: 1px solid black;
   width: 150px;
@@ -2465,17 +2603,17 @@
   color: white;
 }
 
-.view-memory-background .details-container .mini-menu-option-container {
+.view-memory-modal-background .details-container .mini-menu-option-container {
   position: absolute;
   right: 35px;
   padding-top: 30px;
 }
 
-.view-memory-background .details-container .menu-item {
+.view-memory-modal-background .details-container .menu-item {
   display: none;
 }
 
-.view-memory-background .details-container .mini-menu-icon {
+.view-memory-modal-background .details-container .mini-menu-icon {
   color: gray;
   padding: 4px;
   text-align: right;
@@ -2483,19 +2621,19 @@
   z-index: 2;
 }
 
-.view-memory-background .details-container .title {
+.view-memory-modal-background .details-container .title {
   font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
 }
 
-.view-memory-background .details-container .border {
+.view-memory-modal-background .details-container .border {
   width: 100%;
   height: 1px;
   background-color: black;
 }
 
-.view-memory-background .details-container .owner-date-container {
+.view-memory-modal-background .details-container .owner-date-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2504,25 +2642,25 @@
           justify-content: space-between;
 }
 
-.view-memory-background .details-container .light-text {
+.view-memory-modal-background .details-container .light-text {
   font-size: 13px;
   font-weight: light;
 }
 
-.view-memory-background .details-container .description-text {
+.view-memory-modal-background .details-container .description-text {
   margin-top: 20px;
   font-size: 15px;
   font-weight: 500;
 }
 
-.view-memory-background .details-container .comment-view-container {
+.view-memory-modal-background .details-container .comment-view-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin: 10px 0px;
 }
 
-.view-memory-background .details-container .comment-view-user {
+.view-memory-modal-background .details-container .comment-view-user {
   width: 35px;
   height: 35px;
   background-color: gray;
@@ -2532,7 +2670,7 @@
   margin-right: 5px;
 }
 
-.view-memory-background .details-container .comment-view-name-msg {
+.view-memory-modal-background .details-container .comment-view-name-msg {
   background-color: #f0f0f0;
   width: 100%;
   padding: 5px 10px;
@@ -2541,7 +2679,7 @@
   overflow-wrap: break-word;
 }
 
-.view-memory-background .details-container .comment-input-container {
+.view-memory-modal-background .details-container .comment-input-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2557,7 +2695,7 @@
   height: max-content;
 }
 
-.view-memory-background .details-container .comment-input-user {
+.view-memory-modal-background .details-container .comment-input-user {
   width: 35px;
   height: 35px;
   background-color: gray;
@@ -2567,7 +2705,7 @@
   margin-right: 5px;
 }
 
-.view-memory-background .details-container .comment-input-msg {
+.view-memory-modal-background .details-container .comment-input-msg {
   resize: none;
   overflow: hidden;
   height: 37px;

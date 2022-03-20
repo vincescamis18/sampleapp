@@ -85,37 +85,41 @@ const CurratedCollection = () => {
 	};
 
 	const DisplayAllCuratedCollection = () => (
-		<div className="display-all-curation-parent">
-			<div className="display-all-curation-container">
-				<div className="header-container">
-					<input
-						type="button"
-						value="Create New Collection"
-						onClick={() => (curationSelected != null ? resetAllInputCollectionDetails() : console.log(""))}
-						className={`cursor-point create-collection-btn-container ${
-							curationInformation._id == "" ? "create-collection-btn-selected" : "create-collection-btn-idle"
-						}`}
-					/>
-				</div>
-
-				{allCuratedCollection?.map((collection: any, index: number) => (
-					<div
-						className={`cursor-point colection-container ${
-							collection._id == curationInformation._id ? "colection-container-selected" : "colection-container-idle"
-						}`}
-						onClick={() => handleCollectionSelection(collection)}
-						key={index}
-					>
-						<div className="collection-img-container">
-							<img className="collection-img-container" src={collection.images[0].link} alt="record image" />
+		<div className="container-center">
+			<div className="container-width-curator-dashboard">
+				<div className="display-all-curation-parent">
+					<div>
+						<div className="header-container">
+							<input
+								type="button"
+								value="Create New Collection"
+								onClick={() => (curationSelected != null ? resetAllInputCollectionDetails() : console.log(""))}
+								className={`cursor-point create-collection-btn-container ${
+									curationInformation._id == "" ? "create-collection-btn-selected" : "create-collection-btn-idle"
+								}`}
+							/>
 						</div>
 
-						<div className="collection-info-container">
-							<h1>{collection.title}</h1>
-							<p>{collection.description}</p>
-						</div>
+						{allCuratedCollection?.map((collection: any, index: number) => (
+							<div
+								className={`cursor-point colection-container ${
+									collection._id == curationInformation._id ? "colection-container-selected" : "colection-container-idle"
+								}`}
+								onClick={() => handleCollectionSelection(collection)}
+								key={index}
+							>
+								<div className="collection-img-container">
+									<img className="collection-img-container" src={collection.images[0].link} alt="record image" />
+								</div>
+
+								<div className="collection-info-container">
+									<h1>{collection.title}</h1>
+									<p>{collection.description}</p>
+								</div>
+							</div>
+						))}
 					</div>
-				))}
+				</div>
 			</div>
 		</div>
 	);

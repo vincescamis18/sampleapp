@@ -23,15 +23,25 @@ const MemoryOfTheDay: React.FC = () => {
 	}, []);
 
 	const DisplayUserAllMemories = () => (
-		<div className="display-memory-of-the-day-parent">
+		<div className="display-memory-of-the-day-parent no-select">
 			<div className="memory-of-the-day-container">
 				{recordState.records.length > 0 ? (
-					<img
-						className="cursor-point memory-of-the-day-display-container"
-						src={recordState.records[0].record_id.images[0].link}
-						alt="record image"
-						onClick={() => selectMemory(recordState.records[0])}
-					/>
+					<React.Fragment>
+						<div className="description-container cursor-point" onClick={() => selectMemory(recordState.records[0])}>
+							<div className="description-section">
+								<h2>MEMORY OF THE DAY</h2>
+								<h2 className="text-gap">{recordState.records[0].record_id.title}</h2>
+								<h3>{`Submitted by ${recordState.records[0].record_id.creator.given_name} ${recordState.records[0].record_id.creator.surname}`}</h3>
+								<h4 className="text-gap">{`${recordState.records[0].record_id.description}`}</h4>
+							</div>
+						</div>
+						<img
+							className="cursor-point memory-of-the-day-display-container"
+							src={recordState.records[0].record_id.images[0].link}
+							alt="record image"
+							onClick={() => selectMemory(recordState.records[0])}
+						/>
+					</React.Fragment>
 				) : (
 					<div className="memory-of-the-day-display-container" />
 				)}

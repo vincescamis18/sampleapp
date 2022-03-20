@@ -2576,6 +2576,209 @@
   width: 85%;
 }
 
+.search-result-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.search-result-parent .search-result-center {
+  width: 100%;
+}
+
+.search-result-parent .search-result-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 920px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.search-result-parent .search-result-display-container {
+  width: 175px;
+  height: 175px;
+  margin-bottom: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.search-result-parent .checkbox-container {
+  position: absolute;
+  background-color: #fff;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.search-result-parent .checkbox-active {
+  background-color: #00e8fc;
+}
+
+.search-result-parent .checkbox-memory-container {
+  position: relative;
+}
+
+.search-result-parent .search-container {
+  background-color: #c4c4c4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.search-result-parent .search-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0px 15px;
+}
+
+.search-result-parent .search-input {
+  width: 275px;
+  height: 50px;
+  background-color: #c4c4c4;
+  border: 0px solid black;
+  margin: 0px 25px 0px 0px;
+}
+
+.search-result-parent input:focus {
+  outline: none;
+}
+
+.search-result-parent .search-submit-container {
+  height: 90px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.search-result-parent .submit-btn {
+  height: 50px;
+  padding: 0px 55px;
+  font-weight: 500;
+  font-size: 20px;
+  background-color: #0ec3b9;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.search-result-parent .submit-btn:hover {
+  cursor: pointer;
+  background-color: #0faca4;
+}
+
+.search-result-parent .submit-btn:active {
+  cursor: pointer;
+  background-color: #119992;
+}
+
+.search-result-parent .side-memu-spacing {
+  width: 250px;
+  background-color: red;
+  height: 100vh;
+}
+
+.search-result-parent .side-menu-container {
+  width: 250px;
+  background-color: #e5e5e5;
+  position: fixed;
+  height: 100vh;
+  z-index: 2;
+}
+
+.search-result-parent .side-menu-container .side-menu-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background-color: #ced132;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.search-result-parent .side-menu-container .side-menu-option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60px;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: black;
+  color: white;
+  margin-top: 1px;
+  font-size: 18px;
+}
+
+.search-result-parent .side-menu-container .side-menu-space {
+  margin-left: 250px;
+}
+
+.search-result-parent .side-menu-container .side-menu-section {
+  margin-top: 20px;
+}
+
+.search-result-parent .side-menu-container .ml-10 {
+  margin-left: 10px;
+}
+
+.search-result-parent .side-menu-container .apply-btn {
+  width: 75px;
+  padding: 5px 0px;
+}
+
+.search-result-parent .side-menu-container .txt-grey {
+  color: grey;
+}
+
+.search-result-parent .filter-result-container {
+  width: 1200px;
+  padding: 50px;
+}
+
+.search-result-parent .filter-result-container .filter-result-border {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  margin: 20px 0px;
+}
+
+.search-result-parent .filter-result-container .filter-result-title {
+  margin: 10px 5px 20px 5px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

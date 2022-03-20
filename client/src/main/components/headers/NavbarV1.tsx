@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { logout } from "../../redux/actions/userAction";
 import ExploreV1 from "../../assets/images/icons/exploreV1.png";
 import HomeV1 from "../../assets/images/icons/homeV1.png";
@@ -14,9 +14,17 @@ import DashboardV1 from "../../assets/images/icons/dashboardV1.png";
 
 const NavbarV1: React.FC = () => {
 	const navigate = useNavigate();
+	const locationURL = useLocation();
+	const params = useParams();
 	const dispatch = useDispatch();
+
 	const userState = useSelector((state: RootState) => state.user);
 	const userAccess = useSelector((state: RootState) => state.userAccess);
+	const [searchWord, setSearchWord] = useState(locationURL.pathname.includes("/search") ? params.searchWord : "");
+
+	const handleSearchWord = (e: any) => {
+		if (e.key == "Enter" && searchWord) navigate(`/search/${searchWord}`);
+	};
 
 	const handleLogout = () => {
 		dispatch(logout());
@@ -71,7 +79,16 @@ const NavbarV1: React.FC = () => {
 
 				<div className="search-container">
 					<img src={SearchV1} alt="search" className="search-icon" />
-					<input className="search-input" placeholder="Search" type="text" name="" id="" />
+					<input
+						className="search-input"
+						placeholder="Search"
+						type="text"
+						name="nav-input"
+						id="nav-input"
+						value={searchWord}
+						onChange={e => setSearchWord(e.target.value)}
+						onKeyPress={handleSearchWord}
+					/>
 				</div>
 
 				<div style={{ display: "flex", alignItems: "center" }}>

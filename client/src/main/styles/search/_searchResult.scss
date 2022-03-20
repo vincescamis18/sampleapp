@@ -1,0 +1,169 @@
+.search-result-parent {
+	display: flex;
+	flex-direction: row;
+
+	.search-result-center {
+		width: 100%;
+	}
+
+	.search-result-container {
+		display: flex;
+		width: 920px;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-self: center;
+	}
+
+	.search-result-display-container {
+		width: 175px;
+		height: 175px;
+		margin-bottom: 7px;
+		object-fit: cover;
+	}
+
+	.checkbox-container {
+		position: absolute;
+		background-color: #fff;
+		top: 5px;
+		left: 5px;
+		width: 30px;
+		height: 30px;
+		border: 1px solid black;
+	}
+
+	.checkbox-active {
+		background-color: #00e8fc;
+	}
+
+	.checkbox-memory-container {
+		position: relative;
+	}
+
+	.search-container {
+		background-color: #c4c4c4;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+	}
+
+	.search-icon {
+		width: 24px;
+		height: 24px;
+		margin: 0px 15px;
+	}
+
+	.search-input {
+		width: 275px;
+		height: 50px;
+		background-color: #c4c4c4;
+		border: 0px solid black;
+		margin: 0px 25px 0px 0px;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	.search-submit-container {
+		height: 90px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.submit-btn {
+		height: 50px;
+		padding: 0px 55px;
+		font-weight: 500;
+		font-size: 20px;
+		background-color: #0ec3b9;
+		color: #fff;
+		border: none;
+		border-radius: 10px;
+	}
+
+	.submit-btn:hover {
+		cursor: pointer;
+		background-color: #0faca4;
+	}
+
+	.submit-btn:active {
+		cursor: pointer;
+		background-color: #119992;
+	}
+
+	.side-memu-spacing {
+		width: 250px;
+		background-color: red;
+		height: 100vh;
+	}
+
+	.side-menu-container {
+		width: 250px;
+		background-color: #e5e5e5;
+		position: fixed;
+		height: 100vh;
+		z-index: 2;
+
+		.side-menu-title {
+			display: flex;
+			height: 80px;
+			width: 100%;
+			background-color: #ced132;
+			justify-content: center;
+			align-items: center;
+			font-weight: bold;
+			font-size: 20px;
+		}
+
+		.side-menu-option {
+			display: flex;
+			height: 60px;
+			width: 100%;
+			justify-content: center;
+			align-items: center;
+			background-color: black;
+			color: white;
+			margin-top: 1px;
+			font-size: 18px;
+		}
+
+		.side-menu-space {
+			margin-left: 250px;
+		}
+
+		.side-menu-section {
+			margin-top: 20px;
+		}
+
+		.ml-10 {
+			margin-left: 10px;
+		}
+
+		.apply-btn {
+			width: 75px;
+			padding: 5px 0px;
+		}
+
+		.txt-grey {
+			color: grey;
+		}
+	}
+
+	.filter-result-container {
+		width: 1200px;
+		padding: 50px;
+
+		.filter-result-border {
+			width: 100%;
+			height: 1px;
+			background-color: black;
+			margin: 20px 0px;
+		}
+
+		.filter-result-title {
+			margin: 10px 5px 20px 5px;
+		}
+	}
+}

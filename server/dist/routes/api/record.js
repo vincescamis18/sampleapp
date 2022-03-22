@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -176,6 +185,91 @@ router.get("/filter/description/:word", (req, res) => {
     })
         .catch((err) => res.json(err));
 });
+// @route   GET /api/records/filter-multiple
+// @desc    Filter record by all fields
+// @access  Public
+router.post("/filter-multiple/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { title, description, tag, location, startDate, endDate } = req.body;
+    console.log("filter-multiple", req.body);
+    recordModel_1.Record.find()
+        .sort({ date: 1 })
+        .populate("creator", ["surname", "given_name", "user_profile"])
+        .then((item) => {
+        if (!title && !description && !tag && !location && !startDate && !endDate)
+            return res.json(item);
+        let combinedFilter = [];
+        const filteredTitle = [];
+        const filteredDescription = [];
+        const filteredLocation = [];
+        const filteredTag = [];
+        item.forEach(item => {
+            // retrieve filtered record by field
+            if (title && item.title.toLocaleLowerCase().includes(title.toLocaleLowerCase()))
+                filteredTitle.push(item);
+            if (description && item.description.toLocaleLowerCase().includes(description.toLocaleLowerCase()))
+                filteredDescription.push(item);
+            if (location && item.address.toLocaleLowerCase().includes(location.toLocaleLowerCase()))
+                filteredLocation.push(item);
+            if (tag && item.tag.toLocaleLowerCase().includes(tag.toLocaleLowerCase()))
+                filteredTag.push(item);
+        });
+        // intial combinedFilter values
+        if (title)
+            combinedFilter = filteredTitle;
+        else if (description)
+            combinedFilter = filteredDescription;
+        else if (location)
+            combinedFilter = filteredLocation;
+        else if (tag)
+            combinedFilter = filteredTag;
+        if (description) {
+            // combine the description to filter
+            let combinedFilterTemp = [];
+            combinedFilter.forEach((combinedRecord) => {
+                if (filteredDescription.find((record) => record._id == combinedRecord._id))
+                    combinedFilterTemp.push(combinedRecord);
+            });
+            combinedFilter = combinedFilterTemp;
+        }
+        if (location) {
+            // combine the location to filter
+            let combinedFilterTemp = [];
+            combinedFilter.forEach((combinedRecord) => {
+                if (filteredLocation.find((record) => record._id == combinedRecord._id))
+                    combinedFilterTemp.push(combinedRecord);
+            });
+            combinedFilter = combinedFilterTemp;
+        }
+        if (tag) {
+            // combine the tag to filter
+            let combinedFilterTemp = [];
+            combinedFilter.forEach((combinedRecord) => {
+                if (filteredTag.find((record) => record._id == combinedRecord._id))
+                    combinedFilterTemp.push(combinedRecord);
+            });
+            combinedFilter = combinedFilterTemp;
+        }
+        if (startDate && endDate) {
+            // combine the date to filter
+            recordModel_1.Record.find({ date: { $gte: startDate, $lte: endDate } })
+                .sort({ date: 1 })
+                .populate("creator", ["surname", "given_name", "user_profile"])
+                .then((filteredDate) => {
+                let combinedFilterTemp = [];
+                combinedFilter.forEach((combinedRecord) => {
+                    if (filteredDate.find((record) => `${record._id}` == `${combinedRecord._id}`))
+                        combinedFilterTemp.push(combinedRecord);
+                });
+                combinedFilter = combinedFilterTemp;
+                return res.json(combinedFilter);
+            })
+                .catch((err) => res.json(err));
+        }
+        else
+            return res.json(combinedFilter);
+    })
+        .catch((err) => res.json(err));
+}));
 // @route   POST /api/records/
 // @desc    Create new record
 // @access  Public

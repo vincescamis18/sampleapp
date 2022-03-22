@@ -189,6 +189,89 @@ router.get("/filter/description/:word", (req: Request, res: Response) => {
 		.catch((err: Errback) => res.json(err));
 });
 
+// @route   GET /api/records/filter-multiple
+// @desc    Filter record by all fields
+// @access  Public
+router.post("/filter-multiple/", async (req: Request, res: Response) => {
+	const { title, description, tag, location, startDate, endDate } = req.body;
+	console.log("filter-multiple", req.body);
+
+	Record.find()
+		.sort({ date: 1 })
+		.populate("creator", ["surname", "given_name", "user_profile"])
+		.then((item: IRecord[]) => {
+			if (!title && !description && !tag && !location && !startDate && !endDate) return res.json(item);
+			let combinedFilter: any[] = [];
+
+			const filteredTitle: IRecord[] = [];
+			const filteredDescription: IRecord[] = [];
+			const filteredLocation: IRecord[] = [];
+			const filteredTag: IRecord[] = [];
+
+			item.forEach(item => {
+				// retrieve filtered record by field
+				if (title && item.title.toLocaleLowerCase().includes(title.toLocaleLowerCase())) filteredTitle.push(item);
+				if (description && item.description.toLocaleLowerCase().includes(description.toLocaleLowerCase()))
+					filteredDescription.push(item);
+				if (location && item.address.toLocaleLowerCase().includes(location.toLocaleLowerCase())) filteredLocation.push(item);
+				if (tag && item.tag.toLocaleLowerCase().includes(tag.toLocaleLowerCase())) filteredTag.push(item);
+			});
+
+			// intial combinedFilter values
+			if (title) combinedFilter = filteredTitle;
+			else if (description) combinedFilter = filteredDescription;
+			else if (location) combinedFilter = filteredLocation;
+			else if (tag) combinedFilter = filteredTag;
+
+			if (description) {
+				// combine the description to filter
+				let combinedFilterTemp: any[] = [];
+				combinedFilter.forEach((combinedRecord: any) => {
+					if (filteredDescription.find((record: any) => record._id == combinedRecord._id))
+						combinedFilterTemp.push(combinedRecord);
+				});
+				combinedFilter = combinedFilterTemp;
+			}
+
+			if (location) {
+				// combine the location to filter
+				let combinedFilterTemp: any[] = [];
+				combinedFilter.forEach((combinedRecord: any) => {
+					if (filteredLocation.find((record: any) => record._id == combinedRecord._id)) combinedFilterTemp.push(combinedRecord);
+				});
+				combinedFilter = combinedFilterTemp;
+			}
+
+			if (tag) {
+				// combine the tag to filter
+				let combinedFilterTemp: any[] = [];
+				combinedFilter.forEach((combinedRecord: any) => {
+					if (filteredTag.find((record: any) => record._id == combinedRecord._id)) combinedFilterTemp.push(combinedRecord);
+				});
+				combinedFilter = combinedFilterTemp;
+			}
+
+			if (startDate && endDate) {
+				// combine the date to filter
+				Record.find({ date: { $gte: startDate, $lte: endDate } })
+					.sort({ date: 1 })
+					.populate("creator", ["surname", "given_name", "user_profile"])
+					.then((filteredDate: any) => {
+						let combinedFilterTemp: any[] = [];
+						combinedFilter.forEach((combinedRecord: any) => {
+							if (filteredDate.find((record: any) => `${record._id}` == `${combinedRecord._id}`))
+								combinedFilterTemp.push(combinedRecord);
+						});
+						combinedFilter = combinedFilterTemp;
+
+						return res.json(combinedFilter);
+					})
+					.catch((err: Errback) => res.json(err));
+			} else return res.json(combinedFilter);
+		})
+		.catch((err: Errback) => res.json(err));
+});
+
 // @route   POST /api/records/
 // @desc    Create new record
 // @access  Public

@@ -96,7 +96,7 @@ router.get("/search/title/:word", (req, res) => {
         res.json(filteredRecord);
     });
 });
-// @route   GET /api/records/search/:word
+// @route   GET /api/records/filter/location/:word
 // @desc    Filter record by location
 // @access  Public
 router.get("/filter/location/:word", (req, res) => {
@@ -130,6 +130,50 @@ router.get("/filter/date/:startDate/:endDate", (req, res) => {
         .sort({ date: 1 })
         .populate("creator", ["surname", "given_name", "user_profile"])
         .then((featuredMemory) => res.json(featuredMemory))
+        .catch((err) => res.json(err));
+});
+// @route   GET /api/records/filter/tag/:word
+// @desc    Filter record by tag
+// @access  Public
+router.get("/filter/tag/:word", (req, res) => {
+    const { word } = req.params;
+    console.log("Filter record by tag", word);
+    if (!word)
+        return res.json({ err: "Missing field" });
+    recordModel_1.Record.find()
+        .sort({ date: 1 })
+        .populate("creator", ["surname", "given_name", "user_profile"])
+        .then((item) => {
+        // filter the title that has the search word on it
+        const filteredRecord = [];
+        item.forEach(item => {
+            if (item.tag.toLocaleLowerCase().includes(word.toLocaleLowerCase()))
+                filteredRecord.push(item);
+        });
+        res.json(filteredRecord);
+    })
+        .catch((err) => res.json(err));
+});
+// @route   GET /api/records/filter/description/:word
+// @desc    Filter record by description
+// @access  Public
+router.get("/filter/description/:word", (req, res) => {
+    const { word } = req.params;
+    console.log("Filter record by description", word);
+    if (!word)
+        return res.json({ err: "Missing field" });
+    recordModel_1.Record.find()
+        .sort({ date: 1 })
+        .populate("creator", ["surname", "given_name", "user_profile"])
+        .then((item) => {
+        // filter the title that has the search word on it
+        const filteredRecord = [];
+        item.forEach(item => {
+            if (item.description.toLocaleLowerCase().includes(word.toLocaleLowerCase()))
+                filteredRecord.push(item);
+        });
+        res.json(filteredRecord);
+    })
         .catch((err) => res.json(err));
 });
 // @route   POST /api/records/

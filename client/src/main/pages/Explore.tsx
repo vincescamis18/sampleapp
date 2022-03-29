@@ -52,7 +52,7 @@ const Explore: React.FC = () => {
 			<NavbarV1 />
 			<DisplayMemoryOfTheDayV1 />
 			<DisplayAllCuratedCollection />
-			<DisplayAllMemoryV1 />
+			<DisplayAllMemoryV1 userId={""} />
 		</div>
 	);
 };

@@ -132,17 +132,30 @@ const MemoryOfTheDay = () => {
 
 	return (
 		<React.Fragment>
-			<div className="memory-of-the-day-parent">
-				<div className="calendar-container">
-					<FullCalendar
-						initialView="dayGridMonth"
-						plugins={[interactionPlugin, dayGridPlugin]}
-						unselectAuto={false}
-						selectable={true}
-						events={allFeaturedMemories}
-						select={handleChangeDateRange}
-						eventClick={handleViewFeaturedMemory}
-					/>
+			<div className="dashboard-memory-of-the-day">
+				<div className="calendar-form-container">
+					<div className="calendar-container">
+						<FullCalendar
+							initialView="dayGridMonth"
+							plugins={[interactionPlugin, dayGridPlugin]}
+							unselectAuto={false}
+							selectable={true}
+							events={allFeaturedMemories}
+							select={handleChangeDateRange}
+							eventClick={handleViewFeaturedMemory}
+						/>
+					</div>
+					<div className="form-container">
+						<input type="button" value="Submit" className="set-btn" onClick={setMemoryOfTheDay} />
+						<img
+							className="image-container"
+							src={selectRecord ? selectRecord.images[0].link : "https://upload.wikimedia.org/wikipedia/commons/7/71/Black.png"}
+						/>
+						<p className="title-container">{selectRecord ? selectRecord.title : "Memory of the day"}</p>
+						<p className="description-container">
+							{selectRecord ? selectRecord.description : "Highlight the desired date > Select a memory > Review and click submit"}
+						</p>
+					</div>
 				</div>
 				<DisplayAllMemoryV2 selectRecord={selectRecord} setSelectRecord={setSelectRecord} setMemoryOfTheDay={setMemoryOfTheDay} />
 			</div>

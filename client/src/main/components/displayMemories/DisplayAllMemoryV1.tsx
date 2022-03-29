@@ -7,19 +7,31 @@ import ViewMemoryV2 from "../../components/modal/ViewMemoryV2";
 
 import EmptyV1 from "../../assets/images/icons/emptyV1.png";
 
-const DisplayAllMemoryV1: React.FC = () => {
+interface IProps {
+	userId: string | undefined;
+}
+
+const DisplayAllMemoryV1 = (props: IProps) => {
 	const [recordState, setRecordState] = useState<{ records: IRecordWithCreator[] }>({ records: [] });
 	const [selectRecord, setSelectRecord] = useState<IRecordWithCreator>();
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
 
 	useEffect(() => {
-		axios
-			.get(`/api/records/record-creator`)
-			.then(res => {
-				console.log("Record-creator", res.data);
-				setRecordState({ records: res.data });
-			})
-			.catch(err => console.log("err", err));
+		// if there is userId retrive the memory of user otherwise retrive all memory
+		if (props.userId) {
+			axios
+				.get(`/api/records/record-creator/user/${props.userId}`)
+				.then((res: any) => setRecordState({ records: res.data }))
+				.catch(err => console.log("err", err));
+		} else {
+			axios
+				.get(`/api/records/record-creator`)
+				.then(res => {
+					console.log("Record-creator", res.data);
+					setRecordState({ records: res.data });
+				})
+				.catch(err => console.log("err", err));
+		}
 	}, []);
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
@@ -38,13 +50,16 @@ const DisplayAllMemoryV1: React.FC = () => {
 		<div className="all-memory-parent">
 			<div className="all-memory-container">
 				{recordState.records?.map((record: IRecordWithCreator, index: number) => (
-					<img
-						className="cursor-point all-memory-display-container"
-						src={record.images[0].link}
-						key={index}
-						alt="record image"
-						onClick={() => selectMemory(record)}
-					/>
+					<React.Fragment>
+						<div className="memory-containner cursor-point" onClick={() => selectMemory(record)} style={{}}>
+							<div className="memory-details">
+								<h4>{record.title}</h4>
+								<p className="description">{record.description}</p>
+							</div>
+
+							<img className=" all-memory-display-container" src={record.images[0].link} key={index} alt="record image" />
+						</div>
+					</React.Fragment>
 				))}
 				{emptyImages()}
 			</div>

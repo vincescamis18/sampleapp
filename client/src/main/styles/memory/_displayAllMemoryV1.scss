@@ -17,3 +17,50 @@
 	margin-top: 40px;
 	object-fit: cover;
 }
+
+.memory-containner {
+	position: relative;
+	transition: 0.5s;
+}
+.memory-containner:hover .memory-details {
+	width: 300px;
+	height: 305px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	position: absolute;
+	bottom: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: 0.5s;
+}
+
+.memory-details {
+	width: 300px;
+	height: 305px;
+	background-color: transparent;
+	color: transparent;
+
+	// background-color: rgba(0, 0, 0, 0.5);
+	// color: white;
+
+	text-align: justify;
+	position: absolute;
+	bottom: 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	transition: 0.5s;
+}
+.description {
+	display: -webkit-box;
+	text-align: justify;
+	// width: 550px;
+	// height: 210px;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	padding: 0px 15px;
+}

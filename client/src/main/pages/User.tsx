@@ -16,6 +16,7 @@ import filterBtnV1 from "../assets/images/buttons/filterBtnV1.png";
 import addBtnV1 from "../assets/images/buttons/addBtnV1.png";
 import questionV1 from "../assets/images/buttons/questionV1.png";
 import emptyV1 from "../assets/images/icons/emptyV1.png";
+import DisplayAllMemoryV1 from "../components/displayMemories/DisplayAllMemoryV1";
 
 const User: React.FC = () => {
 	const navigate = useNavigate();
@@ -163,7 +164,7 @@ const User: React.FC = () => {
 			<EditProfileV1 modalTigger={triggerEditProfile} />
 			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
 			<SideMenu />
-			<DisplayUserAllMemories />
+			<DisplayAllMemoryV1 userId={userState._id} />
 			<ReportBug modalTigger={triggerReportBug} />
 		</div>
 	);

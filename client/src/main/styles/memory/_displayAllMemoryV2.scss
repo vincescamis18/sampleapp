@@ -1,16 +1,12 @@
 .all-memory-v2-parent {
-	.all-memory-v2-center {
-		display: flex;
-		justify-content: center;
-	}
-
 	.all-memory-v2-container {
 		display: flex;
-		width: 550px;
+		width: 930px;
 		height: 100%;
 		flex-wrap: wrap;
 		justify-content: space-between;
 		align-self: center;
+		margin-left: 20px;
 	}
 
 	.all-memory-v2-display-container {
@@ -51,12 +47,27 @@
 		margin: 0px 15px;
 	}
 
+	.filter-field-container {
+		display: flex;
+		flex-direction: column;
+		margin: 0px 5px;
+	}
+
+	.filter-name {
+		font-size: 12px;
+		margin-left: 5px;
+		margin-bottom: 2px;
+	}
+
 	.search-input {
-		width: 275px;
+		width: 175px;
 		height: 50px;
 		background-color: #c4c4c4;
 		border: 0px solid black;
-		margin: 0px 25px 0px 0px;
+		padding: 0px 15px;
+		// margin: 0px 25px 0px 0px;
+		border-radius: 10px;
+		// margin: 0px 25px 0px 0px;
 	}
 
 	input:focus {
@@ -68,18 +79,23 @@
 		width: 100%;
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
+		// justify-content: space-around;
+		// background-color: orange;
+		flex-wrap: wrap;
+		padding-left: 15px;
 	}
 
 	.submit-btn {
 		height: 50px;
-		padding: 0px 55px;
+		padding: 0px 25px;
 		font-weight: 500;
 		font-size: 20px;
 		background-color: #0ec3b9;
 		color: #fff;
 		border: none;
 		border-radius: 10px;
+		margin-top: 20px;
+		margin-left: 5px;
 	}
 
 	.submit-btn:hover {

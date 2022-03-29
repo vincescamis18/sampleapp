@@ -7,6 +7,7 @@ import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 
 import NavbarV1 from "../components/headers/NavbarV1";
 import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
+import DisplayAllMemoryV1 from "../components/displayMemories/DisplayAllMemoryV1";
 
 import emptyV1 from "../assets/images/icons/emptyV1.png";
 
@@ -121,7 +122,7 @@ const VisitUser: React.FC = () => {
 			</div>
 
 			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
-			<DisplayUserAllMemories />
+			<DisplayAllMemoryV1 userId={id} />
 		</div>
 	);
 };

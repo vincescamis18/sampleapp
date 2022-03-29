@@ -4,9 +4,7 @@ import axios from "axios";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
 import ViewMemoryV3 from "../../components/modal/ViewMemoryV2";
-
-import EmptyV1 from "../../assets/images/icons/emptyV1.png";
-import SearchV1 from "../../assets/images/icons/searchV1.png";
+import EmptyV1 from "../../assets/images/logo/emptyPhotoV1.png";
 
 interface IProps {
 	setSelectRecord: React.Dispatch<React.SetStateAction<IRecordWithCreator | undefined>>;
@@ -19,7 +17,14 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 
 	const [viewRecord, setViewRecord] = useState<IRecordWithCreator>();
 	const [triggerViewMemory, setTriggerViewMemory] = useState(false);
-	const [searchWord, setSearchWord] = useState("");
+	const [filter, setFilter] = useState({
+		title: "",
+		description: "",
+		tag: "",
+		location: "",
+		startDate: "",
+		endDate: "",
+	});
 
 	useEffect(() => {
 		retriveRecordByTitle();
@@ -27,18 +32,16 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 
 	const retriveRecordByTitle = () => {
 		axios
-			.get(`/api/records/search/title/${searchWord}`)
-			.then(res => {
-				console.log("Record-creator", res.data);
-				setRecordState({ records: res.data });
-			})
-			.catch(err => console.log("err", err));
+			.post(`/api/records/filter-multiple/`, filter)
+			.then(res => setRecordState({ records: res.data }))
+			.catch(err => console.log(err));
 	};
 
 	// fill the gap of 4 picture per column design to push the picture at the left side
 	const emptyImages = () => {
 		if (recordState.records?.length) {
-			const numberOfEmptySlots = recordState.records?.length % 4;
+			const columnCount = 15;
+			const numberOfEmptySlots = columnCount - (recordState.records?.length % columnCount);
 			const emptySlots = [];
 			for (let a = 0; a < numberOfEmptySlots; a++) emptySlots.push(a);
 			return emptySlots.map((item: any, index: number) => (
@@ -74,27 +77,97 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 		setViewRecord(record);
 	};
 
-	const handleKeyPress = (e: any) => {
-		if (e.key == "Enter") retriveRecordByTitle();
-	};
-
 	return (
 		<div className="all-memory-v2-parent">
 			<ViewMemoryV3 modalTigger={triggerViewMemory} record={viewRecord} />
 			<div className="search-submit-container">
-				<div className="search-container">
-					<img src={SearchV1} alt="search" className="search-icon" />
+				<div className="filter-field-container">
+					<span className="filter-name">Title</span>
 					<input
 						className="search-input"
-						placeholder="Search"
+						placeholder="Title"
 						type="text"
-						name="search-input"
-						id="search-input"
-						onChange={e => setSearchWord(e.target.value)}
-						onKeyPress={handleKeyPress}
+						name="title"
+						id="title"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
 					/>
 				</div>
-				<input type="button" value="Set" onClick={props.setMemoryOfTheDay} className="submit-btn" />
+
+				<div className="filter-field-container">
+					<span className="filter-name">Description</span>
+					<input
+						className="search-input"
+						placeholder="Description"
+						type="text"
+						name="description"
+						id="description"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
+					/>
+				</div>
+
+				<div className="filter-field-container">
+					<span className="filter-name">Hashtag</span>
+					<input
+						className="search-input"
+						placeholder="Hashtag"
+						type="text"
+						name="tag"
+						id="tag"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
+					/>
+				</div>
+
+				<div className="filter-field-container">
+					<span className="filter-name">Location</span>
+					<input
+						className="search-input"
+						placeholder="Location"
+						type="text"
+						name="location"
+						id="location"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
+					/>
+				</div>
+
+				<div className="filter-field-container">
+					<span className="filter-name">Start date</span>
+					<input
+						className="search-input"
+						type="date"
+						name="startDate"
+						id="startDate"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
+					/>
+				</div>
+
+				<div className="filter-field-container">
+					<span className="filter-name">End date</span>
+					<input
+						type="date"
+						name="endDate"
+						id="endDate"
+						className="search-input"
+						onChange={e => setFilter({ ...filter, [e.target.name]: e.target.value })}
+					/>
+				</div>
+
+				<input
+					type="button"
+					value="Filter"
+					onClick={() => {
+						console.log(filter);
+						axios
+							.post(`/api/records/filter-multiple/`, filter)
+							.then(res => {
+								console.log(res.data);
+								setRecordState({ records: res.data });
+							})
+							.catch(err => console.log(err));
+					}}
+					className="submit-btn"
+				/>
+
+				{/* <input type="button" value="Set" onClick={props.setMemoryOfTheDay} className="submit-btn" /> */}
 			</div>
 			<DisplayUserAllMemories />
 		</div>

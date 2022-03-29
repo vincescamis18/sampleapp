@@ -1,11 +1,15 @@
 @import "./origin/origin";
-@import "./home/home";
+@import "./pages/curatedCollectionPage";
+@import "./pages/home";
+@import "./pages/register";
+@import "./pages/searchResult";
+@import "./pages/uploadMemory";
+@import "./pages/user";
+@import "./pages/viewMemoryPage";
+
 @import "./header/navbarV1";
-@import "./register/register";
 @import "./modal/editProfileModalV1";
-@import "./user/user";
 @import "./modal/viewMemoryModal";
-@import "./memory/uploadMemory";
 @import "./input/multipleImageV2";
 @import "./loading/loadingScreenV1";
 @import "./modal/reportContent";
@@ -13,13 +17,10 @@
 @import "./memory/displayAllMemoryV1";
 @import "./memory/displayAllMemoryV2";
 @import "./modal/viewMemoryModalV3";
-@import "./dashboard/curatorDashboard";
+@import "./pages/curatorDashboard";
 @import "./dashboard/memoryOfTheDay";
 @import "./memory/memoryOfTheDay";
 @import "./dashboard/curatedCollection";
-@import "./curated/curatedCollectionPage";
-@import "./memory/viewMemory";
-@import "./search/searchResult";
 
 * {
 	box-sizing: border-box;

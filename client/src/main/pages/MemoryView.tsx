@@ -185,8 +185,8 @@ const MemoryView = () => {
 	return (
 		<React.Fragment>
 			<NavbarV1 />
-			<div className="view-memory-background">
-				<div className="view-memory-container">
+			<div className="view-memory-page-modal-background">
+				<div className="view-memory-modal-container">
 					<ReportCotent modalTigger={triggerReportContent} recordId={recordState?._id} />
 
 					{/* <img src={closeV1} alt="close button" className="close-btn" onClick={handleCloseBtn} /> */}

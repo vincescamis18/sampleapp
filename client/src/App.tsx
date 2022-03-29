@@ -18,7 +18,7 @@ import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
 import CuratorDashboard from "./main/pages/CuratorDashboard";
-import CuratedCollection from "./main/pages/CuratedCollection";
+import CuratedCollection from "./main/pages/ViewCuratedCollection";
 import MemoryView from "./main/pages/MemoryView";
 import SearchResult from "./main/pages/SearchResult";
 

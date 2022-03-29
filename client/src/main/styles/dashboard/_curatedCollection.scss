@@ -211,7 +211,6 @@
 
 		.colection-container {
 			display: flex;
-			// height: 200px;
 			margin-bottom: 10px;
 			border: 1px solid black;
 		}
@@ -222,18 +221,23 @@
 
 		.colection-container-idle {
 			background-color: #fafafa;
+			transition: 0.4s;
+		}
+
+		.colection-container-idle:hover {
+			background-color: rgb(225, 225, 225);
+			transition: 0.4s;
 		}
 
 		.collection-img-container {
 			width: 200px;
 			height: 200px;
-			// object-fit: contain;
 			object-fit: cover;
-			// object-fit: fill;
 		}
 
 		.collection-info-container {
-			margin: 10px;
+			margin: 10px 20px;
+			text-align: justify;
 		}
 	}
 }

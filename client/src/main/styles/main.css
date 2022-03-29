@@ -3350,6 +3350,14 @@
 
 .curated-collection-parent .display-all-curation-parent .colection-container-idle {
   background-color: #fafafa;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.curated-collection-parent .display-all-curation-parent .colection-container-idle:hover {
+  background-color: #e1e1e1;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .curated-collection-parent .display-all-curation-parent .collection-img-container {
@@ -3360,7 +3368,8 @@
 }
 
 .curated-collection-parent .display-all-curation-parent .collection-info-container {
-  margin: 10px;
+  margin: 10px 20px;
+  text-align: justify;
 }
 
 * {

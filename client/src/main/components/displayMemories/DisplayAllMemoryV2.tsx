@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
-import ViewMemoryV3 from "../../components/modal/ViewMemoryV2";
+import ViewMemoryV4 from "../../components/modal/ViewMemoryV4";
 import EmptyV1 from "../../assets/images/logo/emptyPhotoV1.png";
 
 interface IProps {
@@ -79,7 +79,7 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 
 	return (
 		<div className="all-memory-v2-parent">
-			<ViewMemoryV3 modalTigger={triggerViewMemory} record={viewRecord} />
+			<ViewMemoryV4 modalTigger={triggerViewMemory} record={viewRecord} />
 			<div className="search-submit-container">
 				<div className="filter-field-container">
 					<span className="filter-name">Title</span>

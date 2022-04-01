@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
-import ViewMemoryV2 from "../modal/ViewMemoryV2";
+import ViewMemoryV2 from "../modals/ViewMemoryV2";
 
 import EmptyV1 from "../../assets/images/icons/emptyV1.png";
 

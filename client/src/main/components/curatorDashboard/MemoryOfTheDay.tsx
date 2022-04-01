@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers/allReducer";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
-import ViewMemoryV3 from "../../components/modal/ViewMemoryV3";
+import ViewMemoryV3 from "../modals/ViewMemoryV3";
 import DisplayAllMemoryV2 from "../../components/displayMemories/DisplayAllMemoryV2";
 
 interface ICalendar {

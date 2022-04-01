@@ -7,9 +7,9 @@ import axios from "axios";
 import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 
 import NavbarV1 from "../components/headers/NavbarV1";
-import EditProfileV1 from "../components/modal/EditProfileModalV1";
-import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
-import ReportBug from "../components/modal/ReportBug";
+import EditProfileV1 from "../components/modals/EditProfileModalV1";
+import ViewMemoryV2 from "../components/modals/ViewMemoryV2";
+import ReportBug from "../components/modals/ReportBug";
 
 import editProfileV1 from "../assets/images/buttons/editProfileV1.png";
 import filterBtnV1 from "../assets/images/buttons/filterBtnV1.png";

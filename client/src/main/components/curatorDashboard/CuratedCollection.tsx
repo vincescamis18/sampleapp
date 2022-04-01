@@ -5,7 +5,7 @@ import { RootState } from "../../redux/reducers/allReducer";
 import { projectStorage } from "../../utilities/firebaseConfig";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
-import ViewMemoryV3 from "../../components/modal/ViewMemoryV2";
+import ViewMemoryV3 from "../modals/ViewMemoryV2";
 
 import uploadImageBtnV1 from "../../assets/images/buttons/uploadImageBtnV1.png";
 import emptyPhotoV1 from "../../assets/images/logo/emptyPhotoV1.png";

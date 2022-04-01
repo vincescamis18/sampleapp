@@ -4,7 +4,7 @@ import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 import { useParams } from "react-router-dom";
 
 import NavbarV1 from "../components/headers/NavbarV1";
-import ViewMemoryV2 from "../components/modal/ViewMemoryV2";
+import ViewMemoryV2 from "../components/modals/ViewMemoryV2";
 
 import EmptyV1 from "../assets/images/icons/emptyV1.png";
 

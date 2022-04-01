@@ -6,7 +6,7 @@ import { FacebookShareButton, TwitterShareButton } from "react-share";
 
 import { fetchComment, createComment, commentReset } from "../redux/actions/commentAction";
 
-import ReportCotent from "../components/modal/ReportContent";
+import ReportCotent from "../components/modals/ReportContent";
 import NavbarV1 from "../components/headers/NavbarV1";
 
 import arrowLeftV1 from "../assets/images/icons/arrowLeftV1.png";

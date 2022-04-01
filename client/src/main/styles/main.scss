@@ -7,22 +7,27 @@
 @import "./pages/user";
 @import "./pages/viewMemoryPage";
 
-@import "./header/navbarV1";
-@import "./modal/editProfileModalV1";
-@import "./modal/viewMemoryModal";
-@import "./input/multipleImageV2";
-@import "./loading/loadingScreenV1";
-@import "./modal/reportContent";
-@import "./modal/reportBug";
-@import "./memory/displayAllMemoryV1";
-@import "./memory/displayAllMemoryV2";
-@import "./modal/viewMemoryModalV3";
 @import "./pages/curatorDashboard";
-@import "./dashboard/memoryOfTheDay";
-@import "./memory/memoryOfTheDay";
-@import "./modal/viewMemoryModalV4";
-@import "./dashboard/curatedCollection";
 
+@import "./components/modals/reportContent";
+@import "./components/modals/reportBug";
+@import "./components/modals/editProfileModalV1";
+@import "./components/modals/viewMemoryModalV2";
+@import "./components/modals/viewMemoryModalV3";
+@import "./components/modals/viewMemoryModalV4";
+
+@import "./components/loadingScreens/loadingScreenV1";
+
+@import "./components/inputs/multipleImageV2";
+
+@import "./components/headers/navbarV1";
+
+@import "./components/displayMemories/displayAllMemoryV1";
+@import "./components/displayMemories/displayAllMemoryV2";
+@import "./components/displayMemories/memoryOfTheDay";
+
+@import "./components/curatorDashboard/curatedCollection";
+@import "./components/curatorDashboard/memoryOfTheDay";
 * {
 	box-sizing: border-box;
 	padding: 0px;

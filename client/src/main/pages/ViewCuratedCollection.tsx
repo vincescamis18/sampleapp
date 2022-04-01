@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import { IRecordWithCreator } from "../redux/actionSchemas/recordSchema";
 import { useParams } from "react-router-dom";
@@ -13,7 +12,6 @@ const CurratedCollection = () => {
 	const params = useParams();
 
 	const [recordState, setRecordState] = useState<{ records: IRecordWithCreator[] }>({ records: [] });
-	// const [viewRecord, setViewRecord] = useState<any>([]);
 	const [selectRecord, setSelectRecord] = useState<any>([]);
 	const [curationInformation, setCurationInformation] = useState<any>({ title: "", description: "", images: null, _id: "" });
 	const [viewRecord, setViewRecord] = useState<IRecordWithCreator>();
@@ -56,16 +54,26 @@ const CurratedCollection = () => {
 				{recordState.records?.map((record: any, index: number) => {
 					if (selectRecord.find((item: any) => item.record._id == record._id))
 						return (
-							<img
-								className="cursor-point all-memory-display-container"
-								src={record.images[0].link}
-								key={index}
-								alt="record image"
-								onClick={() => {
-									setViewRecord(record);
-									setTriggerViewMemory(!triggerViewMemory);
-								}}
-							/>
+							<React.Fragment>
+								<div
+									className="memory-containner cursor-point"
+									onClick={() => {
+										setViewRecord(record);
+										setTriggerViewMemory(!triggerViewMemory);
+									}}
+								>
+									<div className="memory-details">
+										<h4>{record.title}</h4>
+										<p className="description">{record.description}</p>
+									</div>
+									<img
+										className="cursor-point all-memory-display-container"
+										src={record.images[0].link}
+										key={index}
+										alt="record image"
+									/>
+								</div>
+							</React.Fragment>
 						);
 				})}
 				{emptyImages()}

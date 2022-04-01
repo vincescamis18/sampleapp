@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
-import ViewMemoryV4 from "../../components/modal/ViewMemoryV4";
+import ViewMemoryV2 from "../../components/modal/ViewMemoryV2";
 import EmptyV1 from "../../assets/images/logo/emptyPhotoV1.png";
 
 interface IProps {
@@ -40,7 +39,7 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 	// fill the gap of 4 picture per column design to push the picture at the left side
 	const emptyImages = () => {
 		if (recordState.records?.length) {
-			const columnCount = 15;
+			const columnCount = 5;
 			const numberOfEmptySlots = columnCount - (recordState.records?.length % columnCount);
 			const emptySlots = [];
 			for (let a = 0; a < numberOfEmptySlots; a++) emptySlots.push(a);
@@ -79,7 +78,7 @@ const DisplayAllMemoryV2 = (props: IProps) => {
 
 	return (
 		<div className="all-memory-v2-parent">
-			<ViewMemoryV4 modalTigger={triggerViewMemory} record={viewRecord} />
+			<ViewMemoryV2 modalTigger={triggerViewMemory} record={viewRecord} />
 			<div className="search-submit-container">
 				<div className="filter-field-container">
 					<span className="filter-name">Title</span>

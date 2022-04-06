@@ -180,9 +180,66 @@
 }
 
 .home {
-  background-color: #414141;
-  width: 100vw;
-  height: 100vh;
+  background-color: #fff;
+}
+
+.home .center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.home .section-container {
+  width: 1335px;
+  height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.home .memorya-section01-item01-container {
+  width: 735px;
+  height: 300px;
+  background-color: #c8c8c8;
+  padding: 50px;
+  text-align: justify;
+}
+
+.home .section-border {
+  margin-top: 20px;
+}
+
+.home .memorya-section01-item02-container {
+  width: 600px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.home .memorya-section02-item01-container {
+  width: 518px;
+  height: 300px;
+  background-color: #c8c8c8;
+  padding: 50px;
+  text-align: justify;
+}
+
+.home .memorya-section02-item02-container {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.home .memorya-section02-item03-container {
+  width: 517px;
+  height: 300px;
+  background-color: #c8c8c8;
+  padding: 50px;
+  text-align: justify;
 }
 
 .register {

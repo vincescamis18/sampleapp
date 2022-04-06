@@ -92,7 +92,7 @@ const NavbarV1: React.FC = () => {
 				</div>
 
 				<div style={{ display: "flex", alignItems: "center" }}>
-					<img src={HomeV1} alt="home" className="home-icon" />
+					<img src={HomeV1} alt="home" className="home-icon" onClick={() => navigate("/")} />
 					<img src={ExploreV1} alt="explore" className="compass-icon" onClick={() => navigate("/explore")} />
 					<Profile />
 				</div>

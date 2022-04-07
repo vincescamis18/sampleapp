@@ -133,7 +133,7 @@ const User: React.FC = () => {
 	};
 
 	return (
-		<div style={{ backgroundColor: "FFFFFF", height: "500vh" }}>
+		<React.Fragment>
 			<NavbarV1 />
 			<div className="user-details-parent-container">
 				<div className="user-details-top-container">
@@ -163,10 +163,10 @@ const User: React.FC = () => {
 
 			<EditProfileV1 modalTigger={triggerEditProfile} />
 			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
+			<ReportBug modalTigger={triggerReportBug} />
 			<SideMenu />
 			<DisplayAllMemoryV1 userId={userState._id} />
-			<ReportBug modalTigger={triggerReportBug} />
-		</div>
+		</React.Fragment>
 	);
 };
 

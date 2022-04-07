@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ViewMemoryV2 from "../components/modals/ViewMemoryV2";
 import NavbarV1 from "../components/headers/NavbarV1";
 
-import EmptyV1 from "../assets/images/icons/emptyV1.png";
+import EmptyV1 from "../assets/images/icons/emptyV3.png";
 
 const DisplayAllMemoryV2 = () => {
 	const { searchWord } = useParams();

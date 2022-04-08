@@ -1,5 +1,6 @@
 @import "./origin/origin";
 @import "./pages/curatedCollectionPage";
+@import "./pages/explore";
 @import "./pages/home";
 @import "./pages/register";
 @import "./pages/searchResult";
@@ -27,6 +28,7 @@
 
 @import "./components/curatorDashboard/curatedCollection";
 @import "./components/curatorDashboard/memoryOfTheDay";
+
 * {
 	box-sizing: border-box;
 	padding: 0px;

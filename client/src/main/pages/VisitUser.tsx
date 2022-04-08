@@ -98,7 +98,7 @@ const VisitUser: React.FC = () => {
 
 	// if (!userState._id) return <React.Fragment></React.Fragment>;
 	return (
-		<div style={{ backgroundColor: "FFFFFF", height: "500vh" }}>
+		<div style={{ }}>
 			<NavbarV1 />
 			<div className="user-details-parent-container">
 				<div className="user-details-top-container">

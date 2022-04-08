@@ -48,7 +48,7 @@ const Explore: React.FC = () => {
 	);
 
 	return (
-		<div>
+		<div className="explore">
 			<NavbarV1 />
 			<DisplayMemoryOfTheDayV1 />
 			<DisplayAllCuratedCollection />

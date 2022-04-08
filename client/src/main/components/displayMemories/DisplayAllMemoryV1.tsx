@@ -5,7 +5,7 @@ import { IRecordWithCreator } from "../../redux/actionSchemas/recordSchema";
 
 import ViewMemoryV2 from "../modals/ViewMemoryV2";
 
-import EmptyV1 from "../../assets/images/icons/emptyV1.png";
+import EmptyV1 from "../../assets/images/icons/emptyV3.png";
 
 interface IProps {
 	userId: string | undefined;
@@ -72,7 +72,7 @@ const DisplayAllMemoryV1 = (props: IProps) => {
 	};
 
 	return (
-		<div style={{ backgroundColor: "FFFFFF", paddingBottom: "100px" }}>
+		<div>
 			<ViewMemoryV2 modalTigger={triggerViewMemory} record={selectRecord} />
 			<DisplayUserAllMemories />
 		</div>

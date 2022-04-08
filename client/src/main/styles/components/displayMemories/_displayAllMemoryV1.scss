@@ -1,6 +1,10 @@
 .all-memory-parent {
+	background-image: url("../assets/images/backgrounds/bg-dot.png");
+	background-color: #fff;
 	display: flex;
 	justify-content: center;
+	flex-direction:column;
+	padding-bottom: 100px;
 }
 
 .all-memory-container {

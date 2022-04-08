@@ -1,4 +1,87 @@
 .explore {
 	background-image: url("../assets/images/backgrounds/bg-dot.png");
 	background-color: #fff;
+
+	.center-tab-parent {
+		display: flex;
+		justify-content: center;
+
+		.tab-parent-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			width: 1335px;
+			background-color: black;
+			color: white;
+			margin-top: 20px;
+		}
+
+		.tab-option {
+			width: 33%;
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+		}
+
+		.tab-option-selected {
+			background-color: red;
+			width: 250px;
+			height: 5px;
+			position: absolute;
+			bottom: 0px;
+		}
+
+		.tab-option:hover {
+			cursor: pointer;
+			background-color: #323232;
+		}
+
+		.tab-option:active {
+			background-color: #4b4b4b;
+		}
+	}
+
+	.center-all-users-parent {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 45px;
+		padding-bottom: 500px;
+
+		.user-details-container {
+			display: flex;
+		}
+
+		.user-item {
+			display: flex;
+			flex-direction: row;
+			width: 1335px;
+			background-color: rgb(245, 245, 245);
+			color: black;
+			justify-content: space-between;
+			padding: 10px 30px;
+			border: 1px solid black;
+			transition: 0.5s;
+		}
+
+		.user-item:hover {
+			background-color: rgb(225, 225, 225);
+			transition: 0.5s;
+			cursor: pointer;
+		}
+
+		.user-item:active {
+			background-color: rgb(205, 205, 205);
+			transition: 0.5s;
+		}
+
+		.user-image-container {
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			margin-right: 20px;
+		}
+	}
 }

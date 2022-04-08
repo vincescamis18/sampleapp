@@ -17,6 +17,7 @@ import Register from "./main/pages/Register";
 import UploadMemory from "./main/pages/UploadMemory";
 import EditMemory from "./main/pages/EditMemory";
 import Explore from "./main/pages/Explore";
+import ExploreV2 from "./main/pages/ExploreV2";
 import CuratorDashboard from "./main/pages/CuratorDashboard";
 import CuratedCollection from "./main/pages/ViewCuratedCollection";
 import MemoryView from "./main/pages/MemoryView";
@@ -56,7 +57,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/upload-memory" element={<UploadMemory />} />
 				<Route path="/edit-memory/:id" element={<EditMemory />} />
-				<Route path="/explore" element={<Explore />} />
+				<Route path="/explore" element={<ExploreV2 />} />
 				<Route path="/dashboard" element={<CuratorDashboard />} />
 				<Route path="/collection/:id" element={<CuratedCollection />} />
 				<Route path="/search/:searchWord" element={<SearchResult />} />

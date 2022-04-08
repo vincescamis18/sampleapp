@@ -186,6 +186,125 @@
   background-color: #fff;
 }
 
+.explore .center-tab-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.explore .center-tab-parent .tab-parent-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 1335px;
+  background-color: black;
+  color: white;
+  margin-top: 20px;
+}
+
+.explore .center-tab-parent .tab-option {
+  width: 33%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.explore .center-tab-parent .tab-option-selected {
+  background-color: red;
+  width: 250px;
+  height: 5px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.explore .center-tab-parent .tab-option:hover {
+  cursor: pointer;
+  background-color: #323232;
+}
+
+.explore .center-tab-parent .tab-option:active {
+  background-color: #4b4b4b;
+}
+
+.explore .center-all-users-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 45px;
+  padding-bottom: 500px;
+}
+
+.explore .center-all-users-parent .user-details-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.explore .center-all-users-parent .user-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 1335px;
+  background-color: whitesmoke;
+  color: black;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 30px;
+  border: 1px solid black;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.explore .center-all-users-parent .user-item:hover {
+  background-color: #e1e1e1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.explore .center-all-users-parent .user-item:active {
+  background-color: #cdcdcd;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.explore .center-all-users-parent .user-image-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-right: 20px;
+}
+
 .home {
   background-image: url("../assets/images/backgrounds/bg-dot.png");
   background-color: #fff;
